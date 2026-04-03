@@ -1,14 +1,16 @@
-// import { PUBLIC_ENV } from '$env/static/public';
+import { dev } from '$app/environment';
+import { PUBLIC_ENV } from '$env/static/public';
 import type { LayoutServerLoad } from './$types';
 import { site, defaultLocale } from '@/config';
-// import { fetchFromCMS, getTenantByDomain } from '@/utils';
 
-import type { Page, Tenant } from '@payload-types';
+import type { Tenant } from '@payload-types';
 import { error } from '@sveltejs/kit';
 
 
 export const load: LayoutServerLoad = async (args) => {
-  const { platform, params, fetch } = args
+  if (dev) console.log(`ENV=${PUBLIC_ENV}`)
+
+  const { params, fetch } = args
 
   const locale = params.locale ?? defaultLocale
 
