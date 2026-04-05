@@ -72,6 +72,8 @@
 				return import('./navigation/footer/footer-design-2.svelte');
 			case 'flexItem':
 				return import('./special/flex-item.svelte');
+			case 'textUnderCard':
+				return import('./cards/text-under-card.svelte');
 		}
 	};
 

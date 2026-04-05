@@ -22,7 +22,7 @@
 		fetchpriority?: 'low' | 'auto' | 'high' | null | undefined;
 	} = $props();
 
-	let { style, alt, ignoreSizes, animation, sticker } = $derived(image || {});
+	let { style, alt, ignoreSizes, animation, stickerList } = $derived(image || {});
 
 	let asset = $derived((image?.url as Asset) || {});
 	onMount(() => cb && cb());
@@ -113,7 +113,9 @@
 			class="col-start-1 row-start-1 h-full w-full"
 		></div>
 		<div class="col-start-1 relative row-start-1 h-full w-full">
-			<Sticker data={sticker} />
+			{#each stickerList ?? [] as sticker}
+				<Sticker data={sticker} />
+			{/each}
 		</div>
 	</div>
 {/if}
