@@ -8,6 +8,10 @@
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"compatibility_date": "2025-04-30",
 	"compatibility_flags": ["nodejs_compat"],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".svelte-kit/cloudflare"
+	},
 	"env": {
 		"production": {
 			"vars": {
@@ -17,10 +21,6 @@
 				"PUBLIC_ASSET_URL": "https://assets.calisto.studio",
 				"PUBLIC_TEST_ASSET_URL": "https://test-assets.calisto.studio",
 				"PUBLIC_DOMAIN_NAME": "%domainName%"
-			},
-			"assets": {
-				"binding": "ASSETS",
-				"directory": ".svelte-kit/cloudflare"
 			},
 			"kv_namespaces": [
 				{
