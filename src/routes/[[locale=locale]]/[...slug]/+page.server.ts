@@ -29,7 +29,9 @@ export const load: PageServerLoad = async (args) => {
 
 export const entries: EntryGenerator = async () => {
 
-  return await fetch(`${site.CMS}/api/tenants?where[domain][equals]=${site.domainName}`)
+  const url = `${site.CMS}/api/tenants?where[domain][equals]=${site.domainName}`
+  console.log({ url })
+  return await fetch(url)
     .then(data => data.json())
     .then((json: any) => {
       const paths = Object.entries({ ...supportedLocales, "": "include_missing_locale" })
