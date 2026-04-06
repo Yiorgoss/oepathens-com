@@ -22,13 +22,13 @@
 				"PUBLIC_TEST_ASSET_URL": "https://test-assets.calisto.studio",
 				"PUBLIC_DOMAIN_NAME": "%domainName%"
 			},
-			"kv_namespaces": [
-				{
-					"binding": "CALISTO_STUDIO_KV_CACHE",
-					"id": "222c6845593445efa369f4eda7a02e31",
-					"preview_id": "213ef123d5674ed2b153c1f1c2c25f07"
-				}
-			],
+			// "kv_namespaces": [
+			// 	{
+			// 		"binding": "CALISTO_STUDIO_KV_CACHE",
+			// 		"id": "222c6845593445efa369f4eda7a02e31",
+			// 		"preview_id": "213ef123d5674ed2b153c1f1c2c25f07"
+			// 	}
+			// ],
 			"observability": {
 				"enabled": true
 			},
@@ -52,13 +52,13 @@
 				"PUBLIC_DOMAIN_NAME": "%domainName%",
 				"PUBLIC_TEST_ASSET_URL": "https://test-assets.calisto.studio"
 			},
-			"kv_namespaces": [
-				{
-					"binding": "CALISTO_STUDIO_KV_CACHE", // this is TEST_CALISTO_STUDIO_KV_CACHE in the console
-					"id": "3b03184a78a4489db0e9cf35d6b5a411",
-					"preview_id": "eee2434facbc4ccba5b882b798cc839a"
-				}
-			],
+			// "kv_namespaces": [
+			// 	{
+			// 		"binding": "CALISTO_STUDIO_KV_CACHE", // this is TEST_CALISTO_STUDIO_KV_CACHE in the console
+			// 		"id": "3b03184a78a4489db0e9cf35d6b5a411",
+			// 		"preview_id": "eee2434facbc4ccba5b882b798cc839a"
+			// 	}
+			// ],
 			"routes": [
 				{
 					"pattern": "staging.%domainName%",
