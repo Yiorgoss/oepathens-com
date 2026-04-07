@@ -7,12 +7,15 @@
 	import Sticker from '@/components/common/sticker.svelte';
 	import { cn } from '@/utils';
 	import { animate } from '@/attachments/animations/animate.svelte';
+	import { onMount } from 'svelte';
 
 	const { blockData, cb }: { blockData: IBlockColumnLayout; cb?: () => void } = $props();
 	const { layout, columnOne, columnTwo, columnThree, style, mobileStyle, animation } =
 		$derived(blockData);
 
-	$effect(() => cb && cb());
+	onMount(() => {
+		cb && cb();
+	});
 
 	const normaliseWidth = (layout: string) => {
 		const cssList = [];
