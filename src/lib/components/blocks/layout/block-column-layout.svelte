@@ -59,7 +59,7 @@
 	style:background={style?.color}
 	style:border-radius={style?.borderRadius}
 	class:container={style?.container}
-	class="mx-auto pt-[100px] relative overflow-hidden grid grid-cols-1 grid-rows-1"
+	class="mx-auto relative overflow-hidden grid grid-cols-1 grid-rows-1"
 >
 	<div class="absolute inset-0">
 		<Image image={blockData?.bgImage} />
