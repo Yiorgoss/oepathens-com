@@ -22,7 +22,7 @@
 		fetchpriority?: 'low' | 'auto' | 'high' | null | undefined;
 	} = $props();
 
-	let { style, alt, ignoreSizes, animation, s: stickerList } = $derived(image || {});
+	let { style, alt, ignoreSizes, animation, stickerList } = $derived(image || {});
 
 	let asset = $derived((image?.url as Asset) || {});
 	onMount(() => cb && cb());
@@ -73,14 +73,14 @@
 		style:--placeholder={`url(${site.storage}/${asset?.sizes?.placeholder?.filename})`}
 		style:height={style?.height}
 		style:width={style?.width}
-		style:object-fit={style?.objectFit}
-		style:object-position={style?.objectPosition}
 		style:padding={style?.padding}
 		style:border-radius={style?.borderRadius}
 	>
 		<div class:hidden={loaded} class="absolute inset-0 bg-white/40 animate-pulse"></div>
 		{#if ignoreSizes}
 			<img
+				style:object-fit={style?.objectFit}
+				style:object-position={style?.objectPosition}
 				onload={() => (loaded = true)}
 				src={`${site.storage}/${encodeURI(asset?.filename ?? '')}`}
 				class={cn(
@@ -94,6 +94,8 @@
 			/>
 		{:else}
 			<img
+				style:object-fit={style?.objectFit}
+				style:object-position={style?.objectPosition}
 				onload={() => (loaded = true)}
 				class={cn(
 					'object-cover w-full h-full col-start-1 row-start-1 ease-in-out transition-all duration-200',
@@ -115,7 +117,7 @@
 		></div>
 		<div class="col-start-1 relative row-start-1 h-full w-full">
 			{#each stickerList ?? [] as sticker}
-				<Sticker data={sticker} />
+				<Sticker data={sticker.s} />
 			{/each}
 		</div>
 	</div>

@@ -8,9 +8,11 @@
 	import { cn } from '@/utils';
 	import { animate } from '@/attachments/animations/animate.svelte';
 
-	const { blockData }: { blockData: IBlockColumnLayout } = $props();
+	const { blockData, cb }: { blockData: IBlockColumnLayout; cb?: () => void } = $props();
 	const { layout, columnOne, columnTwo, columnThree, style, mobileStyle, animation } =
 		$derived(blockData);
+
+	$effect(() => cb && cb());
 
 	const normaliseWidth = (layout: string) => {
 		const cssList = [];
@@ -54,14 +56,14 @@
 	style:background={style?.color}
 	style:border-radius={style?.borderRadius}
 	class:container={style?.container}
-	class="mx-auto md:py-5 relative overflow-hidden grid grid-cols-1 grid-rows-1"
+	class="mx-auto pt-[100px] relative overflow-hidden grid grid-cols-1 grid-rows-1"
 >
-	<div class="absolute">
+	<div class="absolute inset-0">
 		<Image image={blockData?.bgImage} />
 	</div>
-	<div class="relative row-start-1 col-start-1">
-		{#each blockData?.s ?? [] as sticker}
-			<Sticker data={sticker} />
+	<div class="relative z-20 row-start-1 col-start-1">
+		{#each blockData?.stickerList ?? [] as sticker}
+			<Sticker data={sticker.s} />
 		{/each}
 	</div>
 	<div

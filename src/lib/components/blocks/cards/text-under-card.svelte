@@ -7,7 +7,7 @@
 	const { blockData }: { blockData: ITextUnderCard } = $props();
 </script>
 
-<section id="TextUnderCard-block" class="bg-blue-400">
+<section id="TextUnderCard-block" class="">
 	<Card.Root class="max-w-md bg-transparent border-0 opacity-50 shadow-none text-foreground">
 		<div class="">
 			<Image image={blockData?.image} />

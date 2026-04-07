@@ -10,14 +10,14 @@
 	<div
 		style:justify-center={blockData.style?.alignX}
 		style:align-items={blockData.style?.alignY}
-		style:gap={blockData.style?.gap}
+		style:gap={'0px 50px' ?? blockData.style?.gap}
 		style:flex-direction={blockData.style?.flexDirection}
 		style:flex-wrap={blockData.style?.flexWrap}
-		style:overflow={blockData.style?.overflow}
-		class="flex flex-wrap justify-center items-center gap-2"
+		style:overflow={'auto' ?? blockData.style?.overflow}
+		class="w-full h-full flex flex-wrap justify-center items-center gap-2"
 	>
 		{#each blockData.list ?? [] as { block }}
-			<div class="">
+			<div class="shrink-0">
 				<RenderBlocks blockData={block?.[0]} />
 			</div>
 		{/each}

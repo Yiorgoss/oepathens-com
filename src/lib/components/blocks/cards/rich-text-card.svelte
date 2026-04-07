@@ -15,7 +15,7 @@
 		class="overflow-hidden relative h-full max-w-xs w-full hover:scale-105 transition-transform duration-300"
 	>
 		{#if blockData?.image}
-			<div class="-z-0 absolute inset-0">
+			<div class="absolute inset-0">
 				<Image image={blockData?.image} />
 			</div>
 		{/if}

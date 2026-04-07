@@ -4,7 +4,7 @@ import { error } from "@sveltejs/kit";
 
 import type { Page, Tenant } from "@payload-types";
 import type { EntryGenerator } from './$types';
-import { building } from "$app/environment";
+import { building, dev } from "$app/environment";
 
 export const load: PageServerLoad = async (args) => {
   const { platform, params, fetch } = args
@@ -12,7 +12,9 @@ export const load: PageServerLoad = async (args) => {
   const locale = params.locale ?? defaultLocale
   const slug = params.slug
 
-  const data = await fetch(`${site.CMS}/api/pages?&depth=2&locale=${locale}&where[tenant-domain][equals]=${site.domainName}&where[slug][equals]=${slug}`,
+  const url = `${site.CMS}/api/pages?&depth=2&locale=${locale}&where[tenant-domain][equals]=${site.domainName}&where[slug][equals]=${slug}`
+  if (dev) console.log(`url=${url}`)
+  const data = await fetch(url,
     {
       headers: {
         "Cache-Control": building ? 'private, no-store, max-age=0, s-maxage=0, must-revalidate' : ''
