@@ -48,6 +48,7 @@
 	style={`padding=${style?.padding};`}
 	class={cn('wrap-anywhere mx-2', className)}
 	{variant}
+	{size}
 	{href}
 	{...restProps}
 >

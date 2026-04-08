@@ -56,15 +56,16 @@
 
 <section
 	id="block-column-layout"
+	style:height={style?.height}
 	style:background={style?.color}
 	style:border-radius={style?.borderRadius}
 	class:container={style?.container}
-	class="mx-auto relative overflow-hidden grid grid-cols-1 grid-rows-1"
+	class="mx-auto relative grid grid-cols-1 grid-rows-1"
 >
 	<div class="absolute inset-0">
 		<Image image={blockData?.bgImage} />
 	</div>
-	<div class="relative z-20 row-start-1 col-start-1">
+	<div class="relative isolate row-start-1 col-start-1">
 		{#each blockData?.stickerList ?? [] as sticker}
 			<Sticker data={sticker.s} />
 		{/each}

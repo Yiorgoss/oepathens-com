@@ -3,16 +3,22 @@
 	import { RichTextRender } from '../rich-text';
 	import * as Card from '@/components/ui/card';
 	import Image from '@/components/common/image.svelte';
+	import { cn } from '@/utils';
 
 	const { blockData }: { blockData: IRichTextCard } = $props();
-	const { richText, style: { background, alignX, alignY, borderRadius, maxWidth, border } = {} } =
-		$derived(blockData);
+	const {
+		richText,
+		style: { background, alignX, alignY, borderRadius, width, maxWidth, border, hasShadow } = {}
+	} = $derived(blockData);
 </script>
 
 <section id="rich-text-card-block" class="flex items-center justify-center h-full w-full py-8">
 	<Card.Root
-		style={`background:${background};border:${border};border-radius:${borderRadius};max-width:${maxWidth};`}
-		class="overflow-hidden relative h-full max-w-xs w-full hover:scale-105 transition-transform duration-300"
+		style={`background:${background};border:${border};border-radius:${borderRadius};width:${width};max-width:${width && 'unset'};`}
+		class={cn(
+			'overflow-hidden relative h-full max-w-xs w-full hover:scale-105 transition-transform duration-300',
+			hasShadow && 'shadow-none'
+		)}
 	>
 		{#if blockData?.image}
 			<div class="absolute inset-0">
