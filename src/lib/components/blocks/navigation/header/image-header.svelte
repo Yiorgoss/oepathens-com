@@ -37,6 +37,7 @@
 			<a href={`/${locale ?? ''}`} aria-label="home page" class="">
 				<div class="h-(--header-height) lg:p-2 md:p-4 w-auto">
 					<Image
+						alt="link to homepage"
 						class="object-contain py-2"
 						loading="eager"
 						fetchpriority="high"

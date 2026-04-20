@@ -87,7 +87,7 @@
 					'object-cover w-full h-full col-start-1 row-start-1 ease-in-out transition-all duration-200',
 					className
 				)}
-				{alt}
+				alt={alt ?? ''}
 				{loading}
 				{fetchpriority}
 				{@attach animate({ animation })}
