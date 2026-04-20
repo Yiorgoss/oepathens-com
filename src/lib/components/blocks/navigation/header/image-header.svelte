@@ -6,7 +6,6 @@
 	import { type IImageHeader } from '@payload-types';
 	import { onMount } from 'svelte';
 	import { cn } from '@/utils';
-	import { throttle } from '@/utils';
 	import { page } from '$app/state';
 	import LocaleSwitcher from '@/components/common/locale-switcher.svelte';
 	import { supportedLocales } from '@/config';

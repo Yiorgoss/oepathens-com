@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Image from '@/components/common/image.svelte';
-	import { throttle } from '@/utils';
-	//  import { scroll, animate, type AnimationPlaybackControls } from 'motion';
 	import type { IScrollGrowLanding } from '@payload-types';
 	import { RichTextRender } from '../rich-text';
 	import Button from '@/components/common/button.svelte';
