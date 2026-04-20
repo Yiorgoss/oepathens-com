@@ -7,10 +7,10 @@
 	const { blockData }: { blockData: ITextUnderCard } = $props();
 </script>
 
-<section id="TextUnderCard-block" class="">
-	<Card.Root class="max-w-md bg-transparent border-0 shadow-none text-foreground">
-		<div class="">
-			<Image image={blockData?.image} />
+<section id="TextUnderCard-block" class="w-full max-w-md">
+	<Card.Root class="max-w-md w-full bg-transparent h-full border-0 shadow-none text-foreground">
+		<div class="w-full h-full">
+			<Image class="max-h-100" image={blockData?.image} />
 		</div>
 		<div class="">
 			<RichTextRender richText={blockData?.richText} />

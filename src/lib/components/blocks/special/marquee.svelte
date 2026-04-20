@@ -14,8 +14,6 @@
 		link
 		//  animation
 	} = $derived(blockData);
-
-	$inspect(blockData);
 </script>
 
 <section
