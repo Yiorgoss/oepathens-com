@@ -64,7 +64,6 @@
 {/key}
 
 {#snippet flagOrLocale({ locale, text }: { locale?: SupportedLocalesKeys; text?: String })}
-	{console.log(locale)}
 	{#if useFlag}
 		<Flag flag={locale} />
 	{:else}

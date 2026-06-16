@@ -8,8 +8,8 @@
 	import Button from '@/components/common/button.svelte';
 	import { RichTextRender } from '@/components/blocks/rich-text';
 	import EmailOnlyForm from '@/components/blocks/forms/email-only-form.svelte';
-	import SVG from '@/components/common/svg/svg.svelte';
 	import ContactForm from '../forms/contact-form.svelte';
+	import SVGRender from '@/components/common/svg/svg-render.svelte';
 
 	const { blockData, cb }: { blockData: IHeroCutout; cb?: () => void } = $props();
 	const { image, richText, form } = $derived(blockData);
@@ -63,8 +63,8 @@
 			</div>
 		</div>
 	</div>
-	<SVG name="cutout-main" data={CUTOUT_DIMENSIONS} />
-	<SVG name="cutout-small" data={CUTOUT_DIMENSIONS} />
+	<SVGRender name="cutout-main" data={CUTOUT_DIMENSIONS} />
+	<SVGRender name="cutout-small" data={CUTOUT_DIMENSIONS} />
 </section>
 
 <style>

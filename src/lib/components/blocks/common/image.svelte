@@ -6,6 +6,6 @@
 	const { blockData, sizes }: { blockData: IImage; sizes?: string } = $props();
 </script>
 
-<div id="image-block" class="h-fit w-fit">
+<div id="image-block" class="h-fit w-fit max-w-full overflow-hidden">
 	<Image class="" image={blockData.image} {sizes} />
 </div>

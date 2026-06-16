@@ -28,6 +28,8 @@
 				return import('./special/accordion.svelte');
 			case 'carousel':
 				return import('./special/carousel.svelte');
+			case 'wavyText':
+				return import('./special/wavy-text.svelte');
 			case 'calistoFeatureCard':
 				return import('./cards/calisto-feature-card.svelte');
 			case 'discountCard':
@@ -42,6 +44,8 @@
 				return import('./common/image.svelte');
 			case 'gutter':
 				return import('./common/gutter.svelte');
+			case 'clipGutter':
+				return import('./common/clip-gutter.svelte');
 			case 'rtBlock':
 				return import('./rich-text/block.svelte');
 			case 'imageHeader':

@@ -2,7 +2,7 @@
 	import type { ICutoutCard } from '@payload-types';
 	import Image from '@/components/common/image.svelte';
 	import Button from '@/components/common/button.svelte';
-	import SVG from '@/components/common/svg/svg.svelte';
+	import SVGRender from '@/components/common/svg/svg-render.svelte';
 
 	const { blockData }: { blockData: ICutoutCard } = $props();
 	const CLIP_PATH = { id: 'cutoutCard', w: 40, h: 25, xInc: 4, yInc: 4 };
@@ -17,7 +17,7 @@
 			<Button link={blockData.link} />
 		</div>
 	</div>
-	<SVG name="cutout-main" data={CLIP_PATH} />
+	<SVGRender name="cutout-main" data={CLIP_PATH} />
 </section>
 
 <style>

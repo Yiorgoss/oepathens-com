@@ -9,7 +9,6 @@
 	import LocaleSwitcher from '@/components/common/locale-switcher.svelte';
 	import { supportedLocales } from '@/config';
 	import Icon from '@/components/common/icon.svelte';
-	import { MediaQuery } from 'svelte/reactivity';
 
 	const { blockData }: { blockData: IMidFloadHeader } = $props();
 
@@ -95,7 +94,7 @@
 									{#each [...left, ...right] as { nLink }}
 										{@render nestedLink({ nLink })}
 									{/each}
-									<Nav.Item class="">
+									<Nav.Item class="py-2 px-4">
 										<LocaleSwitcher useFlag />
 									</Nav.Item>
 								</div>
