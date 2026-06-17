@@ -15,7 +15,7 @@
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
 		"new": "sh scripts/github_init.sh",
-		"deploy": "git pull upstream main --no-edit --no-rebase && pnpm install approve-builds esbuild sharp workerd && pnpm typegen:payload && sh scripts/add_domain_wrangler.sh && PUBLIC_ENV=PROD vite build && wrangler deploy --env=production && pnpm pushVersion && exit 0",
+		"deploy": "git pull upstream main --no-edit --no-rebase && pnpm install && pnpm typegen:payload && sh scripts/add_domain_wrangler.sh && PUBLIC_ENV=PROD vite build && wrangler deploy --env=production && pnpm pushVersion && exit 0",
 		"deploy:staging": "PUBLIC_DEV_CMS=https://staging-cms.calisto.studio vite build && wrangler deploy --env=staging",
 		"pushVersion": "git push origin main",
 		"pushVersion:old": "git add . && git commit -m \"$(git rev-list --count main)\" && git push origin main",
@@ -58,9 +58,6 @@
 		"typescript-eslint": "^8.20.0",
 		"vite": "^6.2.6",
 		"wrangler": "^4.14.1"
-	},
-	"pnpm": {
-		"onlyBuiltDependencies": ["esbuild"]
 	},
 	"dependencies": {
 		"@motionone/types": "^10.17.1",
