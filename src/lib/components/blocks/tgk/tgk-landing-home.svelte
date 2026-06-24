@@ -1,9 +1,12 @@
 <script lang="ts">
+	import {onMount} from "svelte"
 	import type { ITGKLandingHome } from '@payload-types';
 	import Image from '@/components/common/image.svelte';
 	import { RichTextRender } from '../rich-text';
 
-	const { blockData }: { blockData: ITGKLandingHome } = $props();
+
+	const { blockData, cb }: { blockData: ITGKLandingHome, cb:()=>void } = $props();
+	onMount(() => cb && cb())
 </script>
 
 <section id="TextImageSplit">
