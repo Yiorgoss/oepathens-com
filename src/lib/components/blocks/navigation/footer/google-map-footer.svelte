@@ -2,16 +2,17 @@
 	import type { IGoogleMapFooter } from '@payload-types';
 	import Button from '@/components/common/button.svelte';
 	import Image from '@/components/common/image.svelte';
+	import { RichTextRender } from '../../rich-text';
 
 	const { blockData }: { blockData: IGoogleMapFooter } = $props();
 </script>
 
-<section id="GoogleMapFooter">
+<section id="GoogleMapFooter" style:background={blockData.style.background}>
 	<div class="container mx-auto py-10">
-		<div class="">
-			<Image image={blockData.logo} />
+		<div class="w-full py-10">
+			<Image image={blockData.logo} class="h-25 object-contain" />
 		</div>
-		<div class="grid grid-cols-2 md:grid-cols-6 gap-5 justify-around items-center w-full">
+		<div class="grid grid-cols-2 md:grid-cols-6 gap-5 justify-around items-start w-full">
 			{#each blockData.list as { links, header, horizontal }, i}
 				{@const k = 3}
 				{@const lastRow = blockData.list.length % k}
@@ -20,22 +21,22 @@
 					class:col-span-3={lastRow == 2 && blockData.list.length - 2 <= i}
 					class="col-span-2"
 				>
-					<div class="text-2xl text-center py-5">{header}</div>
+					<div class="text-lg font-medium text-center py-5">{header}</div>
 					<div class:flex-row={horizontal} class="flex flex-col justify-center items-center">
 						{#each links as { link }}
-							<Button {link} class="h-6" />
+							<Button {link} class="h-auto px-0" />
 						{/each}
 					</div>
 				</div>
 			{/each}
 		</div>
 	</div>
-	<div class="grid grid-cols-1 md:grid-cols-2 px-2 container">
+	<div class="grid grid-cols-1 md:grid-cols-2 px-4 py-10 mx-auto gap-10 container">
 		{#each blockData.locations as { richText, iframe }}
-			<div class="">
+			<div class="flex justify-center items-center">
 				<RichTextRender {richText} />
 			</div>
-			<div class="w-full pt-10">
+			<div class="w-full h-full">
 				{@html iframe}
 			</div>
 		{/each}

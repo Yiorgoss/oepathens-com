@@ -1,10 +1,11 @@
 <script lang="ts">
+	import type { IWavyText } from '@payload-types';
 	import { animate, scroll } from 'motion';
 	import { onMount } from 'svelte';
 
-	const { data }: { data: any } = $props();
+	const { data }: { data: IWavyText } = $props();
 
-	const [minX, minY, width, height] = data.viewbox.split(' ').filter(Boolean);
+	const [minX, minY, width, height] = data.viewbox?.split(' ').filter(Boolean);
 
 	let elem: HTMLElement;
 	onMount(() =>

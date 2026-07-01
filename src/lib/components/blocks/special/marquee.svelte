@@ -31,20 +31,22 @@
 		style:max-height={height}
 		href={(link as Page)?.slug}
 		aria-hidden={!(link as Page)?.slug}
-		class="flex max-h-25"
+		class="flex"
 	>
-		<div
-			style:gap
-			style:animation-duration={options?.duration}
-			class:flex-wrap={prefersReducedMotion.current}
-			class="marquee-default w-max min-w-full flex justify-around items-center"
-		>
-			{#each items as { image, text }, i}
-				<Image {image} class="h-full object-contain" />
-				<div style:font class="text-nowrap">{text}</div>
-			{/each}
-		</div>
-		<div
+		{#each { length: 2 }, _}
+			<div
+				style:gap
+				style:animation-duration={options?.duration}
+				class:flex-wrap={prefersReducedMotion.current}
+				class="marquee-default w-max min-w-full flex justify-around items-center"
+			>
+				{#each items as { image, text }, i}
+					<Image {image} class="h-full object-contain" />
+					<div style:font class="text-nowrap">{text}</div>
+				{/each}
+			</div>
+		{/each}
+		<!--  <div
 			style:height
 			style:gap
 			style:animation-duration={options?.duration}
@@ -55,7 +57,7 @@
 				<Image {image} class="h-full object-contain" />
 				<div style:font class="text-nowrap">{text}</div>
 			{/each}
-		</div>
+		</div>  -->
 	</a>
 </section>
 

@@ -51,7 +51,7 @@
 
 	const widthClass = $derived(normaliseWidth(layout ?? 'oneColumn'));
 
-	const mobile = new MediaQuery('max-width: 600px');
+	const mobile = new MediaQuery('max-width: 768px');
 	const sizes = $derived(
 		layout == 'oneColumn'
 			? '100vw'

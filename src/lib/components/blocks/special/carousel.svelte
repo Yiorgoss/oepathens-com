@@ -13,7 +13,7 @@
 	});
 </script>
 
-<section id="carouselBlock" class="">
+<section style:background={blockData.style?.background} id="carouselBlock" class="">
 	<div class=" mx-auto relative container md:px-20">
 		<Carousel.Root
 			opts={{

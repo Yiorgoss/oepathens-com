@@ -8,7 +8,7 @@
 <section id="TGKCard1" class="w-fit">
 	<div
 		class={cn(
-			'hover:bg-(--tgk-card-color) transition-colors duration-300 group/tgk-card overflow-hidden border-4 rounded-tr-4xl rounded-bl-4xl',
+			'hover:bg-(--tgk-card-color) transition-colors duration-200 group/tgk-card overflow-hidden border-4 rounded-tr-4xl rounded-bl-4xl',
 			blockData.left && 'rounded-none rounded-tl-4xl rounded-br-4xl'
 		)}
 		style:--tgk-card-color={blockData.style.background}
@@ -19,7 +19,7 @@
 	>
 		<div class="flex justify-center w-full items-end h-full">
 			<div
-				class="text-2xl duration-300 group-hover/tgk-card:text-(--tgk-text-color) font-medium w-full px-4 py-10"
+				class="text-xl duration-100 font-serif group-hover/tgk-card:text-(--tgk-text-color) text-(--tgk-card-color) font-medium w-full px-4 py-10"
 			>
 				{blockData.title}
 			</div>

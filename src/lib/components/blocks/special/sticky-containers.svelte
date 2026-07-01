@@ -20,9 +20,11 @@
 
 			<div
 				style:top={`${50 * i + 5}px`}
-				style:background={style?.background}
+				style:border={blockData.style?.border}
+				style:background={style?.background?.split(',')[i % 2]}
+				style:border-radius={style?.borderRadius}
 				class={cn(
-					` text-background bg-foreground rounded-theme sticky`,
+					` text-background bg-foreground rounded-3xl sticky`,
 					left && 'bg-background border-foreground border '
 				)}
 			>
@@ -31,7 +33,11 @@
 						{title}
 					</div>
 				{/if}
-				<div class="flex flex-col md:flex-row justify-start items-center">
+				<div
+					style:gap={style?.gap}
+					style:padding={style?.padding}
+					class="flex flex-col md:flex-row justify-start items-center"
+				>
 					<div
 						class:md:order-last={left}
 						class="h-[300px] overflow-hidden md:h-auto w-full md:w-1/2 px-4 py-10 md:px-10"

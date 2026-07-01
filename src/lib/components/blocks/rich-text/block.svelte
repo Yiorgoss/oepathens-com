@@ -7,7 +7,10 @@
 	const { blockData }: { blockData: IRichText } = $props();
 </script>
 
-<section id="rich-text-block" class="relative container mx-auto py-0 md:py-5">
+<section
+	id="rich-text-block"
+	class="relative flex justify-center items-center container mx-auto py-0 md:py-5"
+>
 	{#if blockData.richText}
 		<RichTextRender richText={blockData.richText} />
 	{/if}

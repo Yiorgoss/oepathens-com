@@ -46,6 +46,8 @@
 				return import('./common/image.svelte');
 			case 'gutter':
 				return import('./common/gutter.svelte');
+			case 'gutterv2':
+				return import('./common/gutter-v2.svelte');
 			case 'clipGutter':
 				return import('./common/clip-gutter.svelte');
 			case 'rtBlock':
