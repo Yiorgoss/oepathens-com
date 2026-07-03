@@ -10,8 +10,8 @@ fi
 REPO="yiorgoss/${PUBLIC_DOMAIN_NAME//./-}"
 
 git remote add upstream "https://github.com/yiorgoss/base-calisto.git"
-git remote remove origin "https://github.com/yiorgoss/$REPO.git"
-git remote add origin "https://github.com/yiorgoss/$REPO.git"
+git remote remove origin 
+git remote add origin "https://github.com/$REPO.git"
 
 echo $REPO
 
