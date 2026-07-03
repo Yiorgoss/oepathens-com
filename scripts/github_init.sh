@@ -9,6 +9,10 @@ fi
 
 REPO="yiorgoss/${PUBLIC_DOMAIN_NAME//./-}"
 
+git remote add upstream "https://github.com/yiorgoss/base-calisto.git"
+git remote remove origin "https://github.com/yiorgoss/$REPO.git"
+git remote add origin "https://github.com/yiorgoss/$REPO.git"
+
 echo $REPO
 
 gh secret set CLOUDFLARE_API_TOKEN --body "$CLOUDFLARE_API_TOKEN" -R "$REPO"
