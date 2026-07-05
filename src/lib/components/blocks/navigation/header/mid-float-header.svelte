@@ -49,7 +49,7 @@
 					style={`background:${blockData.style?.background};`}
 					class="px-0 lg:px-10 mx-auto bg-background shadow-xl max-w-full rounded-2xl w-full items-center justify-center h-full hidden md:flex"
 				>
-					<div class="grow shrink basis-0 flex items-center justify-around">
+					<div class="grow shrink basis-0 flex w-full items-center justify-around">
 						{#if Object.entries(supportedLocales).length > 0}
 							<Nav.Item class="px-2 ">
 								<LocaleSwitcher useFlag />
@@ -60,7 +60,7 @@
 						{/each}
 					</div>
 					<!--  careful with the magic flex basis number!!  -->
-					<Nav.Item class="grow-0 w-full shrink basis-40 lg:basis-80">
+					<Nav.Item class="grow-0 w-full shrink basis-60 lg:basis-80">
 						<Nav.Link href={`/${locale ?? ''}`} aria-label="home page" class="">
 							<div class="h-(--header-height) lg:p-2 md:p-0 w-auto">
 								<Image
@@ -85,8 +85,9 @@
 					<!--  <div class="min-w-full flex grow w-full h-auto items-center justify-end md:hidden">  -->
 					<Sheet.Root bind:open>
 						<div
+							style:background={blockData.style?.background}
 							class={cn(
-								'bg-background py-2 px-4 flex justify-between rounded-theme items-center h-full w-full transition-transform ease-out duration-200 shadow-xl'
+								' py-2 px-4 flex justify-between rounded-2xl items-center h-full w-full transition-transform ease-out duration-200 shadow-xl'
 							)}
 						>
 							<a href={`/${locale ?? ''}`} aria-label="home page" class="h-full px-2">
@@ -104,7 +105,10 @@
 								</div>
 							</Sheet.Trigger>
 						</div>
-						<Sheet.Content class="flex flex-col items-center justify-start pt-[20vh] ">
+						<Sheet.Content
+							style={`background:${blockData.style?.background};`}
+							class="flex flex-col items-center justify-start pt-[20vh] "
+						>
 							<!-- bits-ui decides to add a untargetable div child under root so be careful with adding other divs -->
 							<Nav.List class="flex h-full w-full flex-col items-center justify-center ">
 								<div>
@@ -131,6 +135,7 @@
 				<Nav.Link class="">
 					{#snippet child()}
 						<Button
+							onclick={() => (open = false)}
 							class={cn(
 								'whitespace-nowrap m-0 w-full p-2 h-auto ',
 								activeLink == nLink && 'text-primary'
@@ -147,11 +152,11 @@
 					</span>
 				</Nav.Trigger>
 				<Nav.Content>
-					<ul class=" flex flex-col gap-1 md:w-30 lg:w-40">
+					<ul class=" flex flex-col justify-start items-start gap-1 md:w-30 lg:w-40">
 						{#each nLink.arr ?? [] as { link }}
 							<Nav.Link>
 								{#snippet child()}
-									<Button class="py-2 h-auto" {link} />
+									<Button onclick={() => (open = false)} class="py-2 h-auto" {link} />
 								{/snippet}
 							</Nav.Link>
 						{/each}

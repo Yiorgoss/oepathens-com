@@ -8,20 +8,32 @@
 		class: className,
 		style
 	}: { icon?: IIcon; name?: string; class?: string; style?: string } = $props();
+
+	/*
+	 *
+	 * padding ->
+	 *
+	 */
 </script>
 
-<iconify-icon
-	class={className}
-	height={icon?.size ?? 'none'}
-	width={icon?.size ?? 'none'}
-	icon={name ?? icon?.name ?? ''}
-	style:padding={icon?.style?.padding}
+<div
+	style:margin={icon?.style?.margin}
 	style:height={icon?.style?.height ?? 'inherit'}
 	style:width={icon?.style?.width ?? 'inherit'}
-	style:color={icon?.style?.color}
 	style:background={icon?.style?.background}
 	style:border={icon?.style?.border}
 	style:border-radius={icon?.style?.borderRadius}
-	style={style ?? icon?.style?.string}
+	class="flex justify-center items-center"
 >
-</iconify-icon>
+	<iconify-icon
+		class={className}
+		height={icon?.size ?? 'none'}
+		width={icon?.size ?? 'none'}
+		style:height="auto"
+		style:width="auto"
+		icon={name ?? icon?.name ?? ''}
+		style:color={icon?.style?.color}
+		style={style ?? icon?.style?.string}
+	>
+	</iconify-icon>
+</div>

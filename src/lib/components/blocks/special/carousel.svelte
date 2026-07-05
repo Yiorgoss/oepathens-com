@@ -13,8 +13,8 @@
 	});
 </script>
 
-<section style:background={blockData.style?.background} id="carouselBlock" class="">
-	<div class=" mx-auto relative container md:px-20">
+<section style:background={blockData.style?.background} id="carouselBlock" class="pb-16">
+	<div class=" mx-auto relative container px-2 md:px-20">
 		<Carousel.Root
 			opts={{
 				loop: !!options?.loop,
@@ -33,10 +33,12 @@
 				{/each}
 			</Carousel.Content>
 			<Carousel.Previous
-				class="max-md:size-12 max-md:mt-2 max-md:top-full max-md:left-50 max-md:translate-0 "
+				variant="ghost"
+				class="text-secondary border-2 border-secondary  max-md:size-12 max-md:mt-2 max-md:top-full max-md:left-auto max-md:right-1/2 max-md:-translate-x-5 max-md:translate-y-0"
 			/>
 			<Carousel.Next
-				class="max-md:size-12 max-md:mt-2 max-md:top-full max-md:right-50 max-md:translate-0 "
+				variant="ghost"
+				class=" text-secondary border-2 border-secondary max-md:size-12 max-md:mt-2 max-md:top-full max-md:left-1/2 max-md:translate-x-5 max-md:translate-y-0"
 			/>
 		</Carousel.Root>
 	</div>

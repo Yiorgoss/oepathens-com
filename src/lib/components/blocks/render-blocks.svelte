@@ -20,8 +20,16 @@
 		switch (blockName) {
 			case 'calistoLanding':
 				return import('./hero/calisto-landing.svelte');
+			case 'heroCutout':
+				return import('./hero/hero-cutout.svelte');
 			case 'mediumHero':
 				return import('./hero/medium-hero.svelte');
+			case 'scrollGrowLanding':
+				return import('./hero/scroll-grow-landing.svelte');
+			case 'gradientBG':
+				return import('./hero/gradient-bg.svelte');
+			case 'videoLanding':
+				return import('./hero/video-landing.svelte');
 			case 'stickyContainers':
 				return import('./special/sticky-containers.svelte');
 			case 'bentoGrid':
@@ -64,20 +72,14 @@
 				return import('./navigation/footer/google-map-footer.svelte');
 			case 'contactForm':
 				return import('./forms/contact-form.svelte');
-			case 'scrollGrowLanding':
-				return import('./hero/scroll-grow-landing.svelte');
 			case 'marquee':
 				return import('./special/marquee.svelte');
 			case 'richTextCard':
 				return import('./cards/rich-text-card.svelte');
 			case 'infoBanner':
 				return import('./banners/info-banner.svelte');
-			case 'gradientBG':
-				return import('./hero/gradient-bg.svelte');
 			case 'emboldenEpubConverter':
 				return import('./unique/embolden/epub-converter.svelte');
-			case 'heroCutout':
-				return import('./hero/hero-cutout.svelte');
 			case 'flexboxLayout':
 				return import('./layout/flexbox-layout.svelte');
 			case 'button':
@@ -102,6 +104,8 @@
 				return import('./tgk/card-doily.svelte');
 			case 'tgkGridIcons':
 				return import('./tgk/tgk-grid-icons.svelte');
+			case 'tgkCardIcons':
+				return import('./tgk/tgk-card-icons.svelte');
 			case 'tgkAccordion':
 				return import('./tgk/tgk-accordion.svelte');
 		}

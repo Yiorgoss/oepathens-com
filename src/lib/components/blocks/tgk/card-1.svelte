@@ -1,8 +1,11 @@
 <script lang="ts">
 	import { cn } from '@/utils';
 	import type { ITGKCard1 } from '@payload-types';
+	import { MediaQuery } from 'svelte/reactivity';
 
 	const { blockData }: { blockData: ITGKCard1 } = $props();
+
+	const mobile = new MediaQuery('max-width: 768px');
 </script>
 
 <section id="TGKCard1" class="w-fit">
@@ -14,12 +17,16 @@
 		style:--tgk-card-color={blockData.style.background}
 		style:--tgk-text-color={blockData.style.color}
 		style:border-color="var(--tgk-card-color)"
-		style:height={blockData.style.height}
-		style:width={blockData.style.width}
+		style:height={mobile.current
+			? (blockData.mobileStyle?.height ?? blockData.style?.height)
+			: blockData.style.height}
+		style:width={mobile.current
+			? (blockData.mobileStyle?.width ?? blockData.style?.width)
+			: blockData.style.width}
 	>
 		<div class="flex justify-center w-full items-end h-full">
 			<div
-				class="text-xl duration-100 font-serif group-hover/tgk-card:text-(--tgk-text-color) text-(--tgk-card-color) font-medium w-full px-4 py-10"
+				class="text-2xl md:text-xl duration-100 font-serif group-hover/tgk-card:text-(--tgk-text-color) text-(--tgk-card-color) font-medium w-full px-4 py-10"
 			>
 				{blockData.title}
 			</div>

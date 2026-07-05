@@ -17,9 +17,7 @@
 	let html = $state('');
 
 	$effect(() => {
-		if (!richText.text) {
-			console.log({ richTextFaailue: richText });
-		}
+		if (!richText || !richText.text) return;
 		convertLexicalToHTMLAsync({
 			data: richText.text,
 			converters: htmlConverters,
@@ -35,7 +33,7 @@
 	const mobile = new MediaQuery('max-width: 480px');
 </script>
 
-{#if richText}
+{#if richText && richText.text}
 	<!--  when switching languages richText becomes undefined  -->
 	<div
 		style:max-width={richText.style?.maxWidth}

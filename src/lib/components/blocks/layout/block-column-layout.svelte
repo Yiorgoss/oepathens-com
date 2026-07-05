@@ -86,7 +86,7 @@
 		style:align-items={style?.alignY}
 		style:justify-content={style?.alignX}
 		class:flex-wrap={layout == 'threeColumns'}
-		class="col-start-1 overflow-hidden row-start-1 flex z-10 gap-0 md:gap-10 justify-center items-center md:items-stretch h-full w-full flex-col md:flex-row mx-auto"
+		class="container col-start-1 overflow-hidden row-start-1 flex z-10 gap-0 md:gap-10 justify-center items-center md:items-stretch h-full w-full flex-col md:flex-row mx-auto"
 		{@attach animate({ animation })}
 	>
 		<div

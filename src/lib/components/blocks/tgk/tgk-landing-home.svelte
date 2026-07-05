@@ -17,9 +17,7 @@
 			<div class="col-start-1 row-start-1 h-full w-full">
 				<Image image={blockData.imgRight} class="object-left h-full" />
 			</div>
-			<div
-				class="col-start-1 row-start-1 h-full w-full flex justify-center items-center p-10 max-lg:items-end"
-			>
+			<div class="col-start-1 row-start-1 h-full w-full flex justify-center items-center p-10">
 				<RichTextRender overrides="" richText={blockData.richText} />
 			</div>
 		</div>
