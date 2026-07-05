@@ -40,7 +40,7 @@
 				>
 					<div
 						class:md:order-last={left}
-						class="dh-[300px] rounded-2xl overflow-hidden md:h-auto w-full md:w-1/2 px-4 py-10 md:px-10"
+						class=" rounded-2xl overflow-hidden md:h-auto w-full md:w-1/2 px-4 py-4 md:px-10"
 					>
 						{#if image}
 							<Image {image} class="" />

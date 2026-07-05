@@ -6,6 +6,7 @@
 	const { blockData }: { blockData: ITGKCard1 } = $props();
 
 	const mobile = new MediaQuery('max-width: 768px');
+	$inspect(blockData);
 </script>
 
 <section id="TGKCard1" class="w-fit">
@@ -18,10 +19,10 @@
 		style:--tgk-text-color={blockData.style.color}
 		style:border-color="var(--tgk-card-color)"
 		style:height={mobile.current
-			? (blockData.mobileStyle?.height ?? blockData.style?.height)
+			? (blockData.mobileStyles?.height ?? blockData.style?.height)
 			: blockData.style.height}
 		style:width={mobile.current
-			? (blockData.mobileStyle?.width ?? blockData.style?.width)
+			? (blockData.mobileStyles?.width ?? blockData.style?.width)
 			: blockData.style.width}
 	>
 		<div class="flex justify-center w-full items-end h-full">

@@ -14,16 +14,19 @@
 <section
 	style:padding={blockData.style?.padding}
 	style:background={blockData.style?.background}
-	class:container={blockData.style?.container}
 	class="w-full mx-auto px-2"
 >
-	<div style:width={blockData.style?.width}>
+	<div
+		class:container={blockData.style?.container}
+		style:width={blockData.style?.width}
+		class="mx-auto w-full"
+	>
 		<Accordion.Root class="w-full max-w-screen" type="multiple">
 			{#each list || [] as item, i}
 				<Accordion.Item value={`acc-item-${i}`} class="group border-0 w-full ">
 					<div style:padding={blockData.style?.gap}>
 						<Accordion.Trigger
-							class="flex font-serif font-semibold font-2xl w-full items-center justify-between select-none [&[data-state=open]svg]:rotate-180 rounded-none px-0 py-0"
+							class="flex font-serif font-semibold font-2xl w-full items-center justify-between select-none [&[data-state=open]svg]:rotate-180 hover:border-2 border-0 border-primary rounded-none px-0 py-0"
 						>
 							{#snippet child({ props })}
 								<div

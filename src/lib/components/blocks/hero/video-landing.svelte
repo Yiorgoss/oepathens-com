@@ -10,7 +10,7 @@
 
 <section id="VideoLanding" class="">
 	<div
-		style:background={blockData.style.background}
+		style:background={blockData.style?.background}
 		class="h-full w-full grid grid-cols-1 grid-rows-1"
 	>
 		<div class="row-start-1 col-start-1" aria-hidden="true">

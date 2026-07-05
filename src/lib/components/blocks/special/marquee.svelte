@@ -42,7 +42,7 @@
 			>
 				{#each items as { image, text }, i}
 					<Image {image} class="h-full object-contain" />
-					<div style:font class="text-nowrap">{text}</div>
+					<div style:font class="font-semibold text-xl text-nowrap">{text}</div>
 				{/each}
 			</div>
 		{/each}

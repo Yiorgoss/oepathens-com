@@ -9,12 +9,16 @@
 	<div
 		style:width={blockData.style?.width}
 		style:height={blockData.style?.height}
-		class="grid grid-cols-1 grid-rows-1 justify-center items-center"
+		style:aspect-ratio={blockData.style?.aspectRatio}
+		class="grid grid-cols-1 grid-rows-1 justify-stretch items-stretch"
 	>
 		<div class="col-start-1 row-start-1">
 			<Image image={blockData.bg} class="" />
 		</div>
-		<div style:padding={blockData.style?.padding} class="col-start-1 row-start-1">
+		<div
+			style:padding={blockData.style?.padding}
+			class="flex justify-center items-center col-start-1 row-start-1"
+		>
 			<Image image={blockData.img} class="" />
 		</div>
 	</div>
