@@ -6,11 +6,15 @@
 </script>
 
 <section id="TGKDoilyCard" class="">
-	<div class="grid grid-cols-1 grid-rows-1">
+	<div
+		style:width={blockData.style?.width}
+		style:height={blockData.style?.height}
+		class="grid grid-cols-1 grid-rows-1 justify-center items-center"
+	>
 		<div class="col-start-1 row-start-1">
 			<Image image={blockData.bg} class="" />
 		</div>
-		<div class="col-start-1 row-start-1 p-10">
+		<div style:padding={blockData.style?.padding} class="col-start-1 row-start-1">
 			<Image image={blockData.img} class="" />
 		</div>
 	</div>

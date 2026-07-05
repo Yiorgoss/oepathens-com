@@ -6,7 +6,7 @@
 
 	const { blockData: data }: { blockData: IClipGutter } = $props();
 
-	const [minX, minY, width, height] = data.svg.viewbox?.split(' ').filter(Boolean) || [];
+	const [minX, minY, width, height] = $derived(data.svg?.viewbox?.split(' ').filter(Boolean) || []);
 </script>
 
 <div
@@ -20,15 +20,15 @@
 	{/if}
 	<svg
 		class="row-start-1 col-start-1"
-		viewBox={data.svg.viewbox ?? '0 0 100 100'}
+		viewBox={data.svg?.viewbox ?? '0 0 100 100'}
 		preserveAspectRatio="xMinYMin slice"
 	>
-		{#if data.svg.background || data.svg.clipPath}
+		{#if data.svg?.background || data.svg?.clipPath}
 			<clipPath id="clip-gutter-path">
-				<path d={data.svg.clipPath} />
+				<path d={data.svg?.clipPath} />
 			</clipPath>
 			<rect
-				fill={data.svg.background}
+				fill={data.svg?.background}
 				x={minX}
 				y={minY}
 				{height}

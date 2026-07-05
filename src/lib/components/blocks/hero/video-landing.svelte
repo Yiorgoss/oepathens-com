@@ -14,7 +14,7 @@
 		class="h-full w-full grid grid-cols-1 grid-rows-1"
 	>
 		<div class="row-start-1 col-start-1" aria-hidden="true">
-			{#if blockData.video.url}
+			{#if blockData.video?.url}
 				<video
 					muted
 					autoplay
@@ -24,7 +24,7 @@
 					height="100%"
 					width="100%"
 				>
-					<source src={blockData.video.url} type="video/mp4" />
+					<source src={blockData.video?.url} type="video/mp4" />
 				</video>
 			{/if}
 		</div>
