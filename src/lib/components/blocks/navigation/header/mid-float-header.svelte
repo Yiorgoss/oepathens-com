@@ -101,7 +101,7 @@
 									aria-label="navigation menu "
 									class="focus-visible:ring-offset-background size-8 justify-center items-center flex mr-4 p-2 focus-visible:outline-hidden"
 								>
-									<Icon name="lucide:menu" />
+									<Icon name="lucide:menu" size="24px" />
 								</div>
 							</Sheet.Trigger>
 						</div>
@@ -137,8 +137,8 @@
 						<Button
 							onclick={() => (open = false)}
 							class={cn(
-								'whitespace-nowrap m-0 w-full p-2 h-auto ',
-								activeLink == nLink && 'text-primary'
+								'whitespace-nowrap m-0 w-full p-2 h-auto hover:text-primary/50',
+								activeLink == nLink && 'text-primary underline underline-offset-6 '
 							)}
 							link={nLink?.arr[0].link}
 						/>
@@ -146,8 +146,12 @@
 				</Nav.Link>
 			{:else}
 				<!--  Trigger must com after because we need to use peer  -->
-				<Nav.Trigger class="w-fit p-2 h-auto whitespace-normal">
-					<span class:text-primary={activeLink == nLink}>
+				<Nav.Trigger class="w-fit p-2 h-auto hover:bg-accent whitespace-normal">
+					<span
+						class:underline={activeLink == nLink}
+						class:underline-offset-6={activeLink == nLink}
+						class:text-primary={activeLink == nLink}
+					>
 						{nLink.name}
 					</span>
 				</Nav.Trigger>

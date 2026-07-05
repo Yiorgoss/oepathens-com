@@ -4,10 +4,11 @@
 
 	const {
 		icon,
+		size,
 		name,
 		class: className,
 		style
-	}: { icon?: IIcon; name?: string; class?: string; style?: string } = $props();
+	}: { icon?: IIcon; name?: string; size?: string; class?: string; style?: string } = $props();
 
 	/*
 	 *
@@ -27,8 +28,8 @@
 >
 	<iconify-icon
 		class={className}
-		height={icon?.size ?? 'none'}
-		width={icon?.size ?? 'none'}
+		height={icon?.size ?? size ?? 'none'}
+		width={icon?.size ?? size ?? 'none'}
 		style:height="auto"
 		style:width="auto"
 		icon={name ?? icon?.name ?? ''}

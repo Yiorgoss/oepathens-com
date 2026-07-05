@@ -33,8 +33,7 @@
 									style:padding={blockData.btnStyle?.padding}
 									{...props}
 								>
-									<span class="">{i + 1}.</span>
-									<span class="font-normal grow">
+									<span class="font-lg max-md:font-xl font-bold grow">
 										{item.title}
 									</span>
 									<span
