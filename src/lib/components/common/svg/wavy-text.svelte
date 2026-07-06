@@ -5,7 +5,7 @@
 
 	const { data }: { data: IWavyText } = $props();
 
-	const [minX, minY, width, height] = data.svg.viewbox?.split(' ').filter(Boolean);
+	const [minX, minY, width, height] = data.svg?.viewbox?.split(' ').filter(Boolean);
 
 	let elem: SVGSVGElement;
 	onMount(() =>

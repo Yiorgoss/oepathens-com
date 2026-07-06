@@ -29,7 +29,6 @@ export const htmlConverters: any = ({ defaultConverters }) => ({
           >
           <div
             style="
-              background:black;
               padding:${fields.style.padding};
               width:${fields.style.width};
               height:auto;

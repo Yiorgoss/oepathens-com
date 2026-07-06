@@ -8,12 +8,12 @@
 	onMount(() => cb && cb());
 </script>
 
-<section id="VideoLanding" class="">
+<section id="VideoLanding">
 	<div
 		style:background={blockData.style?.background}
-		class="h-full w-full grid grid-cols-1 grid-rows-1"
+		class="h-full w-full pt-(--header-height) md:pt-0 flex flex-col justify-center items-center"
 	>
-		<div class="row-start-1 col-start-1" aria-hidden="true">
+		<div class="w-full" aria-hidden="true">
 			{#if blockData.video?.url}
 				<video
 					muted
@@ -28,7 +28,7 @@
 				</video>
 			{/if}
 		</div>
-		<div class="flex justify-center items-center row-start-1 col-start-1">
+		<div class="flex justify-center items-center">
 			<RichTextRender richText={blockData.richText} />
 		</div>
 	</div>
