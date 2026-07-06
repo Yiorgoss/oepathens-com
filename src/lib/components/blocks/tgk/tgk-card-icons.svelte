@@ -9,9 +9,12 @@
 <section id="TGKCardIcons" class="">
 	<div
 		style:background={blockData.style?.background}
-		style:height={blockData.style?.height}
+		style:border={blockData.style?.border}
+		style:border-radius={blockData.style?.borderRadius}
+		style:height={blockData.style?.height ?? '100%'}
 		style:width={blockData.style?.width}
-		class=" max-w-md w-full"
+		style:padding={blockData.style?.padding ?? '20px'}
+		class="w-full"
 	>
 		{#each blockData.arr ?? [] as { icon, richText }}
 			<div class="grid grid-cols-5">
