@@ -37,7 +37,6 @@
 			<div
 				style:gap
 				style:animation-duration={options?.duration}
-				class:opacity-50={true}
 				class:flex-wrap={prefersReducedMotion.current}
 				class="marquee-default flex flex-wrap justify-around items-center"
 			>
