@@ -90,8 +90,10 @@
 		{@attach animate({ animation })}
 	>
 		<div
-			style:align-items={style?.alignY}
-			style:justify-content={style?.alignX}
+			style:align-items={mobile.current ? (mobileStyle?.alignY ?? style?.alignY) : style?.alignY}
+			style:justify-content={mobile.current
+				? (mobileStyle?.alignX ?? style?.alignX)
+				: style?.alignX}
 			style:height={blockData?.itemHeight?.split(',')[0]}
 			style:display="flex"
 			class={cn(

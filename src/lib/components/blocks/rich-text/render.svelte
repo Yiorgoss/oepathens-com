@@ -30,7 +30,7 @@
 	});
 
 	const defaults = 'container my-auto wrap-break-word w-full max-w-full ';
-	const mobile = new MediaQuery('max-width: 480px');
+	const mobile = new MediaQuery('max-width: 768px');
 </script>
 
 {#if richText && richText.text}

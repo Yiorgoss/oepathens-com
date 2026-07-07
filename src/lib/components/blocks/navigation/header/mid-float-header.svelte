@@ -24,7 +24,7 @@
 	$effect(() => {
 		const prev = untrack(() => previous);
 
-		if (prev - scrollY > 0) {
+		if (prev - scrollY <= 0 && scrollY > 100) {
 			hidden = true;
 		} else {
 			hidden = false;
@@ -70,7 +70,7 @@
 						hidden && '-translate-y-full'
 					)}
 				>
-					<div class="col-span-4 flex">
+					<div class="col-span-4 flex justify-center items-center">
 						{#if Object.entries(supportedLocales).length > 0}
 							<Nav.Item class="px-2 ">
 								<LocaleSwitcher useFlag />
@@ -112,7 +112,8 @@
 						<div
 							style:background={blockData.style?.background}
 							class={cn(
-								' py-2 px-4 flex justify-between rounded-2xl items-center h-full w-full transition-transform ease-out duration-200 shadow-xl'
+								' py-2 px-4 flex justify-between rounded-2xl items-center h-full w-full transition-transform ease-out duration-200 shadow-xl',
+								hidden && '-translate-y-full'
 							)}
 						>
 							<a href={`/${locale ?? ''}`} aria-label="home page" class="h-full px-2">
@@ -162,7 +163,7 @@
 						<Button
 							onclick={() => (open = false)}
 							class={cn(
-								'whitespace-break-spaces  font-semibold m-0 w-full p-2 h-auto hover:bg-transparent dark:hover:bg-transparent hover:text-primary/50',
+								'whitespace-break-spaces  font-semibold m-0 w-full p-2 h-auto hover:bg-transparent dark:hover:bg-transparent hover:text-primary/50 text-center',
 								activeLink == nLink && 'text-primary underline underline-offset-6 '
 							)}
 							link={nLink?.arr[0].link}
@@ -171,7 +172,7 @@
 				</Nav.Link>
 			{:else}
 				<!--  Trigger must com after because we need to use peer  -->
-				<Nav.Trigger class="w-fit p-2 h-auto hover:bg-accent whitespace-normal">
+				<Nav.Trigger class="w-fit p-2 h-auto hover:bg-accent text-center whitespace-normal">
 					<span
 						class:underline={activeLink == nLink}
 						class:underline-offset-6={activeLink == nLink}
@@ -182,7 +183,7 @@
 					</span>
 				</Nav.Trigger>
 				<Nav.Content>
-					<ul class=" flex flex-col justify-start items-start gap-1 md:w-30 lg:w-40">
+					<ul class=" flex flex-col justify-start items-start gap-1 md:min-w-30 lg:min-w-40">
 						{#each nLink.arr ?? [] as { link }}
 							<Nav.Link>
 								{#snippet child()}

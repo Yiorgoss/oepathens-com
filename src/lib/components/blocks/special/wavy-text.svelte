@@ -18,7 +18,7 @@
 				<Image class="" image={blockData.bgImage} />
 			</div>
 		{/if}
-		<div style:background={blockData.style.background} class="relative row-start-1 col-start-1">
+		<div style:background={blockData.style?.background} class="relative row-start-1 col-start-1">
 			<SVGRender
 				name="wavy-text"
 				class="absolute inset-0 w-full isolate h-full "

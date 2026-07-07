@@ -37,27 +37,18 @@
 			<div
 				style:gap
 				style:animation-duration={options?.duration}
+				class:opacity-50={true}
 				class:flex-wrap={prefersReducedMotion.current}
-				class="marquee-default w-max min-w-full flex justify-around items-center"
+				class="marquee-default flex flex-wrap justify-around items-center"
 			>
-				{#each items as { image, text }, i}
-					<Image {image} class="h-full object-contain" />
+				{#each items as { image, text }}
+					<div class="w-full h-full">
+						<Image {image} class="h-full object-contain " />
+					</div>
 					<div style:font class="font-semibold text-xl text-nowrap">{text}</div>
 				{/each}
 			</div>
 		{/each}
-		<!--  <div
-			style:height
-			style:gap
-			style:animation-duration={options?.duration}
-			class:flex-wrap={prefersReducedMotion.current}
-			class="marquee-default w-max min-w-full flex justify-around items-center gap-x-10"
-		>
-			{#each items as { image, text }, i}
-				<Image {image} class="h-full object-contain" />
-				<div style:font class="text-nowrap">{text}</div>
-			{/each}
-		</div>  -->
 	</a>
 </section>
 

@@ -13,7 +13,7 @@
 </script>
 
 <section id="sticky-container-root" class="container mx-auto">
-	<div class="relative">
+	<div style:margin={blockData.style?.margin} class="relative">
 		{#each list ?? [] as { richText, image }, i}
 			{@const left = i % 2 == 1}
 

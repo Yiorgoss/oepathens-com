@@ -17,11 +17,11 @@
 		class="w-full"
 	>
 		{#each blockData.arr ?? [] as { icon, richText }}
-			<div class="grid grid-cols-5">
-				<div class="col-span-1 flex justify-center items-start">
+			<div class="flex gap-2">
+				<div class=" flex justify-center items-start">
 					<Icon {icon} />
 				</div>
-				<div class="col-span-4">
+				<div class="">
 					<RichTextRender {richText} />
 				</div>
 			</div>

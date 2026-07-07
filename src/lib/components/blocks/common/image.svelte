@@ -16,5 +16,5 @@
 	style:width={blockData.style?.width}
 	class="h-fit w-fit max-w-full overflow-hidden"
 >
-	<Image class="" image={blockData.image} {sizes} />
+	<Image class="h-full w-full" image={blockData.image} {sizes} />
 </div>

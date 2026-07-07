@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { ITGKCard2 } from '@payload-types';
 	import Image from '@/components/common/image.svelte';
+	import { RichTextRender } from '../rich-text';
 
 	const { blockData }: { blockData: ITGKCard2 } = $props();
 </script>
@@ -17,12 +18,8 @@
 		<div class="w-full h-auto rounded-xl aspect-3/4 overflow-hidden">
 			<Image class="" image={blockData.image} />
 		</div>
-		<div
-			style:font-size={blockData.style?.fontSize}
-			style:color={blockData.style?.color}
-			class="font-serif pt-6 text-xl"
-		>
-			{blockData.title}
+		<div class="">
+			<RichTextRender richText={blockData.richText} />
 		</div>
 	</div>
 </section>

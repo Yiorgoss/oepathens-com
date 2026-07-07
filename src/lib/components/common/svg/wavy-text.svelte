@@ -51,7 +51,7 @@
 		d={data.svg?.path}
 		fill="none"
 	/>
-	<text font-size={data.svg?.fontSize} word-spacing={data.svg?.wordSpacing}>
+	<text font-size={data.svg?.fontSize} word-spacing={data.svg?.wordSpacing} class="font-bold">
 		<textPath
 			href="#wavy-text-path"
 			alignment-baseline="middle"

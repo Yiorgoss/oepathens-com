@@ -10,7 +10,8 @@
 </script>
 
 <div
-	style:background={data?.style?.background ?? ''}
+	style:background={data?.style?.background}
+	style:height={data?.style?.height}
 	class="h-full w-full grid grid-cols-1 grid-rows-1"
 >
 	{#if data.bgImage}
