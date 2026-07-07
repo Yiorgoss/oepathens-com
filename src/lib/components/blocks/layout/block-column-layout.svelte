@@ -108,8 +108,10 @@
 		{#if columnTwo && columnTwo.length != 0}
 			<!--  known bug -> cannot have 3 col 1_0_1 - must have soomething in second one for third to be active  -->
 			<div
-				style:align-items={style?.alignY}
-				style:justify-content={style?.alignX}
+				style:align-items={mobile.current ? (mobileStyle?.alignY ?? style?.alignY) : style?.alignY}
+				style:justify-content={mobile.current
+					? (mobileStyle?.alignX ?? style?.alignX)
+					: style?.alignX}
 				style:height={blockData?.itemHeight?.split(',')[1]}
 				style:display="flex"
 				class={cn(
@@ -122,8 +124,10 @@
 		{/if}
 		{#if columnThree && columnThree.length != 0}
 			<div
-				style:align-items={style?.alignY}
-				style:justify-content={style?.alignX}
+				style:align-items={mobile.current ? (mobileStyle?.alignY ?? style?.alignY) : style?.alignY}
+				style:justify-content={mobile.current
+					? (mobileStyle?.alignX ?? style?.alignX)
+					: style?.alignX}
 				style:height={blockData?.itemHeight?.split(',')[2]}
 				style:display="flex"
 				class={cn(
