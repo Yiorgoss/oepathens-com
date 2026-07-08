@@ -172,7 +172,9 @@
 				</Nav.Link>
 			{:else}
 				<!--  Trigger must com after because we need to use peer  -->
-				<Nav.Trigger class="w-fit p-2 h-auto hover:bg-accent text-center whitespace-normal">
+				<Nav.Trigger
+					class="focus:bg-primary/20 w-fit p-2 py-3 h-auto hover:bg-accent text-center whitespace-normal"
+				>
 					<span
 						class:underline={activeLink == nLink}
 						class:underline-offset-6={activeLink == nLink}
