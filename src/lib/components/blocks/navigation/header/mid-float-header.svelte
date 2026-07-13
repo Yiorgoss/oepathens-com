@@ -55,22 +55,22 @@
 </script>
 
 <svelte:window bind:scrollY />
-<section id="MidFloadHeader" class="">
+<section id="MidFloadHeader" class="h-full">
 	<div
 		style:inset={blockData.style?.inset}
-		class="fixed top-2 flex justify-center w-lvw z-30 h-(--header-height) px-2 md:px-0"
+		class="fixed top-0 fflex justify-center w-lvw z-30 h-(--header-height) px-0 md:px-0"
 	>
-		<div class="container w-full h-full md:max-w-full md:px-2 lg:container">
-			<Nav.Root viewport={false} class="w-full min-w-full" orientation="horizontal">
+		<div class="w-full h-full md:max-w-full">
+			<Nav.Root viewport={false} class="block w-full min-w-full " orientation="horizontal">
 				<!-- desktop -->
 				<Nav.List
 					style={`background:${blockData.style?.background};`}
 					class={cn(
-						'px-0 transition-transform ease-in-out duration-300 lg:px-10 mx-auto bg-background shadow-xl max-w-full rounded-2xl w-full items-center justify-center h-full hidden lg:grid grid-cols-10',
+						'px-0 transition-transform ease-in-out duration-300 bg-background shadow-xl mmax-w-full rounded-none w-full mx-auto items-center justify-center h-full hidden lg:grid grid-cols-10',
 						hidden && '-translate-y-full'
 					)}
 				>
-					<div class="col-span-4 flex justify-center items-center">
+					<div class="col-span-4 flex justify-around items-center">
 						{#if Object.entries(supportedLocales).length > 0}
 							<Nav.Item class="px-2 ">
 								<LocaleSwitcher useFlag />
@@ -85,12 +85,12 @@
 						<Nav.Link
 							href={`/${locale ?? ''}`}
 							aria-label="home page"
-							class="hover:bg-transparent "
+							class="hover:bg-transparent focus:bg-transparent"
 						>
-							<div class="h-(--header-height) hover:bg-transparent lg:p-2 md:p-0 w-auto">
+							<div class="h-(--header-height) mx-auto lg:p-2 md:p-0 w-auto">
 								<Image
 									alt="link to homepage"
-									class="p-2 object-contain hover:bg-transparent w-full h-auto"
+									class="p-2 object-contain mx-auto w-auto h-full "
 									{image}
 									sizes="500px"
 									fetchpriority="high"
@@ -99,20 +99,20 @@
 							</div>
 						</Nav.Link>
 					</Nav.Item>
-					<div class="flex col-span-4">
+					<div class="flex justify-around col-span-4">
 						{#each right ?? [] as { nLink }}
 							{@render nestedLink({ nLink })}
 						{/each}
 					</div>
 				</Nav.List>
 				<!-- mobile -->
-				<div class="w-full lg:hidden">
+				<div class="w-full px-0 lg:hidden">
 					<!--  <div class="min-w-full flex grow w-full h-auto items-center justify-end md:hidden">  -->
 					<Sheet.Root bind:open>
 						<div
 							style:background={blockData.style?.background}
 							class={cn(
-								' py-2 px-4 flex justify-between rounded-2xl items-center h-full w-full transition-transform ease-out duration-200 shadow-xl',
+								' py-2 px-4 flex justify-between rounded-none items-center h-full w-full transition-transform ease-out duration-200 shadow-xl',
 								hidden && '-translate-y-full'
 							)}
 						>
@@ -125,7 +125,7 @@
 							<Sheet.Trigger class="h-full ">
 								<div
 									aria-label="navigation menu "
-									class="focus-visible:ring-offset-background size-8 justify-center items-center flex mr-4 p-2 focus-visible:outline-hidden"
+									class="focus-visible:ring-offset-background size-8 justify-center items-center flex mr-4 p-2 max-md:focus-visible:outline-hidden"
 								>
 									<Icon name="lucide:menu" size="24px" />
 								</div>
@@ -163,7 +163,7 @@
 						<Button
 							onclick={() => (open = false)}
 							class={cn(
-								'whitespace-break-spaces font-semibold m-0 w-full p-2 h-auto hover:bg-transparent dark:hover:bg-transparent hover:text-primary/50 text-center',
+								'whitespace-break-spaces font-semibold m-0 w-full p-2 h-auto hover:bg-transparent dark:hover:bg-transparent hover:text-primary/50 text-center max-md:focus-visible:ring-0 ',
 								activeLink == nLink && 'text-primary underline underline-offset-6 '
 							)}
 							link={nLink?.arr[0].link}
@@ -173,7 +173,7 @@
 			{:else}
 				<!--  Trigger must com after because we need to use peer  -->
 				<Nav.Trigger
-					class="focus:bg-transparent w-fit p-2 py-3 h-auto hover:bg-accent text-center whitespace-normal"
+					class="focus-visible:focus:bg-transparent max-md:focus-visible:ring-0 w-fit p-2 py-3 h-auto hover:bg-accent text-center whitespace-normal"
 				>
 					<span
 						class:underline={activeLink == nLink}
