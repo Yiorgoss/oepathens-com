@@ -100,6 +100,8 @@
 				return import('./tgk/card-1.svelte');
 			case 'tgkCard2':
 				return import('./tgk/card-2.svelte');
+			case 'tgkCard3':
+				return import('./tgk/card-3.svelte');
 			case 'tgkDoilyCard':
 				return import('./tgk/card-doily.svelte');
 			case 'tgkGridIcons':
