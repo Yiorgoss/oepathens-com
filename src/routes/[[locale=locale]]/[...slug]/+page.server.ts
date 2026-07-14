@@ -1,20 +1,18 @@
 import { defaultLocale, site, supportedLocales } from "@/config";
 import type { PageServerLoad } from "./$types";
-import { error, redirect } from "@sveltejs/kit";
+import { error } from "@sveltejs/kit";
 
-import type { Page, Tenant, Redirect } from "@payload-types";
+import type { Page, } from "@payload-types";
 import type { EntryGenerator } from './$types';
-import { building, dev } from "$app/environment";
-import { createTypeReferenceDirectiveResolutionCache, type TypeReferenceDirectiveResolutionCache } from "typescript";
+import { dev } from "$app/environment";
+
+
 export const load: PageServerLoad = async (args) => {
-  const { url: { searchParams }, params, fetch } = args
+  const { params, fetch } = args
 
 
   const locale = params.locale ?? defaultLocale
   const slug = params.slug
-
-  const redirectURL = searchParams.get('redirect_to')
-  if (redirectURL) redirect(301, `${redirectURL}`)
 
   const url = `${site.CMS}/api/pages?&depth=2&locale=${locale}&where[tenant-domain][equals]=${site.domainName}&where[slug][equals]=${slug}`
   if (dev) console.log({ url })
@@ -36,20 +34,20 @@ export const load: PageServerLoad = async (args) => {
 
 export const entries: EntryGenerator = async () => {
 
-  const redirectURL = `${site.CMS}/api/redirects?where[tenant.domain][equals]=${site.domainName}`
+  // const redirectURL = `${site.CMS}/api/redirects?where[tenant.domain][equals]=${site.domainName}`
 
-  const { docs }: { docs: Redirect[] } = await fetch(redirectURL)
-    .then((data) => data.json())
-    .then((json) => { console.log({ json }); return json })
+  // const { docs }: { docs: Redirect[] } = await fetch(redirectURL)
+  //   .then((data) => data.json())
+  //   .then((json) => { console.log({ json }); return json })
 
-  const redirects = docs.map(({ from, to }) => {
-    if (to.type == 'reference') {
-      return { locale: "", slug: `${from}?redirect_to=${to.reference.value.slug ?? '/'}` }
-    }
-    return { locale: "", slug: `${from}?redirect_to=${to.url ?? '/'}` }
-  })
+  // const redirects = docs.map(({ from, to }) => {
+  //   if (to.type == 'reference') {
+  //     return { locale: "", slug: `${from}?redirect_to=${to.reference.value.slug ?? '/'}` }
+  //   }
+  //   return { locale: "", slug: `${from}?redirect_to=${to.url ?? '/'}` }
+  // })
 
-  console.log({ redirects })
+  // console.log({ redirects })
   console.log("===========================================")
   const url = `${site.CMS}/api/tenants?where[domain][equals]=${site.domainName}&joins[pages][limit]=0`
   console.log({ url })
@@ -66,8 +64,7 @@ export const entries: EntryGenerator = async () => {
       console.log({ paths })
       return paths
     })
-  return [...pages, ...redirects]
-  // return redirects
+  return pages
 };
 export const prerender = true;
 
