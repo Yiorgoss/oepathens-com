@@ -10,7 +10,7 @@
 
 <Card.Root
 	style={`background:${style?.background};border:${style?.border};border-radius:${style?.borderRadius};width:${style?.width};max-width:${style?.maxWidth};justify-content:${style?.alignY};`}
-	class="max-w-md h-full w-full justify-center items-center"
+	class="hover:scale-105 max-w-md h-full w-full justify-center items-center"
 >
 	<a href={(link as Page)?.slug} aria-hidden={!(link as Page)?.slug}>
 		<Card.Header>

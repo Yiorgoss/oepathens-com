@@ -12,7 +12,7 @@
 		style:padding={blockData.style?.padding}
 		style:border={blockData.style?.border}
 		style:border-radius={blockData.style?.borderRadius}
-		class="h-full"
+		class="hover:scale-105 h-full"
 	>
 		<div class="grid grid-cols-1 items-center">
 			<div class="relative row-span-1 h-full w-full">
