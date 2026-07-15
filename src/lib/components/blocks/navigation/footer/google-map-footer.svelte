@@ -31,14 +31,12 @@
 			{/each}
 		</div>
 	</div>
-	<div class="px-4 mx-auto flex flex-col gap-10 md:gap-15 container last:pb-10">
+	<div class="px-4 mx-auto flex flex-col gap-10 md:gap-15 container last:pb-10 lg:w-3/4">
 		{#each blockData.locations as { richText, iframe }}
 			<div
 				class="flex max-md:flex-col-reverse min-h-100 justify-around max-md:items-center md:pt-10 gap-8 basis-1/2"
 			>
-				<div
-					class="flex grow shrink basis-auto w-full justify-start md:justify-center items-center"
-				>
+				<div class="flex grow shrink basis-auto w-full justify-start items-center">
 					<RichTextRender {richText} />
 				</div>
 				<div class="flex grow shrink basis-auto w-full pb-6">

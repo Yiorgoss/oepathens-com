@@ -15,7 +15,7 @@
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
 		"new": "sh scripts/github_init.sh",
-		"deploy": "git status && git pull upstream main --no-edit --no-rebase -X ours && pnpm install && pnpm typegen:payload && sh scripts/add_domain_wrangler.sh && PUBLIC_ENV=PROD vite build && wrangler deploy --env=production && pnpm pushVersion && exit 0",
+		"deploy": "git status && git pull upstream main --no-edit --no-rebase -X ours && pnpm install && pnpm typegen:payload && sh scripts/add_domain_wrangler.sh && PUBLIC_ENV=PROD vite build && wrangler deploy --env=production && pnpm pushVersion:old && exit 0",
 		"deploy:staging": "PUBLIC_DEV_CMS=https://staging-cms.calisto.studio vite build && wrangler deploy --env=staging",
 		"pushVersion": "git push origin main",
 		"pushVersion:old": "git add . && git commit -m \"$(git rev-list --count main)\" && git push origin main",
