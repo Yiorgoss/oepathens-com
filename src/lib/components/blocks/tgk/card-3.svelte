@@ -10,7 +10,6 @@
 <section id="TGKCard3" class="">
 	<div
 		style:background={blockData.style?.background}
-		style:color={blockData.style?.color}
 		style:padding={blockData.style?.padding}
 		style:border={blockData.style?.border}
 		style:border-radius={blockData.style?.borderRadius}
@@ -20,17 +19,19 @@
 			<div class="h-full w-full">
 				<Image class="h-full w-full" image={blockData.image} />
 			</div>
-			<div class="relative">
-				<RichTextRender overrides="pt-5" richText={blockData.richText} />
+			<div class="bg-background flex justify-center items-start relative h-full">
+				<div class="pt-10">
+					<RichTextRender richText={blockData.richText} />
+				</div>
 				<div
 					class=" absolute top-0 right-0 left-0 -translate-y-1/2 flex justify-center items-center"
 				>
 					<div
-						style:background={blockData.style?.background}
+						style:background={blockData.midStyle?.background}
 						style:border={blockData.midStyle?.border}
 						style:height={blockData.midStyle?.width}
 						style:width={blockData.midStyle?.width}
-						class="flex justify-center items-center border-3 rounded-full h-20 w-20"
+						class="bg-background flex justify-center items-center border-3 rounded-full h-20 w-20"
 					>
 						<RichTextRender overrides="text-center" richText={blockData.middleText} />
 					</div>

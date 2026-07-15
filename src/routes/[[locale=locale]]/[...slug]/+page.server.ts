@@ -51,6 +51,7 @@ export const entries: EntryGenerator = async () => {
   console.log("===========================================")
   const url = `${site.CMS}/api/tenants?where[domain][equals]=${site.domainName}&joins[pages][limit]=0`
   console.log({ url })
+
   const pages = await fetch(url)
     .then(data => data.json())
     .then((json: any) => {
