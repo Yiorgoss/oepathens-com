@@ -9,7 +9,7 @@
 	const { locale } = $derived(page.params);
 
 	let href = $derived.by(() => {
-		const { urlType, url, reference } = blockData || {};
+		const { type: urlType, url, reference } = blockData.link || {};
 		// custom url
 		if (urlType == 'custom' && url) return url;
 		// internal url
