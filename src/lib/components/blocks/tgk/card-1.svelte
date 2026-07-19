@@ -3,6 +3,7 @@
 	import { cn } from '@/utils';
 	import type { ITGKCard1 } from '@payload-types';
 	import { MediaQuery } from 'svelte/reactivity';
+	import { RichTextRender } from '../rich-text';
 
 	const { blockData }: { blockData: ITGKCard1 } = $props();
 
@@ -10,7 +11,7 @@
 	const { locale } = $derived(page.params);
 
 	let href = $derived.by(() => {
-		const { urlType, url, reference } = blockData;
+		const { urlType, url, reference } = blockData || {};
 		// custom url
 		if (urlType == 'custom' && url) return url;
 		// internal url
@@ -43,9 +44,9 @@
 		>
 			<div class="flex justify-center w-full items-end h-full">
 				<div
-					class="text-2xl md:text-xl duration-100 font-serif group-hover/tgk-card:text-(--tgk-text-color) text-(--tgk-card-color) font-medium w-full px-4 py-10"
+					class="text-2xl md:text-xl duration-100 font-serif group-hover/tgk-card:text-(--tgk-text-color) text-(--tgk-card-color) font-medium w-full"
 				>
-					{blockData.title}
+					<RichTextRender richText={blockData.richText} />
 				</div>
 			</div>
 		</div>
