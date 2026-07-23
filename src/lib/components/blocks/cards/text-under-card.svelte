@@ -26,7 +26,7 @@
 <section id="TextUnderCard-block" class="w-full h-full overflow-hidden max-w-sm">
 	<a {href} aria-disabled={!href}>
 		<Card.Root
-			class="max-w-sm w-full h-full bg-transparent items-start justify-start border-0 shadow-none text-foreground"
+			class="py-0 max-w-sm w-full h-full bg-transparent items-start justify-start border-0 shadow-none text-foreground"
 		>
 			<div class="w-full hover:scale-105 transition-transform duration-200 overflow-hidden">
 				<Image class="h-100 " image={blockData?.image} />

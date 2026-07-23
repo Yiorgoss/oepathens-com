@@ -11,8 +11,8 @@
 	//TODO: accordion trigger doesnt have child prop??
 </script>
 
-<section class="w-full px-2 md:px-4 lg:px-10">
-	<Accordion.Root class="w-full max-w-screen" type="multiple">
+<section class="w-full px-2 max-w-4xl md:px-4 lg:px-10">
+	<Accordion.Root class="w-full " type="multiple">
 		{#each list || [] as item, i}
 			<Accordion.Item value={`acc-item-${i}`} class="group border-dark-10 border-b px-1.5 w-full ">
 				<Accordion.Trigger
