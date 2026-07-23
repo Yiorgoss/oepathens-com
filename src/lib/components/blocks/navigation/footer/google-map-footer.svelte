@@ -21,7 +21,7 @@
 					class:col-span-3={lastRow == 2 && blockData.list.length - 2 <= i}
 					class="col-span-2"
 				>
-					<div class="text-lg font-bold text-center py-2">{header}</div>
+					<div class="text-lg font-bold text-center pt-2 text-primary">{header}</div>
 					<div class:flex-row={horizontal} class="flex flex-col justify-center items-center">
 						{#each links as { link }}
 							<Button {link} class="h-auto px-0" />
