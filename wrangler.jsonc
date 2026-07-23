@@ -8,7 +8,7 @@
 	"name": "oepathens-com",
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"compatibility_date": "2025-04-30",
-	"compatibility_flags": ["nodejs_compat"],
+	// "compatibility_flags": ["nodejs_compat"],
 	"assets": {
 		"binding": "ASSETS",
 		"directory": ".svelte-kit/cloudflare"
@@ -50,7 +50,7 @@
 				"PUBLIC_DEV_CMS": "https://staging-cms.calisto.studio",
 				"PUBLIC_PROD_CMS": "https://admin.calisto.studio",
 				"PUBLIC_ASSET_URL": "https://assets.calisto.studio",
-				"PUBLIC_DOMAIN_NAME": "oepathens.com",
+				"PUBLIC_DOMAIN_NAME": "staging.oepathens.com",
 				"PUBLIC_TEST_ASSET_URL": "https://test-assets.calisto.studio"
 			},
 			// "kv_namespaces": [
