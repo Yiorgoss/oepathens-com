@@ -17,7 +17,7 @@ export const htmlConverters: any = ({ defaultConverters }) => ({
     divider,
     lexImg: async (args: any) => {
       const fields = args.node.fields || {}
-      console.log({ node: args.node })
+      // console.log({ node: args.node })
       return `
         <div
           style="
@@ -44,7 +44,7 @@ export const htmlConverters: any = ({ defaultConverters }) => ({
     lexIcon: async (args: any) => {
       const fields = args.node.fields || {}
       const { name, style } = fields.icon || {}
-      console.log({ fields })
+      // console.log({ fields })
       return `
         <div id="richtextIcon"
             style="
