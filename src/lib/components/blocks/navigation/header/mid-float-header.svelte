@@ -141,9 +141,11 @@
 									{#each [...left, ...right] as { nLink }}
 										{@render nestedLink({ nLink })}
 									{/each}
-									<Nav.Item class="py-2 ">
-										<LocaleSwitcher useFlag />
-									</Nav.Item>
+									{#if Object.entries(supportedLocales).length > 1}
+										<Nav.Item class="px-2 ">
+											<LocaleSwitcher useFlag />
+										</Nav.Item>
+									{/if}
 								</div>
 							</Nav.List>
 						</Sheet.Content>

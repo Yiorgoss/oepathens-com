@@ -33,7 +33,7 @@
 		>
 			<div class="grid grid-cols-1 items-center">
 				<div class="relative row-span-1 h-full w-full">
-					<Image class="h-full w-full " image={blockData.image} />
+					<Image class="h-full w-full " image={blockData?.image} />
 					<div
 						class="absolute bottom-0 right-0 left-0 translate-y-1/2 flex justify-center items-center"
 					>
@@ -44,7 +44,7 @@
 							style:width={blockData.midStyle?.width}
 							class="bg-background flex justify-center items-center border-3 rounded-full h-20 w-20"
 						>
-							<RichTextRender overrides="text-center" richText={blockData.middleText} />
+							<RichTextRender overrides="text-center" richText={blockData?.middleText} />
 						</div>
 					</div>
 				</div>

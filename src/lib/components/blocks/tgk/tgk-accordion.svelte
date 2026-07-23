@@ -21,7 +21,7 @@
 		style:width={blockData.style?.width}
 		class="mx-auto w-full"
 	>
-		<Accordion.Root class="w-full max-w-screen" type="multiple">
+		<Accordion.Root class="w-full max-w-4xl mx-auto" type="multiple">
 			{#each list || [] as item, i}
 				<Accordion.Item value={`acc-item-${i}`} class="group border-0 w-full ">
 					<div style:padding={blockData.style?.gap}>
