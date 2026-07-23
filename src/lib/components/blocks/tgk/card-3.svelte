@@ -53,7 +53,7 @@
 					class="row-span-1 flex justify-center items-start relative h-auto pt-10"
 				>
 					<div class="">
-						<RichTextRender richText={blockData.richText} />
+						<RichTextRender richText={blockData?.richText} />
 					</div>
 				</div>
 			</div>
