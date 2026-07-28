@@ -10,7 +10,6 @@ import { dev } from "$app/environment";
 export const load: PageServerLoad = async (args) => {
   const { params, fetch } = args
 
-
   const locale = params.locale ?? defaultLocale
   const slug = params.slug
 
@@ -25,7 +24,7 @@ export const load: PageServerLoad = async (args) => {
     })
     .then((res: any) => res.json())
     .then((json: any) => json.docs[0])
-    .catch((err: any) => error(404, { message: err }))
+    .catch((err: any) => error(404, { message: "Page Not Found" }))
 
   return {
     pages: [data]
