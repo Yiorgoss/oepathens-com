@@ -443,6 +443,7 @@ export interface Page {
   meta?: ISEO;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -864,6 +865,8 @@ export interface IImage {
   style?: {
     height?: string | null;
     width?: string | null;
+    alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
+    alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -2251,6 +2254,7 @@ export interface PagesSelect<T extends boolean = true> {
   meta?: T | ISEOSelect<T>;
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
