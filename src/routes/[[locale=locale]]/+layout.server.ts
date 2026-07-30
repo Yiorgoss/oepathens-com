@@ -16,19 +16,10 @@ export const load: LayoutServerLoad = async (args) => {
   const layoutUrl = `${site.CMS}/api/tenants?where[domain][equals]=${site.domainName}&select[id]=true&select[nav]=true&depth=1&locale=${locale}`
   if (dev) console.log({ layoutUrl })
 
-  const response = await fetch(layoutUrl, {
-    // headers: {
-    //   "Cache-Control": "no-cache, max-age=0, no-store, must-revalidate",
-    //   "Cloudflare-CDN-Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
-    //   "CDN-Cache-Control": "no-cache, max-age=0, no-store, must-revalidate",
-
-    //   "Content-Type": "application/json"
-    // },
-  }) // must select id for live preview
-    // .then(res => { console.log({ res }); return res })
+  const response = await fetch(layoutUrl)
     .then((res: any) => res.json())
-    .then((json: any) => json.docs[0])
-    .catch((err: any) => error(404, { message: err }))
+    .then((json: any) => json?.docs[0])
+    .catch((err: any) => error(404, { message: "Page Not Found" }))
 
   return {
     nav: response.nav as Tenant['nav'],

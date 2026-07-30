@@ -124,7 +124,7 @@ export const htmlConverters: any = ({ defaultConverters }) => ({
             : link.reference.value.slug
         }
 
-        const buttonHTML = richTextBtn({ href, link });
+        const buttonHTML = richTextBtn({ href, link, newTab: link.type == 'custom' });
         return `<span class="animate-word">${buttonHTML}</span>`
       } catch (err) {
         console.error(`Error converting buttonRT: ${err}`)
