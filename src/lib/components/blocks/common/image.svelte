@@ -14,7 +14,9 @@
 	id="image-block"
 	style:height={blockData.style?.height}
 	style:width={blockData.style?.width}
-	class="h-fit w-fit max-w-full overflow-hidden"
+	style:justify-content={blockData.style?.alignX}
+	style:align-items={blockData.style?.alignY}
+	class="flex h-fit w-fit max-w-full overflow-hidden"
 >
 	<Image class="h-full w-full" image={blockData.image} {sizes} />
 </div>
