@@ -5,7 +5,7 @@
 	import { cn } from '@/utils';
 
 	const { data, class: className }: { data: IStickerField | undefined; class?: string } = $props();
-	const mobile = new MediaQuery('max-width: 480px');
+	const mobile = new MediaQuery('max-width: 768px');
 </script>
 
 {#if data?.url}
@@ -14,7 +14,8 @@
 		style:bottom={mobile.current ? data?.mobileStyle?.bottom : data?.style?.bottom}
 		style:left={mobile.current ? data?.mobileStyle?.left : data?.style?.left}
 		style:right={mobile.current ? data?.mobileStyle?.right : data?.style?.right}
-		class="absolute z-20"
+		style:translate={mobile.current ? data?.mobileStyle?.translate : data?.style?.translate}
+		class="absolute isolate z-30"
 	>
 		<img
 			style:width={data?.style?.width ?? data?.url?.width ?? 'auto'}
