@@ -12,7 +12,7 @@
 	style:border-radius={blockData.style?.borderRadius}
 	style:background={blockData.style?.background}
 >
-	<div class="bg-green-500 container relative mx-auto py-10">
+	<div class=" container relative mx-auto py-10">
 		<div class="w-full py-10">
 			<Image image={blockData.logo} class="h-25 object-contain" />
 		</div>
