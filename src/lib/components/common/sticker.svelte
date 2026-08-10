@@ -10,12 +10,12 @@
 
 {#if data?.url}
 	<div
-		style:top={mobile.current ? data?.mobileStyle?.top : data?.style?.top}
-		style:bottom={mobile.current ? data?.mobileStyle?.bottom : data?.style?.bottom}
-		style:left={mobile.current ? data?.mobileStyle?.left : data?.style?.left}
-		style:right={mobile.current ? data?.mobileStyle?.right : data?.style?.right}
-		style:translate={mobile.current ? data?.mobileStyle?.translate : data?.style?.translate}
-		class="absolute isolate z-30"
+		style:top={mobile.current ? data?.mobileStyles?.top : data?.style?.top}
+		style:bottom={mobile.current ? data?.mobileStyles?.bottom : data?.style?.bottom}
+		style:left={mobile.current ? data?.mobileStyles?.left : data?.style?.left}
+		style:right={mobile.current ? data?.mobileStyles?.right : data?.style?.right}
+		style:translate={mobile.current ? data?.mobileStyles?.translate : data?.style?.translate}
+		class="absolute isolate z-50"
 	>
 		<img
 			style:width={data?.style?.width ?? data?.url?.width ?? 'auto'}

@@ -77,6 +77,7 @@
 		style:--placeholder={`url(${site.storage}/${asset?.sizes?.placeholder?.filename})`}
 		style:height={mobile.current ? (mobileStyle?.height ?? style?.height) : style?.height}
 		style:width={mobile.current ? (mobileStyle?.width ?? style?.width) : style?.width}
+		style:overflow={style?.overflow}
 		style:padding={mobile.current ? mobileStyle?.padding : style?.padding}
 		style:border-radius={style?.borderRadius}
 	>

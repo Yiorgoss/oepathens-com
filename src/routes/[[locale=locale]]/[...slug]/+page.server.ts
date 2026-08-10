@@ -13,13 +13,13 @@ export const load: PageServerLoad = async (args) => {
   const locale = params.locale ?? defaultLocale
   const slug = params.slug
 
-  const url = `${site.CMS}/api/pages?&depth=2&locale=${locale}&where[tenant-domain][equals]=${site.domainName}&where[slug][equals]=${slug}`
-  if (dev) console.log({ url })
+  const url = `${site.CMS}/api/pages?depth=2&locale=${locale}&where[tenant-domain][equals]=${site.domainName}&where[slug][equals]=${slug}`
+  if (dev) console.log({ dev, url })
 
   const data = await fetch(url,
     {
       // headers: {
-      //   "Cache-Control": building ? 'private, no-store, max-age=0, s-maxage=0, must-revalidate' : ''
+      //   "Cache-Control": 'private, no-store, max-age=0, s-maxage=0, must-revalidate'
       // }
     })
     .then((res: any) => res.json())
@@ -66,5 +66,5 @@ export const entries: EntryGenerator = async () => {
     })
   return pages
 };
-export const prerender = true;
+// export const prerender = dev ? false : true;
 

@@ -85,19 +85,19 @@ export async function resolveID({
 
 
 
+// overflow:${style?.overflow ?? ""};
 export const richTextIcon = ({ name, style }: IIcon) =>
   `<iconify-icon
     width="${style?.width}"
     height="${style?.height}"
     style="
-          width:100%;
-          height:100%;
-          background:${style?.background};
-          color:${style?.color};
-          border:${style?.border};
-          border-radius:${style?.borderRadius};
-          overflow:${style?.overflow};
-          ${style?.string}"
+          width:${style?.width ?? "100%"};
+          height:${style?.width ?? "100%"};
+          background:${style?.background ?? ""};
+          color:${style?.color ?? ""};
+          border:${style?.border ?? ""};
+          border-radius:${style?.borderRadius ?? ""};
+          ${style?.string ?? ""}"
     icon="${name}">
   </iconify-icon>`
 
