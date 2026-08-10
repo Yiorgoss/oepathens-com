@@ -3,23 +3,26 @@
 	import Button from '@/components/common/button.svelte';
 	import Image from '@/components/common/image.svelte';
 	import Sticker from '@/components/common/sticker.svelte';
-	import { RichTextRender } from '../../rich-text';
 
 	const { blockData }: { blockData: IFooter3 } = $props();
 </script>
 
-<section id="Footer3" style:background={blockData.style.background}>
-	<div class="container relative mx-auto py-10">
+<section
+	id="Footer3"
+	style:border-radius={blockData.style?.borderRadius}
+	style:background={blockData.style?.background}
+>
+	<div class="bg-green-500 container relative mx-auto py-10">
 		<div class="w-full py-10">
 			<Image image={blockData.logo} class="h-25 object-contain" />
 		</div>
 		<div class="grid grid-cols-2 md:grid-cols-6 gap-5 justify-around items-start w-full">
 			{#each blockData.list as { links, header, horizontal }, i}
 				{@const k = 3}
-				{@const lastRow = blockData.list.length % k}
+				{@const lastRow = blockData.list?.length % k}
 				<div
-					class:col-span-full={lastRow == 1 && blockData.list.length - 1 == i}
-					class:col-span-3={lastRow == 2 && blockData.list.length - 2 <= i}
+					class:col-span-full={lastRow == 1 && blockData.list?.length - 1 == i}
+					class:col-span-3={lastRow == 2 && blockData.list?.length - 2 <= i}
 					class="col-span-2"
 				>
 					<div class="text-lg font-bold text-center pt-2 text-primary">{header}</div>
