@@ -27,7 +27,7 @@
 					class="col-span-2"
 				>
 					<div
-						style:color={blockData.headerStyles?.background}
+						style:color={blockData.headerStyles?.color}
 						class="text-lg font-bold text-center pt-2 text-primary"
 					>
 						{header}
