@@ -11,8 +11,9 @@
 	id="Footer3"
 	style:border-radius={blockData.style?.borderRadius}
 	style:background={blockData.style?.background}
+	class="relative"
 >
-	<div class=" container relative mx-auto py-10">
+	<div class="container relative mx-auto py-10">
 		<div class="w-full py-10">
 			<Image image={blockData.logo} class="h-25 object-contain" />
 		</div>
@@ -25,7 +26,12 @@
 					class:col-span-3={lastRow == 2 && blockData.list?.length - 2 <= i}
 					class="col-span-2"
 				>
-					<div class="text-lg font-bold text-center pt-2 text-primary">{header}</div>
+					<div
+						style:color={blockData.headerStyles?.background}
+						class="text-lg font-bold text-center pt-2 text-primary"
+					>
+						{header}
+					</div>
 					<div class:flex-row={horizontal} class="flex flex-col justify-center items-center">
 						{#each links as { link }}
 							<Button {link} class="h-auto px-0" />
@@ -47,7 +53,5 @@
 			</a>
 		</div>
 	{/if}
-	<div class="">
-		<Sticker data={blockData.sticker} />
-	</div>
+	<Sticker data={blockData.s} />
 </section>

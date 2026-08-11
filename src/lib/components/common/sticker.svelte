@@ -15,7 +15,7 @@
 		style:left={mobile.current ? data?.mobileStyles?.left : data?.style?.left}
 		style:right={mobile.current ? data?.mobileStyles?.right : data?.style?.right}
 		style:translate={mobile.current ? data?.mobileStyles?.translate : data?.style?.translate}
-		class="absolute isolate z-50"
+		class="absolute isolate z-20"
 	>
 		<img
 			style:width={data?.style?.width ?? data?.url?.width ?? 'auto'}

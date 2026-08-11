@@ -30,9 +30,9 @@
 	class={cn('relative container mx-auto flex items-center', sizeInPx)}
 >
 	{#if blockData?.bgImage}
-		<div class="-z-0 absolute inset-0">
+		<div class="z-0 absolute inset-0">
 			<Image image={blockData?.bgImage} />
 		</div>
 	{/if}
-	<div class="z-0 h-[1px] w-full" style:background-color={bgColor?.value ?? 'transparent'}></div>
+	<div class="z-0 h-px w-full" style:background-color={bgColor?.value ?? 'transparent'}></div>
 </div>
