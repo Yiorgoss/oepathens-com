@@ -101,6 +101,7 @@ export interface Config {
     richTextFooter: IRichTextFooter;
     footerDesign2: IFooterDesign2;
     googleMapFooter: IGoogleMapFooter;
+    footer3: IFooter3;
     pill: IPillRTBlock;
     buttonRT: IImageRTBlock;
     svgText: ISVGText;
@@ -266,6 +267,7 @@ export interface IImageField {
     width?: string | null;
     padding?: string | null;
   };
+  link?: IButton;
   arr?:
     | {
         s?: IStickerField;
@@ -335,32 +337,6 @@ export interface Asset {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IStickerField".
- */
-export interface IStickerField {
-  url?: (number | null) | Asset;
-  style?: {
-    top?: string | null;
-    left?: string | null;
-    right?: string | null;
-    bottom?: string | null;
-    height?: string | null;
-    width?: string | null;
-    objectFit?: string | null;
-    translate?: string | null;
-  };
-  mobileStyles?: {
-    top?: string | null;
-    left?: string | null;
-    right?: string | null;
-    bottom?: string | null;
-    height?: string | null;
-    width?: string | null;
-    translate?: string | null;
-  };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "IButton".
  */
 export interface IButton {
@@ -370,16 +346,6 @@ export interface IButton {
     value: number | Page;
   } | null;
   url?: string | null;
-  display?: {
-    variant?: ('default' | 'secondary' | 'outline' | 'ghost' | 'link') | null;
-    size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
-    text?: string | null;
-    includeIcon?: boolean | null;
-    icon?: IIcon;
-  };
-  style?: {
-    padding?: string | null;
-  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -476,7 +442,7 @@ export interface Tenant {
  */
 export interface INavigation {
   header?: (IImageHeader | IFloatingHeader | IMidFloadHeader)[] | null;
-  footer?: (IRichTextFooter | IFooterDesign2 | IGoogleMapFooter)[] | null;
+  footer?: (IRichTextFooter | IFooterDesign2 | IGoogleMapFooter | IFooter3)[] | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -698,14 +664,7 @@ export interface IFooterDesign2 {
 export interface ITextUnderCard {
   image?: IImageField;
   richText?: IRichTextField;
-  link?: {
-    type?: ('reference' | 'custom') | null;
-    reference?: {
-      relationTo: 'pages';
-      value: number | Page;
-    } | null;
-    url?: string | null;
-  };
+  link?: IButton;
   style?: {
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
@@ -797,7 +756,7 @@ export interface IHoverCard {
  */
 export interface IRichTextCard {
   richText?: IRichTextField;
-  link?: (number | null) | Page;
+  link?: IButton;
   image?: IImageField;
   style?: {
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
@@ -1489,6 +1448,64 @@ export interface IGoogleMapFooter {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IFooter3".
+ */
+export interface IFooter3 {
+  logo?: IImageField;
+  madeBy?: boolean | null;
+  list?:
+    | {
+        header?: string | null;
+        horizontal?: boolean | null;
+        links?:
+          | {
+              link?: IButton;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  style?: {
+    background?: string | null;
+    borderRadius?: string | null;
+  };
+  headerStyles?: {
+    color?: string | null;
+  };
+  s?: IStickerField;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'footer3';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IStickerField".
+ */
+export interface IStickerField {
+  url?: (number | null) | Asset;
+  style?: {
+    top?: string | null;
+    left?: string | null;
+    right?: string | null;
+    bottom?: string | null;
+    height?: string | null;
+    width?: string | null;
+    objectFit?: string | null;
+    translate?: string | null;
+  };
+  mobileStyles?: {
+    top?: string | null;
+    left?: string | null;
+    right?: string | null;
+    bottom?: string | null;
+    height?: string | null;
+    width?: string | null;
+    translate?: string | null;
+  };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "IGradientBG".
  */
 export interface IGradientBG {
@@ -1752,13 +1769,14 @@ export interface IGutter {
  * via the `definition` "IGutterV2".
  */
 export interface IGutterV2 {
+  image?: IImageField;
   style?: {
     height?: string | null;
     background?: string | null;
     color?: string | null;
     container?: boolean | null;
   };
-  image?: IImageField;
+  s?: IStickerField;
   id?: string | null;
   blockName?: string | null;
   blockType: 'gutterv2';
@@ -1966,6 +1984,7 @@ export interface ILexicalImage {
     height?: string | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
+    overflow?: string | null;
   };
   id?: string | null;
   blockName?: string | null;
