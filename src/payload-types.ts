@@ -259,6 +259,7 @@ export interface IImageField {
     padding?: string | null;
     borderRadius?: string | null;
     sizes?: string | null;
+    overflow?: string | null;
   };
   mobileStyle?: {
     height?: string | null;
@@ -346,12 +347,16 @@ export interface IStickerField {
     height?: string | null;
     width?: string | null;
     objectFit?: string | null;
+    translate?: string | null;
   };
-  mobileStyle?: {
+  mobileStyles?: {
     top?: string | null;
     left?: string | null;
     right?: string | null;
     bottom?: string | null;
+    height?: string | null;
+    width?: string | null;
+    translate?: string | null;
   };
 }
 /**

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Image from '@/components/common/image.svelte';
+	import Sticker from '@/components/common/sticker.svelte';
 	import { type IGutterV2 } from '@payload-types';
 
 	const { blockData: data }: { blockData: IGutterV2 } = $props();
@@ -18,4 +19,7 @@
 		</div>
 	{/if}
 	<div class="z-0 h-px w-full" style:background={data.style?.color}></div>
+	<div class="">
+		<Sticker data={data.s} />
+	</div>
 </div>

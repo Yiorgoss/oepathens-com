@@ -70,6 +70,8 @@
 				return import('./navigation/footer/rich-text-footer.svelte');
 			case 'googleMapFooter':
 				return import('./navigation/footer/google-map-footer.svelte');
+			case 'footer3':
+				return import('./navigation/footer/footer-3.svelte');
 			case 'contactForm':
 				return import('./forms/contact-form.svelte');
 			case 'marquee':

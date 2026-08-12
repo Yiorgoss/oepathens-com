@@ -44,7 +44,6 @@ export const htmlConverters: any = ({ defaultConverters }) => ({
     lexIcon: async (args: any) => {
       const fields = args.node.fields || {}
       const { name, style } = fields.icon || {}
-      // console.log({ fields })
       return `
         <div id="richtextIcon"
             style="
