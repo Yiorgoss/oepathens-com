@@ -38,7 +38,6 @@
 	let isHeroLoaded = $state(false);
 	let currentPage = $derived(
 		page?.data?.pages?.find((pg: Page) => {
-			if (page.params.slug == '') return pg && pg.slug == 'home';
 			return pg && pg.slug == page.params.slug;
 		})
 	);

@@ -11,19 +11,16 @@ export const load: PageServerLoad = async (args) => {
   const { params, fetch } = args
 
   const locale = params.locale ?? defaultLocale
-  const slug = params.slug == '' ? 'home' : params.slug //if slug isnt present assume its /
-  // const slug = params.slug
-  if (slug == '.well-known/appspecific/com.chrome.devtools.json') return
-  console.log({ slug })
+  const slug = params.slug
+  // if (slug == '.well-known/appspecific/com.chrome.devtools.json') return
+  // console.log({ slug })
 
 
   const url = `${site.CMS}/api/pages?depth=2&locale=${locale}&where[tenant-domain][equals]=${site.domainName}&where[slug][equals]=${slug}`
   if (dev) console.log({ dev, url })
 
   const data = await fetch(url)
-    // .then((res) => { console.log({ res }); return res })
     .then((res: any) => res.json())
-    .then((json) => { console.log({ params, json }); return json })
     .then((json: any) => json.docs[0])
     .catch((err: any) => error(404, { message: "Page Not Found" }))
 
