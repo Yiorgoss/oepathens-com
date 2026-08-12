@@ -34,7 +34,7 @@
 		// internal url
 		if (urlType == 'reference' && reference) {
 			//@ts-ignore
-			const slug = reference.value.slug; //slug is present if depth > 0 because of defaultPopulate
+			const slug = reference.value.slug; //== 'home' ? '' : reference.value.slug; //slug is present if depth > 0 because of defaultPopulate
 			return locale ? `/${locale}/${slug}` : `/${slug}`;
 		}
 		// _href has not resolved or resolved undefined

@@ -12,16 +12,14 @@ export const load: PageServerLoad = async (args) => {
 
   const locale = params.locale ?? defaultLocale
   const slug = params.slug
+  // if (slug == '.well-known/appspecific/com.chrome.devtools.json') return
+  // console.log({ slug })
+
 
   const url = `${site.CMS}/api/pages?depth=2&locale=${locale}&where[tenant-domain][equals]=${site.domainName}&where[slug][equals]=${slug}`
   if (dev) console.log({ dev, url })
 
-  const data = await fetch(url,
-    {
-      // headers: {
-      //   "Cache-Control": 'private, no-store, max-age=0, s-maxage=0, must-revalidate'
-      // }
-    })
+  const data = await fetch(url)
     .then((res: any) => res.json())
     .then((json: any) => json.docs[0])
     .catch((err: any) => error(404, { message: "Page Not Found" }))
@@ -66,5 +64,5 @@ export const entries: EntryGenerator = async () => {
     })
   return pages
 };
-// export const prerender = dev ? false : true;
+export const prerender = true;
 
