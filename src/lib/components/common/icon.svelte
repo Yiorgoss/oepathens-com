@@ -9,12 +9,6 @@
 		class: className,
 		style
 	}: { icon?: IIcon; name?: string; size?: string; class?: string; style?: string } = $props();
-
-	/*
-	 *
-	 * padding ->
-	 *
-	 */
 </script>
 
 <div

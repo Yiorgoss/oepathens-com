@@ -7,12 +7,19 @@
 </script>
 
 <div
+	id="gutterV2"
 	style:background={data.style?.background}
 	style:height={data.style?.height}
+	style:justify-content={data.style?.alignX}
+	style:align-items={data.style?.alignY}
 	class:container={data.style?.container}
-	id="gutterV2"
 	class="relative mx-auto flex items-center"
 >
+	{#if data?.bgImg}
+		<div class="z-0 absolute inset-0">
+			<Image image={data?.bgImg} />
+		</div>
+	{/if}
 	{#if data?.image}
 		<div class="z-0 absolute inset-0">
 			<Image image={data?.image} />

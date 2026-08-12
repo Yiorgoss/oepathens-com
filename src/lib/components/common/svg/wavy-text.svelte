@@ -5,14 +5,14 @@
 
 	const { data }: { data: IWavyText } = $props();
 
-	const [minX, minY, width, height] = data.svg?.viewbox?.split(' ').filter(Boolean);
+	const [minX, minY, width, height] = $derived(data.svg?.viewbox?.split(' ').filter(Boolean) ?? []);
 
 	let elem: SVGSVGElement;
 	onMount(() =>
 		scroll(
 			animate(elem.querySelectorAll('text > textPath'), {
 				//@ts-ignore
-				startOffset: '100%',
+				startOffset: data.svg?.speed,
 				repeat: Infinity,
 				repeatType: 'mirror'
 			}),
@@ -60,8 +60,6 @@
 			text-anchor="middle"
 			dominant-baseline="central"
 		>
-			{data.text}
-			{data.text}
 			{data.text}
 		</textPath>
 	</text>

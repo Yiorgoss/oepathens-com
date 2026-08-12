@@ -26,6 +26,7 @@
 	<div class="container w-full h-full">
 		<!-- desktop -->
 		<Nav.Root
+			style={`border-radius:${style?.borderRadius};background:${style?.background};width:${style?.width};`}
 			class={cn(
 				'px-10 bg-background shadow-xl rounded-theme hidden w-full items-center justify-between md:flex'
 			)}
