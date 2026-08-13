@@ -8,11 +8,27 @@
 	const { blockData }: { blockData: IRichTextCard } = $props();
 	const {
 		richText,
-		style: { background, alignX, alignY, borderRadius, width, maxWidth, border, hasShadow } = {}
+		style: {
+			background,
+			alignX,
+			alignY,
+			selfAlignX,
+			selfAlignY,
+			borderRadius,
+			width,
+			maxWidth,
+			border,
+			hasShadow
+		} = {}
 	} = $derived(blockData);
 </script>
 
-<section id="rich-text-card-block" class="flex items-center justify-center h-full w-full py-8">
+<section
+	id="rich-text-card-block"
+	style:justify-content={selfAlignX}
+	style:align-items={selfAlignY}
+	class="flex items-center justify-center w-full h-full py-8"
+>
 	<Card.Root
 		style={`background:${background};border:${border};border-radius:${borderRadius};width:${width};max-width:${width && 'unset'};`}
 		class={cn(

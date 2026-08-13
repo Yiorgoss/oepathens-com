@@ -38,7 +38,7 @@
 </script>
 
 <div class="text-base">
-	<header class="text-foreground bg-background">
+	<header class="relative text-foreground bg-background">
 		<RenderBlocks blockData={nav?.header?.[0]} />
 	</header>
 	<main class="text-foreground bg-background h-full w-full">
