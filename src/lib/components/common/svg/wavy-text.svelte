@@ -12,7 +12,7 @@
 		scroll(
 			animate(elem.querySelectorAll('text > textPath'), {
 				//@ts-ignore
-				startOffset: data.svg?.speed ?? ['20%, 60%'],
+				startOffset: data.svg?.speed.split(',') ?? ['20%, 60%'],
 				repeat: Infinity,
 				repeatType: 'mirror'
 			}),
