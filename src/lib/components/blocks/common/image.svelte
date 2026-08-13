@@ -16,6 +16,7 @@
 	style:width={blockData.style?.width}
 	style:justify-content={blockData.style?.alignX}
 	style:align-items={blockData.style?.alignY}
+	style:margin={blockData.style?.margin}
 	style:overflow={blockData.style?.overflow}
 	class="flex h-fit w-fit max-w-full overflow-hidden"
 >

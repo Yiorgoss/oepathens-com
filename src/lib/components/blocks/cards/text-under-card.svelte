@@ -23,7 +23,12 @@
 	});
 </script>
 
-<section id="TextUnderCard-block" class="w-full h-full overflow-hidden max-w-sm">
+<section
+	id="TextUnderCard-block"
+	style:margin={blockData.style?.margin}
+	style:overflow={blockData?.style?.overflow}
+	class="w-full h-full overflow-hidden max-w-sm"
+>
 	<a {href} aria-disabled={!href}>
 		<Card.Root
 			class="py-0 max-w-sm w-full h-full bg-transparent items-start justify-start border-0 shadow-none text-foreground"
