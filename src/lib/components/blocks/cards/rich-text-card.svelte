@@ -30,7 +30,7 @@
 	id="rich-text-card-block"
 	style:justify-content={mobile.current ? blockData.mobileStyle?.selfAlignX : selfAlignX}
 	style:align-items={mobile.current ? blockData.mobileStyle?.selfAlignY : selfAlignY}
-	class="flex items-center justify-center w-full h-full py-8"
+	class="flex items-center justify-center w-full h-full"
 >
 	<Card.Root
 		style={`background:${background};border:${border};border-radius:${borderRadius};width:${width};max-width:${width && 'unset'};`}

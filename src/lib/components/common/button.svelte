@@ -53,7 +53,7 @@
 	{...restProps}
 >
 	{#if display?.text || display?.includeIcon}
-		<div class="flex gap-2">
+		<div class:flex-row-reverse={display?.iconStart} class="flex gap-2">
 			<p class="">
 				{display.text}
 			</p>

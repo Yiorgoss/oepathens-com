@@ -49,7 +49,7 @@
 			<a
 				href="https://calisto.studio"
 				target="_blank"
-				class="font-thin py-4 uppercase underline underline-offset-4 hover:no-underline text-sm"
+				class="font-light py-4 uppercase underline underline-offset-4 hover:no-underline text-sm"
 			>
 				<span class="sr-only">(opens in new tab)</span>
 				Website crafted with love by Calisto Studio

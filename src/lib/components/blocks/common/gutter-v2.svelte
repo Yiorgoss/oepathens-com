@@ -11,17 +11,17 @@
 	style:background={data.style?.background}
 	style:height={data.style?.height}
 	style:justify-content={data.style?.alignX}
-	style:align-items={data.style?.alignY}
+	style:align-items={'end' ?? data.style?.alignY}
 	class:container={data.style?.container}
 	class="relative mx-auto flex items-center"
 >
 	{#if data?.bgImg}
-		<div class="z-0 absolute inset-0">
+		<div class="z-0 absolute inset-0 flex">
 			<Image image={data?.bgImg} />
 		</div>
 	{/if}
 	{#if data?.image}
-		<div class="z-0 absolute inset-0">
+		<div class="z-0 absolute left-0 right-0">
 			<Image image={data?.image} />
 		</div>
 	{/if}
