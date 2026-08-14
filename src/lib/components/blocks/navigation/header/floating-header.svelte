@@ -61,6 +61,7 @@
 		<div class="flex h-full items-center justify-end md:hidden">
 			<Sheet.Root bind:open>
 				<div
+					style={`border-radius:${style?.borderRadius};background:${style?.background};width:${style?.width};`}
 					class={cn(
 						'bg-background flex justify-between rounded-theme items-center h-full w-full transition-transform ease-out duration-200 shadow-xl'
 					)}

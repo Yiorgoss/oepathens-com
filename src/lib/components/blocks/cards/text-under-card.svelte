@@ -4,6 +4,7 @@
 	import { RichTextRender } from '@/components/blocks/rich-text';
 	import * as Card from '@/components/ui/card';
 	import { page } from '$app/state';
+	import { MediaQuery } from 'svelte/reactivity';
 
 	const { blockData }: { blockData: ITextUnderCard } = $props();
 	const { locale } = $derived(page.params);
@@ -21,11 +22,12 @@
 
 		return null;
 	});
+	const mobile = new MediaQuery('max-width: 768px');
 </script>
 
 <section
 	id="TextUnderCard-block"
-	style:margin={blockData.style?.margin}
+	style:margin={mobile.current ? blockData.mobileStyle?.margin : blockData.style?.margin}
 	style:overflow={blockData?.style?.overflow}
 	class="w-full h-full overflow-hidden max-w-sm"
 >
