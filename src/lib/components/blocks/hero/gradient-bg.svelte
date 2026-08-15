@@ -4,9 +4,11 @@
 	import { animate, frame } from 'motion';
 	import { onMount } from 'svelte';
 
-	const { blockData }: { blockData: IGradientBG } = $props();
+	const { blockData, cb }: { blockData: IGradientBG; cb?: () => void } = $props();
 	const { richText, gradientList, style, mouseColor } = $derived(blockData || {});
 	const { background } = $derived(style || {});
+
+	onMount(() => cb && cb());
 
 	let element = $state() as Element;
 	let mouseElem = $state() as HTMLElement;
