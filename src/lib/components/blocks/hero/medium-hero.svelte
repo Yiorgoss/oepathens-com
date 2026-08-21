@@ -9,7 +9,7 @@
 	//  const { image, richText } = $derived(blockData);
 </script>
 
-<section id="medium-hero" class="relative">
+<section id="medium-hero" class="relative w-full flex justify-center items-center">
 	<div class="absolute inset-0 z-0">
 		{#if blockData.image}
 			<Image class="rounded-none " image={blockData.image} />
@@ -18,7 +18,7 @@
 
 	{#if blockData.richText}
 		<RichTextRender
-			overrides="flex justify-center items-center max-w-full container"
+			overrides="max-w-full container flex justify-center items-center"
 			richText={blockData.richText}
 		/>
 	{/if}
