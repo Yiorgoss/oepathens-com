@@ -31,7 +31,7 @@
 	style:overflow={blockData?.style?.overflow}
 	class="w-full h-full overflow-hidden max-w-sm"
 >
-	<a {href} aria-disabled={!href}>
+	<a {href} target={blockData.link?.type == 'custom' ? '_blank' : '_self'} aria-disabled={!href}>
 		<Card.Root
 			class="py-0 max-w-sm w-full h-full bg-transparent items-start justify-start border-0 shadow-none text-foreground"
 		>
