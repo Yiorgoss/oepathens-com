@@ -29,7 +29,7 @@
 
 	const { locale } = $derived(page.params);
 
-	let { style, alt, mobileStyle, ignoreSizes, arr, link } = $derived(image || {});
+	let { style, alt, mobileStyle, ignoreSizes, arr, link, hover } = $derived(image || {});
 
 	let asset = $derived((image?.url as Asset) || {});
 	onMount(() => cb && cb());
@@ -98,7 +98,7 @@
 	{#if asset?.sizes}
 		<div
 			class:bg-none={loaded}
-			class="relative grid grid-cols-1 grid-rows-1 items-center justify-center h-full w-full bg-(image:--placeholder) bg-center bg-cover bg-no-repeat overflow-hidden"
+			class="group/image relative grid grid-cols-1 grid-rows-1 items-center justify-center h-full w-full bg-(image:--placeholder) bg-center bg-cover bg-no-repeat overflow-hidden"
 			style:--placeholder={`url(${site.storage}/${asset?.sizes?.placeholder?.filename})`}
 			style:height={mobile.current ? (mobileStyle?.height ?? style?.height) : style?.height}
 			style:width={mobile.current ? (mobileStyle?.width ?? style?.width) : style?.width}
@@ -115,7 +115,8 @@
 					onload={() => (loaded = true)}
 					src={`${site.storage}/${encodeURI(asset?.filename ?? '')}`}
 					class={cn(
-						'object-cover w-full h-full col-start-1 row-start-1 ease-in-out transition-all duration-200',
+						' object-cover w-full h-full col-start-1 row-start-1 ease-in-out transition-all duration-200',
+						hover?.scale && 'group-hover/image:scale-120 transition-transform duration-200',
 						className
 					)}
 					alt={alt ?? altHardCoded ?? ''}
@@ -129,7 +130,8 @@
 					style:object-position={style?.objectPosition}
 					onload={() => (loaded = true)}
 					class={cn(
-						'object-cover w-full h-full col-start-1 row-start-1 ease-in-out transition-all duration-200',
+						'hover:opacity-20 object-cover w-full h-full col-start-1 row-start-1 ease-in-out transition-all duration-200',
+						hover?.scale && 'group-hover/image:scale-120 transition-transform duration-200',
 						className
 					)}
 					style:opacity={loaded ? '100%' : '0'}

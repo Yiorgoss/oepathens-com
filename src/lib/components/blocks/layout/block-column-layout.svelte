@@ -79,7 +79,7 @@
 	</div>
 	<div
 		style:overflow={style?.overflow}
-		style:gap={style?.gap}
+		style:gap={mobile.current ? (mobileStyle?.gap ?? style?.gap) : style?.gap}
 		style:padding={mobile.current ? mobileStyle?.padding : style?.padding}
 		style:flex-direction={mobile.current ? (mobileStyle?.flexDirection ?? 'column') : 'row'}
 		style:align-items={style?.alignY}
@@ -95,11 +95,7 @@
 				? (mobileStyle?.alignX ?? style?.alignX)
 				: style?.alignX}
 			style:height={blockData?.itemHeight?.split(',')[0]}
-			style:display="flex"
-			class={cn(
-				'animate-child w-full flex grow justify-center items-center md:items-stretch',
-				widthClass[0]
-			)}
+			class={cn('w-full flex grow justify-center items-center md:items-stretch', widthClass[0])}
 		>
 			{#if columnOne && columnOne.length != 0}
 				<RenderBlocks blockData={columnOne[0]} {sizes} />

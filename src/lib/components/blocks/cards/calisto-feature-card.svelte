@@ -30,14 +30,8 @@
 								{richText}
 							/>
 						</div>
-						<div
-							class="bg-primary absolute top-0 left-1/6 size-18 overflow-hidden -translate-y-1/2 rounded-xs"
-						>
-							<div class="flex bg-gray-800/50 justify-center h-full w-full items-center">
-								<div class="size-12">
-									<Icon class=" text-background" {icon} />
-								</div>
-							</div>
+						<div class="absolute top-0 left-1/6 overflow-hidden -translate-y-1/2 rounded-xs">
+							<Icon class=" text-background" {icon} />
 						</div>
 					</div>
 				</div>

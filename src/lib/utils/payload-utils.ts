@@ -94,7 +94,7 @@ export const richTextIcon = ({ name, style }: IIcon) =>
           width:${style?.width ?? "100%"};
           height:${style?.width ?? "100%"};
           background:${style?.background ?? ""};
-          color:${style?.color ?? ""};
+          color:${style?.color ?? "var(--foreground)"};
           border:${style?.border ?? ""};
           border-radius:${style?.borderRadius ?? ""};
           ${style?.string ?? ""}"

@@ -11,9 +11,12 @@
 	id="Footer3"
 	style:border-radius={blockData.style?.borderRadius}
 	style:background={blockData.style?.background}
-	class="relative"
+	class="relative grid grid-cols-1 grid-rows-1"
 >
-	<div class="container relative mx-auto py-10">
+	<div class="col-start-1 row-start-1">
+		<Image image={blockData.bgImg} />
+	</div>
+	<div class="col-start-1 row-start-1 container relative mx-auto py-10">
 		<div class="w-full py-10">
 			<Image image={blockData.logo} class="h-25 object-contain" />
 		</div>
@@ -42,11 +45,11 @@
 		</div>
 	</div>
 	{#if blockData.madeBy}
-		<div class=" px-4 mx-auto flex container lg:w-3/4">
+		<div class="row-start-2 px-4 mx-auto flex container lg:w-3/4">
 			<a
 				href="https://calisto.studio"
 				target="_blank"
-				class="font-thin py-4 uppercase underline underline-offset-4 hover:no-underline text-sm"
+				class="font-light py-4 uppercase underline underline-offset-4 hover:no-underline text-sm"
 			>
 				<span class="sr-only">(opens in new tab)</span>
 				Website crafted with love by Calisto Studio

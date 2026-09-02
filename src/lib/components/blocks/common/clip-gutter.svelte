@@ -31,8 +31,8 @@
 				</clipPath>
 				<rect
 					fill={data.svg?.background}
-					x={minX}
-					y={minY}
+					x={parseInt(minX) - 10}
+					y={parseInt(minY) - 10}
 					{height}
 					{width}
 					clip-path="url(#clip-gutter-path)"

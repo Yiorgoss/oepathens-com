@@ -4,6 +4,7 @@
 	import { RichTextRender } from '@/components/blocks/rich-text';
 	import * as Card from '@/components/ui/card';
 	import { page } from '$app/state';
+	import { MediaQuery } from 'svelte/reactivity';
 
 	const { blockData }: { blockData: ITextUnderCard } = $props();
 	const { locale } = $derived(page.params);
@@ -21,14 +22,23 @@
 
 		return null;
 	});
+	const mobile = new MediaQuery('max-width: 768px');
 </script>
 
-<section id="TextUnderCard-block" class="w-full h-full overflow-hidden max-w-sm">
-	<a {href} aria-disabled={!href}>
+<section
+	id="TextUnderCard-block"
+	style:margin={mobile.current ? blockData.mobileStyle?.margin : blockData.style?.margin}
+	style:overflow={blockData?.style?.overflow}
+	class="w-full h-full overflow-hidden max-w-sm"
+>
+	<a {href} target={blockData.link?.type == 'custom' ? '_blank' : '_self'} aria-disabled={!href}>
 		<Card.Root
 			class="py-0 max-w-sm w-full h-full bg-transparent items-start justify-start border-0 shadow-none text-foreground"
 		>
-			<div class="w-full hover:scale-105 transition-transform duration-200 overflow-hidden">
+			<div
+				style:overflow={blockData?.style?.overflow}
+				class="w-full hover:scale-105 transition-transform duration-200 overflow-hidden"
+			>
 				<Image class="h-100 " image={blockData?.image} />
 			</div>
 			<div class="">

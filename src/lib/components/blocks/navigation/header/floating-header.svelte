@@ -19,13 +19,11 @@
 	let open = $state(false);
 </script>
 
-<section
-	style:inset={style?.inset}
-	class="fixed top-2 flex justify-center w-screen z-30 h-(--header-height) px-2 md:px-0"
->
-	<div class="container w-full h-full">
+<section class="top-2 fixed flex justify-center w-screen z-30 h-(--header-height) px-2 md:px-0">
+	<div class="container w-full h-full @xl:px-20">
 		<!-- desktop -->
 		<Nav.Root
+			style={`border-radius:${style?.borderRadius};background:${style?.background};width:${style?.width};`}
 			class={cn(
 				'px-10 bg-background shadow-xl rounded-theme hidden w-full items-center justify-between md:flex'
 			)}
@@ -43,7 +41,7 @@
 				</div>
 			</a>
 			<Nav.List class="flex items-center justify-center pr-10 md:pr-0 ">
-				{#if Object.entries(supportedLocales).length > 0}
+				{#if Object.entries(supportedLocales).length > 1}
 					<Nav.Item class="px-2">
 						<LocaleSwitcher />
 					</Nav.Item>
@@ -63,6 +61,7 @@
 		<div class="flex h-full items-center justify-end md:hidden">
 			<Sheet.Root bind:open>
 				<div
+					style={`border-radius:${style?.borderRadius};background:${style?.background};width:${style?.width};`}
 					class={cn(
 						'bg-background flex justify-between rounded-theme items-center h-full w-full transition-transform ease-out duration-200 shadow-xl'
 					)}
@@ -82,7 +81,7 @@
 							aria-label="navigation menu "
 							class="focus-visible:ring-offset-background size-8 justify-center items-center flex mr-4 p-2 focus-visible:outline-hidden"
 						>
-							<Icon name="lucide:menu" />
+							<Icon size="30px" name="lucide:menu" />
 						</div>
 					</Sheet.Trigger>
 				</div>
@@ -98,16 +97,18 @@
 												<Button
 													onclick={() => (open = false)}
 													variant="ghost"
-													class="font-serif text-primary w-full py-10 text-xl font-semibold hover:bg-black/20"
+													class="font-serif w-full py-10 text-xl font-semibold hover:bg-black/20"
 													{link}
 												/>
 											{/snippet}
 										</Nav.Link>
 									</Nav.Item>
 								{/each}
-								<Nav.Item class="w-full py-4 flex justify-center items-center">
-									<LocaleSwitcher />
-								</Nav.Item>
+								{#if Object.entries(supportedLocales).length > 1}
+									<Nav.Item class="w-full py-4 flex justify-center items-center">
+										<LocaleSwitcher />
+									</Nav.Item>
+								{/if}
 							</Nav.List>
 						</Nav.Root>
 					</Sheet.Header>

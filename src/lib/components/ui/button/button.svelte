@@ -18,9 +18,11 @@
 			},
 			size: {
 				default: 'h-9 px-4 py-2 has-[>svg]:px-3',
+				xs: 'h-7 gap-1.5 rounded-md px-2 has-[>svg]:px-2.5',
 				sm: 'h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5',
-				lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
-				xl: 'gap-10 h-12 px-8 text-xl has-[>svg]:px-4',
+				md: 'h-9 gap-1.5 rounded-md px-4 has-[>svg]:px-3.5',
+				lg: 'h-10 rounded-md text-lg px-6 has-[>svg]:px-4',
+				xl: 'h-12 gap-2 px-8 text-xl has-[>svg]:px-4',
 				icon: 'size-9'
 			}
 		},

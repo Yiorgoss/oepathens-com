@@ -4,7 +4,8 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "NODE_OPTIONS='--inspect=localhost:9222' vite dev --host ",
+		"dev": "vite dev",
+		"dev:inspect": "NODE_OPTIONS='--inspect=localhost:9222' vite dev --host ",
 		"dev:remote": "wrangler dev --remote",
 		"build": "vite build",
 		"preview": "pnpm run build && wrangler dev",

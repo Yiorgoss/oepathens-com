@@ -4,15 +4,34 @@
 	import * as Card from '@/components/ui/card';
 	import Image from '@/components/common/image.svelte';
 	import { cn } from '@/utils';
+	import { MediaQuery } from 'svelte/reactivity';
 
 	const { blockData }: { blockData: IRichTextCard } = $props();
 	const {
 		richText,
-		style: { background, alignX, alignY, borderRadius, width, maxWidth, border, hasShadow } = {}
+		style: {
+			background,
+			alignX,
+			alignY,
+			selfAlignX,
+			selfAlignY,
+			borderRadius,
+			width,
+			maxWidth,
+			border,
+			hasShadow
+		} = {}
 	} = $derived(blockData);
+
+	const mobile = new MediaQuery('max-width: 768px');
 </script>
 
-<section id="rich-text-card-block" class="flex items-center justify-center h-full w-full py-8">
+<section
+	id="rich-text-card-block"
+	style:justify-content={mobile.current ? blockData.mobileStyle?.selfAlignX : selfAlignX}
+	style:align-items={mobile.current ? blockData.mobileStyle?.selfAlignY : selfAlignY}
+	class="flex items-center justify-center w-full h-full"
+>
 	<Card.Root
 		style={`background:${background};border:${border};border-radius:${borderRadius};width:${width};max-width:${width && 'unset'};`}
 		class={cn(
