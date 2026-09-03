@@ -13,7 +13,7 @@
 		<div class="">
 			<Image image={blockData.imgLeft} class="" />
 		</div>
-		<div class="grid grid-cols-1 h-full w-full grid-rows-1">
+		<div class:-order-1={!blockData.flip} class="grid grid-cols-1 h-full w-full grid-rows-1">
 			<div class="col-start-1 row-start-1 h-full w-full">
 				<Image image={blockData.imgRight} class="object-left h-full" />
 			</div>
