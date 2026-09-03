@@ -7,20 +7,20 @@
 	const { blockData }: { blockData: IGoogleMapFooter } = $props();
 </script>
 
-<section id="GoogleMapFooter" style:background={blockData.style.background}>
+<section
+	id="GoogleMapFooter"
+	style:background={blockData.style?.background}
+	style:padding={blockData.style?.padding}
+>
 	<div class="container mx-auto py-10">
 		<div class="w-full py-10">
 			<Image image={blockData.logo} class="h-25 object-contain" />
 		</div>
-		<div class="grid grid-cols-2 md:grid-cols-6 gap-5 justify-around items-start w-full">
+		<div
+			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 justify-around items-start w-full"
+		>
 			{#each blockData.list as { links, header, horizontal }, i}
-				{@const k = 3}
-				{@const lastRow = blockData.list.length % k}
-				<div
-					class:col-span-full={lastRow == 1 && blockData.list.length - 1 == i}
-					class:col-span-3={lastRow == 2 && blockData.list.length - 2 <= i}
-					class="col-span-2"
-				>
+				<div class="">
 					<div class="text-lg font-bold text-center pt-2 text-primary">{header}</div>
 					<div class:flex-row={horizontal} class="flex flex-col justify-center items-center">
 						{#each links as { link }}
@@ -31,28 +31,34 @@
 			{/each}
 		</div>
 	</div>
-	<div class="px-4 mx-auto flex flex-col gap-10 md:gap-15 container last:pb-10 lg:w-3/4">
-		{#each blockData.locations as { richText, iframe }}
-			<div
-				class="flex max-md:flex-col-reverse min-h-100 justify-around max-md:items-center md:pt-10 gap-8 basis-1/2"
+	<div
+		style:background={blockData?.mapS?.background}
+		style:padding={blockData?.mapS?.padding}
+		class="bg-chart-1"
+	>
+		<div class="px-4 mx-auto flex flex-col gap-10 md:gap-15 container last:pb-10 lg:w-3/4">
+			{#each blockData.locations as { richText, iframe }}
+				<div
+					class="flex max-md:flex-col-reverse min-h-100 justify-around max-md:items-center md:pt-10 gap-8 basis-1/2"
+				>
+					<div class="flex grow shrink basis-auto w-full justify-start items-center">
+						<RichTextRender {richText} />
+					</div>
+					<div class="flex grow shrink basis-auto w-full pb-6">
+						{@html iframe}
+					</div>
+				</div>
+			{/each}
+		</div>
+		<div class=" px-4 mx-auto flex container lg:w-3/4">
+			<a
+				href="https://calisto.studio"
+				target="_blank"
+				class="font-thin py-4 uppercase underline underline-offset-4 hover:no-underline text-sm"
 			>
-				<div class="flex grow shrink basis-auto w-full justify-start items-center">
-					<RichTextRender {richText} />
-				</div>
-				<div class="flex grow shrink basis-auto w-full pb-6">
-					{@html iframe}
-				</div>
-			</div>
-		{/each}
-	</div>
-	<div class=" px-4 mx-auto flex container lg:w-3/4">
-		<a
-			href="https://calisto.studio"
-			target="_blank"
-			class="font-thin py-4 uppercase underline underline-offset-4 hover:no-underline text-sm"
-		>
-			<span class="sr-only">(opens in new tab)</span>
-			Website crafted with love by Calisto Studio
-		</a>
+				<span class="sr-only">(opens in new tab)</span>
+				Website crafted with love by Calisto Studio
+			</a>
+		</div>
 	</div>
 </section>
