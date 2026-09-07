@@ -54,10 +54,10 @@
 </script>
 
 <svelte:window bind:scrollY />
-<section id="MidFloadHeader" class="h-full">
+<section id="leftAlignHeader" class="h-full">
 	<div
 		style:inset={blockData.style?.inset}
-		class="fixed top-0 fflex justify-center w-lvw z-40 h-(--header-height) px-0 md:px-0"
+		class="fixed top-0 flex justify-center w-lvw z-40 h-(--header-height) px-0 md:px-0"
 	>
 		<div class="w-full h-full md:max-w-full">
 			<Nav.Root viewport={false} class="block w-full min-w-full " orientation="horizontal">

@@ -9,7 +9,7 @@
 </script>
 
 <section id="LandingTGK">
-	<div class="grid grid-cols-1 md:grid-cols-2 grid-rows-2 md:grid-rows-1 h-svh overflow-hidden">
+	<div class="grid grid-cols-1 md:grid-cols-2 grid-rows-2 md:grid-rows-1 min-h-svh overflow-hidden">
 		<div class="">
 			<Image image={blockData.imgLeft} class="" />
 		</div>
