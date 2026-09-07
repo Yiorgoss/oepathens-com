@@ -66,7 +66,7 @@
 				return import('./navigation/header/floating-header.svelte');
 			case 'midFloatHeader':
 				return import('./navigation/header/mid-float-header.svelte');
-			case 'leftAlignedHeader':
+			case 'leftAlignHeader':
 				return import('./navigation/header/left-align-header.svelte');
 			case 'richTextFooter':
 				return import('./navigation/footer/rich-text-footer.svelte');
