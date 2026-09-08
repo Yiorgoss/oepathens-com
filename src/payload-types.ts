@@ -98,6 +98,7 @@ export interface Config {
     imageHeader: IImageHeader;
     floatingHeader: IFloatingHeader;
     midFloatHeader: IMidFloadHeader;
+    leftAlignHeader: ILeftAlignHeader;
     richTextFooter: IRichTextFooter;
     footerDesign2: IFooterDesign2;
     googleMapFooter: IGoogleMapFooter;
@@ -225,7 +226,6 @@ export interface IRichTextField {
     };
     [k: string]: unknown;
   } | null;
-  img?: IImageField;
   style?: {
     background?: string | null;
     padding?: string | null;
@@ -240,6 +240,7 @@ export interface IRichTextField {
   mobileStyle?: {
     textAlign?: string | null;
   };
+  img?: IImageField;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -249,6 +250,9 @@ export interface IImageField {
   url?: (number | null) | Asset;
   alt?: string | null;
   ignoreSizes?: boolean | null;
+  hover?: {
+    scale?: boolean | null;
+  };
   style?: {
     background?: string | null;
     mixBlendMode?: string | null;
@@ -441,7 +445,7 @@ export interface Tenant {
  * via the `definition` "INavigation".
  */
 export interface INavigation {
-  header?: (IImageHeader | IFloatingHeader | IMidFloadHeader)[] | null;
+  header?: (IImageHeader | IFloatingHeader | IMidFloadHeader | ILeftAlignHeader)[] | null;
   footer?: (IRichTextFooter | IFooterDesign2 | IGoogleMapFooter | IFooter3)[] | null;
 }
 /**
@@ -477,6 +481,9 @@ export interface IFloatingHeader {
     | null;
   style?: {
     inset?: string | null;
+    background?: string | null;
+    width?: string | null;
+    borderRadius?: string | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -520,6 +527,27 @@ export interface INestedLink {
         id?: string | null;
       }[]
     | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ILeftAlignHeader".
+ */
+export interface ILeftAlignHeader {
+  image?: IImageField;
+  list?:
+    | {
+        nLink?: INestedLink;
+        id?: string | null;
+      }[]
+    | null;
+  style?: {
+    inset?: string | null;
+    background?: string | null;
+    gap?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'leftAlignHeader';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -668,6 +696,11 @@ export interface ITextUnderCard {
   style?: {
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
+    margin?: string | null;
+    overflow?: string | null;
+  };
+  mobileStyle?: {
+    margin?: string | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -759,6 +792,8 @@ export interface IRichTextCard {
   link?: IButton;
   image?: IImageField;
   style?: {
+    selfAlignY?: ('start' | 'center' | 'end' | 'stretch' | 'baseline') | null;
+    selfAlignX?: ('start' | 'center' | 'end' | 'stretch') | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
     borderRadius?: string | null;
@@ -767,6 +802,10 @@ export interface IRichTextCard {
     maxWidth?: string | null;
     border?: string | null;
     hasShadow?: boolean | null;
+  };
+  mobileStyle?: {
+    selfAlignX?: ('start' | 'center' | 'end' | 'stretch') | null;
+    selfAlignY?: ('start' | 'center' | 'end' | 'stretch' | 'baseline') | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -831,6 +870,7 @@ export interface IImage {
     width?: string | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
+    overflow?: string | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -1230,6 +1270,7 @@ export interface IWavyText {
     background?: string | null;
     fontSize?: string | null;
     wordSpacing?: string | null;
+    speed?: string | null;
   };
   style?: {
     height?: string | null;
@@ -1441,6 +1482,11 @@ export interface IGoogleMapFooter {
     | null;
   style?: {
     background?: string | null;
+    padding?: string | null;
+  };
+  mapS?: {
+    background?: string | null;
+    padding?: string | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -1468,11 +1514,13 @@ export interface IFooter3 {
     | null;
   style?: {
     background?: string | null;
+    color?: string | null;
     borderRadius?: string | null;
   };
   headerStyles?: {
     color?: string | null;
   };
+  bgImg?: IImageField;
   s?: IStickerField;
   id?: string | null;
   blockName?: string | null;
@@ -1673,7 +1721,6 @@ export interface IBlockColumnLayout {
         | IFlexboxLayout
       )[]
     | null;
-  bgImage?: IImageField;
   style?: {
     container?: boolean | null;
     height?: string | null;
@@ -1693,7 +1740,7 @@ export interface IBlockColumnLayout {
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
   };
-  animation?: IAnimation;
+  bgImage?: IImageField;
   stickerList?:
     | {
         s?: IStickerField;
@@ -1703,37 +1750,6 @@ export interface IBlockColumnLayout {
   id?: string | null;
   blockName?: string | null;
   blockType: 'blockColumnLayout';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IAnimation".
- */
-export interface IAnimation {
-  type?: ('viewport' | 'scroll') | null;
-  /**
-   * Animations that trigger when they enter the page
-   */
-  viewport?:
-    | ('slideFadeFast' | 'slideFadeSlow' | 'slideLetters' | 'bubbleLetters' | 'drawSVG' | 'slideUpFadeIn')[]
-    | null;
-  /**
-   * Stagger animations as they enter
-   */
-  stagger?: boolean | null;
-  /**
-   * Only play animations on enter
-   */
-  onlyEnter?: boolean | null;
-  /**
-   * How much of the element must be viewable before starting animation? 0-1
-   */
-  amount?: string | null;
-  /**
-   * Animations that play as you scroll
-   */
-  scroll?:
-    | ('custom' | 'scale' | 'fadeIn' | 'translateUp' | 'translateDown' | 'drawSVG' | 'lineFlip' | 'fadeInEachWord')[]
-    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1775,8 +1791,11 @@ export interface IGutterV2 {
     background?: string | null;
     color?: string | null;
     container?: boolean | null;
+    alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
+    alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
   };
   s?: IStickerField;
+  bgImg?: IImageField;
   id?: string | null;
   blockName?: string | null;
   blockType: 'gutterv2';
@@ -1821,6 +1840,37 @@ export interface ICalistoFeatureCard {
   id?: string | null;
   blockName?: string | null;
   blockType: 'calistoFeatureCard';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IAnimation".
+ */
+export interface IAnimation {
+  type?: ('viewport' | 'scroll') | null;
+  /**
+   * Animations that trigger when they enter the page
+   */
+  viewport?:
+    | ('slideFadeFast' | 'slideFadeSlow' | 'slideLetters' | 'bubbleLetters' | 'drawSVG' | 'slideUpFadeIn')[]
+    | null;
+  /**
+   * Stagger animations as they enter
+   */
+  stagger?: boolean | null;
+  /**
+   * Only play animations on enter
+   */
+  onlyEnter?: boolean | null;
+  /**
+   * How much of the element must be viewable before starting animation? 0-1
+   */
+  amount?: string | null;
+  /**
+   * Animations that play as you scroll
+   */
+  scroll?:
+    | ('custom' | 'scale' | 'fadeIn' | 'translateUp' | 'translateDown' | 'drawSVG' | 'lineFlip' | 'fadeInEachWord')[]
+    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1982,6 +2032,7 @@ export interface ILexicalImage {
     padding?: string | null;
     width?: string | null;
     height?: string | null;
+    margin?: string | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
     overflow?: string | null;
