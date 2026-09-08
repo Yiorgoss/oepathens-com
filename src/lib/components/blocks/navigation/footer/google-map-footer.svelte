@@ -12,12 +12,12 @@
 	style:background={blockData.style?.background}
 	style:padding={blockData.style?.padding}
 >
-	<div class="container mx-auto py-10">
+	<div class="py-10">
 		<div class="w-full py-10">
 			<Image image={blockData.logo} class="h-25 object-contain" />
 		</div>
 		<div
-			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 justify-around items-start w-full"
+			class="grid container lg:w-3/4 mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 justify-between items-start w-full"
 		>
 			{#each blockData.list as { links, header, horizontal }, i}
 				<div class="">
@@ -36,7 +36,7 @@
 		style:padding={blockData?.mapS?.padding}
 		class="bg-chart-1"
 	>
-		<div class="px-4 mx-auto flex flex-col gap-10 md:gap-15 container last:pb-10 lg:w-3/4">
+		<div class="px-4 mx-auto flex flex-col gap-10 md:gap-15 container lg:w-3/4 last:pb-10">
 			{#each blockData.locations as { richText, iframe }}
 				<div
 					class="flex max-md:flex-col-reverse min-h-100 justify-around max-md:items-center md:pt-10 gap-8 basis-1/2"
@@ -50,7 +50,7 @@
 				</div>
 			{/each}
 		</div>
-		<div class=" px-4 mx-auto flex container lg:w-3/4">
+		<div class=" px-4 mx-auto flex container">
 			<a
 				href="https://calisto.studio"
 				target="_blank"
