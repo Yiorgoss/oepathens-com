@@ -27,11 +27,23 @@ const config = {
     }),
     csp: {
       directives: {
-        'script-src': ['self', 'voldemort.calisto.studio', 'https://cdn.tickettailor.com'],
-        'frame-src': ['self', 'https://admin.calisto.studio', 'https://*.tickettailor.com',],
-        'img-src': ['self', 'https://app.tickettailor.com', 'https://*.tickettailor.com', 'data:'],
-        'connect-src': ['self', "api.iconify.design ", 'api.simplesvg.com', 'api.unisvg.com ', 'https://*.tickettailor.com'],
-        'style-src': ['self', 'unsafe-inline']
+        'script-src': ['self', 'voldemort.calisto.studio', 'https://*.tickettailor.com'],
+        'frame-src': [
+          'self',
+          'https://admin.calisto.studio',
+          'https://www.google.com',
+          'https://*.tickettailor.com'
+        ],
+        'img-src': ['self', 'assets.calisto.studio'],
+        'connect-src': [
+          'self',
+          "api.iconify.design ",
+          'api.simplesvg.com',
+          'api.unisvg.com ',
+          'voldemort.calisto.studio',
+          'https://*.tickettailor.com'
+        ],
+        'style-src': ['self', 'unsafe-inline', 'https://*.tickettailor.com']
       }
     },
     alias: {
