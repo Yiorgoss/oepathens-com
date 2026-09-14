@@ -7,12 +7,12 @@ const config = {
   // Consult https://svelte.dev/docs/kit/integrations
   // for more information about preprocessors
   preprocess: vitePreprocess(),
-	compilerOptions: {
-		experimental: {
-			async: true
-		}
-	},
-	// build: { minify: process.env.PUBLIC_ENV !== "LOCAL" ? true : false },
+  compilerOptions: {
+    experimental: {
+      async: true
+    }
+  },
+  // build: { minify: process.env.PUBLIC_ENV !== "LOCAL" ? true : false },
   kit: {
     // adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
     // If your environment is not supported, or you settled on a specific environment, switch out the adapter.
@@ -25,15 +25,19 @@ const config = {
         persist: true
       }
     }),
-      // csp: {
-      //   directives: {
-      //     'frame-src': ['https://admin.calisto.studio', 'self']
-      //   },
-      // },
+    csp: {
+      directives: {
+        'script-src': ['self', 'voldemort.calisto.studio', ],
+        'frame-src': ['self', 'https://admin.calisto.studio', ],
+        'img-src': ['self', ],
+        'connect-src': ['self', "api.iconify.design ", 'api.simplesvg.com', 'api.unisvg.com ',],
+        'style-src': ['self', 'unsafe-inline']
+      }
+    },
     alias: {
       '@': "src/lib",
       // '@payload-types': '../cms-mt/src/payload-types.ts',
-      '@payload-types':'./src/payload-types.ts'
+      '@payload-types': './src/payload-types.ts'
     }
   }
 };

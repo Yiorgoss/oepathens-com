@@ -58,6 +58,8 @@
 				return import('./common/gutter-v2.svelte');
 			case 'clipGutter':
 				return import('./common/clip-gutter.svelte');
+			case 'iframe':
+				return import('./common/iframe.svelte');
 			case 'rtBlock':
 				return import('./rich-text/block.svelte');
 			case 'imageHeader':
@@ -96,6 +98,8 @@
 				return import('./special/flex-item.svelte');
 			case 'textUnderCard':
 				return import('./cards/text-under-card.svelte');
+			case 'ticketTailorEmbed':
+				return import('./embed/tickettailor.svelte');
 			case 'textImageSplit':
 				return import('./tgk/text-image-split.svelte');
 			case 'tgkLandingHome':
