@@ -73,6 +73,7 @@ export interface Config {
     gutterv2: IGutterV2;
     clipGutter: IClipGutter;
     button: IButtonBlock;
+    iframe: IIFrame;
     videoLanding: IVideoLanding;
     blockColumnLayout: IBlockColumnLayout;
     flexboxLayout: IFlexboxLayout;
@@ -113,6 +114,7 @@ export interface Config {
     contactForm: IContactFormBlock;
     emboldenEpubConverter: EmboldenEpubConverterI;
     googlemaps: IGoogleMaps;
+    ticketTailorEmbed: ITicketTailorEmbed;
     textImageSplit: ITextImageSplit;
     tgkLandingHome: ITGKLandingHome;
     tgkCard1: ITGKCard1;
@@ -383,12 +385,14 @@ export interface Page {
         | IGutter
         | IGutterV2
         | IClipGutter
+        | IIFrame
         | IStickyContainers
         | BentoGrid
         | IAccordion
         | ICarousel
         | IFlexItem
         | IWavyText
+        | ITicketTailorEmbed
         | IBlockColumnLayout
         | IFlexboxLayout
         | ICalistoFeatureCard
@@ -596,12 +600,14 @@ export interface IFooterDesign2 {
         | IRichText
         | IImage
         | IVideoLanding
+        | IIFrame
         | IStickyContainers
         | BentoGrid
         | IContactFormBlock
         | ICarousel
         | IFlexItem
         | IWavyText
+        | ITicketTailorEmbed
         | EmboldenEpubConverterI
         | ITextImageSplit
         | ITGKCard1
@@ -626,12 +632,14 @@ export interface IFooterDesign2 {
         | IRichText
         | IImage
         | IVideoLanding
+        | IIFrame
         | IStickyContainers
         | BentoGrid
         | IContactFormBlock
         | ICarousel
         | IFlexItem
         | IWavyText
+        | ITicketTailorEmbed
         | EmboldenEpubConverterI
         | ITextImageSplit
         | ITGKCard1
@@ -656,12 +664,14 @@ export interface IFooterDesign2 {
         | IRichText
         | IImage
         | IVideoLanding
+        | IIFrame
         | IStickyContainers
         | BentoGrid
         | IContactFormBlock
         | ICarousel
         | IFlexItem
         | IWavyText
+        | ITicketTailorEmbed
         | EmboldenEpubConverterI
         | ITextImageSplit
         | ITGKCard1
@@ -889,6 +899,24 @@ export interface IVideoLanding {
   id?: string | null;
   blockName?: string | null;
   blockType: 'videoLanding';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IIFrame".
+ */
+export interface IIFrame {
+  iframe?: string | null;
+  style?: {
+    height?: string | null;
+    width?: string | null;
+    alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
+    alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
+    overflow?: string | null;
+    margin?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'iframe';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1284,6 +1312,20 @@ export interface IWavyText {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ITicketTailorEmbed".
+ */
+export interface ITicketTailorEmbed {
+  html?: string | null;
+  style?: {
+    background?: string | null;
+    padding?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ticketTailorEmbed';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "EmboldenEpubConverterI".
  */
 export interface EmboldenEpubConverterI {
@@ -1420,12 +1462,14 @@ export interface IFlexboxLayout {
               | IRichText
               | IImage
               | IVideoLanding
+              | IIFrame
               | IStickyContainers
               | BentoGrid
               | IContactFormBlock
               | ICarousel
               | IFlexItem
               | IWavyText
+              | ITicketTailorEmbed
               | EmboldenEpubConverterI
               | ITextImageSplit
               | ITGKCard1
@@ -1643,12 +1687,14 @@ export interface IBlockColumnLayout {
         | IRichText
         | IImage
         | IVideoLanding
+        | IIFrame
         | IStickyContainers
         | BentoGrid
         | IContactFormBlock
         | ICarousel
         | IFlexItem
         | IWavyText
+        | ITicketTailorEmbed
         | EmboldenEpubConverterI
         | ITextImageSplit
         | ITGKCard1
@@ -1673,12 +1719,14 @@ export interface IBlockColumnLayout {
         | IRichText
         | IImage
         | IVideoLanding
+        | IIFrame
         | IStickyContainers
         | BentoGrid
         | IContactFormBlock
         | ICarousel
         | IFlexItem
         | IWavyText
+        | ITicketTailorEmbed
         | EmboldenEpubConverterI
         | ITextImageSplit
         | ITGKCard1
@@ -1703,12 +1751,14 @@ export interface IBlockColumnLayout {
         | IRichText
         | IImage
         | IVideoLanding
+        | IIFrame
         | IStickyContainers
         | BentoGrid
         | IContactFormBlock
         | ICarousel
         | IFlexItem
         | IWavyText
+        | ITicketTailorEmbed
         | EmboldenEpubConverterI
         | ITextImageSplit
         | ITGKCard1
