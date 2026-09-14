@@ -14,7 +14,11 @@
 </script>
 
 <section style:background={blockData.style?.background} id="carouselBlock" class="max-md:pb-12">
-	<div class=" mx-auto relative container px-2 md:px-20">
+	<div
+		class:container={blockData.style?.container}
+		class:padding={blockData.style?.padding}
+		class=" mx-auto relative px-2"
+	>
 		<Carousel.Root
 			opts={{
 				loop: !!options?.loop,
@@ -22,10 +26,10 @@
 			}}
 			setApi={(emblaApi: CarouselAPI | undefined) => (api = emblaApi)}
 		>
-			<Carousel.Content class="w-full ">
+			<Carousel.Content class="w-full">
 				{#each items ?? [] as item (item.id)}
 					<Carousel.Item
-						style={`padding-right:${blockData?.style?.gap};`}
+						style={`padding-right:${blockData.style?.gap};width:${blockData.style?.width}`}
 						class="basis-auto min-w-80"
 					>
 						<RenderBlocks blockData={item} />
@@ -34,11 +38,11 @@
 			</Carousel.Content>
 			<Carousel.Previous
 				variant="ghost"
-				class="text-secondary border-2 border-secondary max-md:size-12 max-md:mt-2 max-md:top-auto max-md:bottom-0 max-md:left-auto max-md:right-1/2 max-md:-translate-x-5 max-md:translate-y-full"
+				class="text-secondary border-2 border-secondary hover:border-black max-md:size-12 max-md:mt-2 max-md:top-auto max-md:bottom-0 max-md:left-auto max-md:right-1/2 translate-0 left-0 max-md:-translate-x-5 max-md:translate-y-full"
 			/>
 			<Carousel.Next
 				variant="ghost"
-				class=" text-secondary border-2 border-secondary max-md:size-12 max-md:mt-2 max-md:top-auto max-md:bottom-0  max-md:left-1/2 max-md:translate-x-5 max-md:translate-y-full"
+				class=" text-secondary border-2 border-secondary hover:border-black max-md:size-12 max-md:mt-2 max-md:top-auto max-md:bottom-0  max-md:left-1/2 translate-0 right-0 max-md:translate-x-5 max-md:translate-y-full"
 			/>
 		</Carousel.Root>
 	</div>

@@ -27,10 +27,10 @@ const config = {
     }),
     csp: {
       directives: {
-        'script-src': ['self', 'voldemort.calisto.studio', 'https://*.tickettailor.com'],
+        'script-src': ['self', '*.calisto.studio', 'https://*.tickettailor.com'],
         'frame-src': [
           'self',
-          'https://admin.calisto.studio',
+          'https://*.calisto.studio',
           'https://www.google.com',
           'https://*.tickettailor.com'
         ],
@@ -40,7 +40,7 @@ const config = {
           "api.iconify.design ",
           'api.simplesvg.com',
           'api.unisvg.com ',
-          'voldemort.calisto.studio',
+          '*.calisto.studio',
           'https://*.tickettailor.com'
         ],
         'style-src': ['self', 'unsafe-inline', 'https://*.tickettailor.com']
