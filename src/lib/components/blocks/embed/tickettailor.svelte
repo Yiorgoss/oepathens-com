@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	let { blockData }: { blockData: IClientSideEmbed } = $props();
 
-	const { height, width, alignX, alignY, overflow, margin } = $derived(blockData || {});
+	const { background, padding, margin, height, width } = $derived(blockData || {});
 
 	let container: HTMLElement;
 
@@ -31,11 +31,10 @@
 <div
 	bind:this={container}
 	style:height
+	style:background
 	style:width
-	style:overflow
 	style:margin
-	style:justify-content={alignX}
-	style:align-items={alignY}
-	class="min-w-[800px]"
+	style:padding
+	class="max-w-[800px] mx-auto"
 	id="ticket-tailor-embed"
 ></div>
