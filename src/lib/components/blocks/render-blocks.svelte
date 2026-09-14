@@ -98,6 +98,8 @@
 				return import('./special/flex-item.svelte');
 			case 'textUnderCard':
 				return import('./cards/text-under-card.svelte');
+			case 'wellnessCard':
+				return import('./cards/wellness-card.svelte');
 			case 'ticketTailorEmbed':
 				return import('./embed/tickettailor.svelte');
 			case 'textImageSplit':
