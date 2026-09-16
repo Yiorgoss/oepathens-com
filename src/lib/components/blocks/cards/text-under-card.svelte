@@ -33,6 +33,7 @@
 >
 	<a {href} target={blockData.link?.type == 'custom' ? '_blank' : '_self'} aria-disabled={!href}>
 		<Card.Root
+			style={`max-width:${blockData.style?.maxWidth}px;`}
 			class="py-0 max-w-sm w-full h-full bg-transparent items-start justify-start border-0 shadow-none text-foreground"
 		>
 			<div
