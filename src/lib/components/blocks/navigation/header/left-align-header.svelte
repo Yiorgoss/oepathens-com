@@ -65,37 +65,41 @@
 				<Nav.List
 					style={`background:${blockData.style?.background};gap:${blockData.style?.gap}`}
 					class={cn(
-						'px-0 transition-transform ease-in-out gap-10 duration-300 bg-background shadow-xl mmax-w-full rounded-none w-full mx-auto items-center justify-start h-full hidden lg:flex ',
+						'px-0 transition-transform ease-in-out gap-10 duration-300 bg-background shadow-xl rounded-none w-full mx-auto h-full hidden lg:flex ',
 						hidden && '-translate-y-full'
 					)}
 				>
-					<Nav.Item class="">
-						<Nav.Link
-							href={`/${locale ?? ''}`}
-							aria-label="home page"
-							class="hover:bg-transparent focus:bg-transparent"
-						>
-							<div class="h-(--header-height) mx-auto lg:p-2 md:p-0 w-auto">
-								<Image
-									alt="link to homepage"
-									class="p-2 object-contain mx-auto w-auto h-full "
-									{image}
-									sizes="500px"
-									fetchpriority="high"
-									loading="eager"
-								/>
-							</div>
-						</Nav.Link>
-					</Nav.Item>
-					<div class="flex justify-around items-center">
-						{#if Object.entries(supportedLocales).length > 1}
-							<Nav.Item class="px-2 ">
-								<LocaleSwitcher useFlag />
-							</Nav.Item>
-						{/if}
-						{#each list ?? [] as { nLink }}
-							{@render nestedLink({ nLink })}
-						{/each}
+					<div class="lg:flex justify-start items-center container">
+						<Nav.Item class="">
+							<Nav.Link
+								href={`/${locale ?? ''}`}
+								aria-label="home page"
+								class="hover:bg-transparent focus:bg-transparent"
+							>
+								<div
+									class="h-(--header-height) mx-auto lg:p-2 flex justify-center items-center lg:px-4 md:p-0 w-auto"
+								>
+									<Image
+										alt="link to homepage"
+										class="p-2 object-contain mx-auto w-auto h-full "
+										{image}
+										sizes="500px"
+										fetchpriority="high"
+										loading="eager"
+									/>
+								</div>
+							</Nav.Link>
+						</Nav.Item>
+						<div class="flex justify-around items-center">
+							{#if Object.entries(supportedLocales).length > 1}
+								<Nav.Item class="px-2 ">
+									<LocaleSwitcher useFlag />
+								</Nav.Item>
+							{/if}
+							{#each list ?? [] as { nLink }}
+								{@render nestedLink({ nLink })}
+							{/each}
+						</div>
 					</div>
 				</Nav.List>
 				<!-- mobile -->
