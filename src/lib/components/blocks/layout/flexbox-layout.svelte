@@ -7,8 +7,8 @@
 </script>
 
 <section id="flexbox-layout" class="">
-	<div style:background={blockData.style?.background} class="h-fit grid grid-cols-1 grid-rows-1">
-		<div class="z-0 relative col-start-1 row-start-1">
+	<div style:background={blockData.style?.background} class="grid h-fit grid-cols-1 grid-rows-1">
+		<div class="relative z-0 col-start-1 row-start-1">
 			<div class="absolute inset-0">
 				<Image image={blockData?.bgImg} />
 			</div>
@@ -19,15 +19,17 @@
 			style:flex-direction={blockData.style?.flexDirection}
 			style:overflow={blockData.style?.overflow}
 			style:padding={blockData.style?.padding ?? '0px 20px'}
-			class="z-10 w-full h-fit container flex flex-wrap justify-center mx-auto col-start-1 row-start-1"
+			class="z-10 col-start-1 row-start-1 container mx-auto flex h-fit w-full flex-wrap justify-center"
 		>
 			{#each blockData.list ?? [] as { block }}
-				<div
-					style:padding={blockData.style?.gap}
-					class="flex max-md:justify-center basis-full sm:basis-1/2 xl:basis-1/4"
-				>
-					<RenderBlocks blockData={block?.[0]} />
-				</div>
+				{#if block}
+					<div
+						style:padding={blockData.style?.gap}
+						class="flex basis-full max-md:justify-center sm:basis-1/2 xl:basis-1/4"
+					>
+						<RenderBlocks blockData={block[0]} />
+					</div>
+				{/if}
 			{/each}
 		</div>
 	</div>
