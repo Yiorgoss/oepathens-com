@@ -4,6 +4,10 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+    server: {
+    // host: '0.0.0.0', // needed so it's reachable over Tailscale at all
+    allowedHosts: true,
+  },
   plugins: [
     tailwindcss(),
     sveltekit(),
