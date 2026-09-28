@@ -14,8 +14,9 @@
 	});
 
 	let categories = $derived.by(() => {
-		const categ = items.map(item => item.blockName)
-		.filter(name => Boolean(name))
+		const categ = (items ?? [])
+		.map(item => item.blockName)
+		.filter(Boolean)
 		.map(categoryList => categoryList.split(",").map(x => x.trim()))
 		.flat(Infinity)
 

@@ -5,7 +5,6 @@
 
 	const { blockData }: { blockData: IWellnessCard } = $props();
 	const { borderRadius, height, width, alignY, alignX } = $derived(blockData.style || {});
-	$inspect(blockData.style);
 </script>
 
 <section id="IWellnessCard" class="">
