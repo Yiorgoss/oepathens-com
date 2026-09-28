@@ -12,9 +12,35 @@
 	$effect(() => {
 		if (!api) return;
 	});
+
+	let categories = $derived.by( () => {
+		const categ = items.map(item => item.blockName)
+		.map(categoryList => categoryList.split(",").map(x => x.trim()))
+		.flat(Infinity)
+
+		return [...new Set(categ)]
+		}
+	)
+	let selected = $state('all')
+	let filteredItems = $derived.by(()=>{
+		if(selected == 'all') return items
+		return items.filter(item => item.blockName.includes(selected))
+	})
 </script>
 
 <section style:background={blockData.style?.background} id="carouselBlock" class="max-md:pb-12">
+	{#if categories}
+		<div class="flex justify-center items-center flex-wrap pb-10">
+			<button on:click={()=>selected='all'}
+				class:text-primary={selected=='all'}
+				class="px-3 "> All </button>
+			{#each categories as category}
+				<button on:click={()=>selected=category}
+					class:text-primary={selected==category}
+					class="px-3 ">{category}</button>
+			{/each}
+		</div>
+	{/if}
 	<div
 		class:container={blockData.style?.container}
 		style:padding={blockData.style?.padding}
@@ -28,7 +54,7 @@
 			setApi={(emblaApi: CarouselAPI | undefined) => (api = emblaApi)}
 		>
 			<Carousel.Content class="w-full">
-				{#each items ?? [] as item (item.id)}
+				{#each filteredItems ?? [] as item (item.id)}
 					<Carousel.Item
 						style={`padding-right:${blockData.style?.gap};width:${blockData.style?.width}`}
 						class="basis-auto min-w-80"
