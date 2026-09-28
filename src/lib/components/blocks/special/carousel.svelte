@@ -31,7 +31,7 @@
 </script>
 
 <section style:background={blockData.style?.background} id="carouselBlock" class="max-md:pb-12">
-	{#if categories.lenght > 0}
+	{#if categories.length > 0}
 		<div class="flex justify-center items-center flex-wrap pb-10">
 			<button on:click={()=>selected='all'}
 				class:text-primary={selected=='all'}
