@@ -13,7 +13,7 @@
 		if (!api) return;
 	});
 
-	let categories = $derived.by( () => {
+	let categories = $derived.by(() => {
 		const categ = items.map(item => item.blockName)
 		.filter(name => Boolean(name))
 		.map(categoryList => categoryList.split(",").map(x => x.trim()))
@@ -30,7 +30,7 @@
 </script>
 
 <section style:background={blockData.style?.background} id="carouselBlock" class="max-md:pb-12">
-	{#if categories}
+	{#if categories.lenght > 0}
 		<div class="flex justify-center items-center flex-wrap pb-10">
 			<button on:click={()=>selected='all'}
 				class:text-primary={selected=='all'}
