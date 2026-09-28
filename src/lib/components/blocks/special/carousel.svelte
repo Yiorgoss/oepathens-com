@@ -26,6 +26,7 @@
 	let selected = $state('all')
 	let filteredItems = $derived.by(()=>{
 		if(selected == 'all') return items
+		if(items.length <= 0 ) return items
 		return items.filter(item => item.blockName.includes(selected))
 	})
 </script>
