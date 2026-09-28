@@ -49,7 +49,7 @@
 					</div>
 				</div>
 				<div
-					style:padding-top={blockData.midStyle?.width && `calc(${blockData.midstyle?.width}/2)px`}
+					style:padding-top={blockData.midStyle?.width && `calc(${blockData.midStyle?.width}/2)px`}
 					class="row-span-1 flex justify-center items-start relative h-auto pt-10"
 				>
 					<div class="">
