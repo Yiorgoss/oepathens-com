@@ -4,6 +4,7 @@
 	import * as Carousel from '@/components/ui/carousel';
 	import { type CarouselAPI } from '@/components/ui/carousel/context';
 	import { cn } from '@/utils';
+	import { MediaQuery } from 'svelte/reactivity';
 
 	const { blockData }: { blockData: ICarousel; class?: string } = $props();
 	const { items, options } = $derived(blockData);
@@ -15,41 +16,55 @@
 
 	let categories = $derived.by(() => {
 		const categ = (items ?? [])
-		.map(item => item.blockName)
-		.filter(Boolean)
-		.map(categoryList => categoryList?.split(",").map(x => x.trim()))
-		.flat(2)
+			.map((item) => item.blockName)
+			.filter(Boolean)
+			.map((categoryList) => categoryList?.split(',').map((x) => x.trim()))
+			.flat(2);
 
-		return [...new Set(categ)]
-		}
-	)
-	let selected = $state('all')
-	let filteredItems = $derived.by(()=>{
-		if(!items) return []
-		if(items.length <= 0 ) return []
-		if(selected == 'all') return items
+		return [...new Set(categ)];
+	});
+	let selected = $state('all');
+	let filteredItems = $derived.by(() => {
+		if (!items) return [];
+		if (items.length <= 0) return [];
+		if (selected == 'all') return items;
 
-		return items?.filter(item => item.blockName?.includes(selected))
-	})
+		return items?.filter((item) => item.blockName?.includes(selected));
+	});
+
+	const mobile = new MediaQuery('max-width: 768px');
 </script>
 
 <section style:background={blockData.style?.background} id="carouselBlock" class="max-md:pb-12">
 	{#if categories && categories.length > 0}
-		<div style:padding={blockData.categS?.padding} class="flex justify-center items-center flex-wrap pb-10">
-			<button onclick={()=>selected='all'}
-				class:text-primary={selected=='all'}
-				class="px-3 "> All </button>
+		<div
+			style:padding={blockData.categS?.padding}
+			class="flex flex-wrap items-center justify-center pb-10"
+		>
+			<button
+				onclick={() => (selected = 'all')}
+				class={cn(
+					'hover:text-primary/50 elected px-3 font-semibold',
+					selected == 'all' && 'text-primary underline underline-offset-6 '
+				)}
+			>
+				All
+			</button>
 			{#each categories as category}
-				<button onclick={()=>selected=category}
-					class:text-primary={selected==category}
-					class="px-3 ">{category}</button>
+				<button
+					onclick={() => (selected = category)}
+					class={cn(
+						'hover:text-primary/50 elected px-3 font-semibold',
+						selected == category && 'text-primary underline underline-offset-6 '
+					)}>{category}</button
+				>
 			{/each}
 		</div>
 	{/if}
 	<div
 		class:container={blockData.style?.container}
 		style:padding={blockData.style?.padding}
-		class=" mx-auto relative px-1"
+		class=" relative mx-auto px-1"
 	>
 		<Carousel.Root
 			opts={{
@@ -62,7 +77,7 @@
 				{#each filteredItems ?? [] as item (item.id)}
 					<Carousel.Item
 						style={`padding-right:${blockData.style?.gap};width:${blockData.style?.width}`}
-						class="basis-auto min-w-80"
+						class="min-w-80 basis-auto"
 					>
 						<RenderBlocks blockData={item} />
 					</Carousel.Item>
@@ -72,16 +87,25 @@
 				variant="ghost"
 				style={`color:${blockData.arrowS?.color}; border:${blockData.arrowS?.border};`}
 				class={cn(
-					'text-secondary border-2 border-secondary hover:border-black max-md:size-12 max-md:mt-2 max-md:top-auto max-md:bottom-0 max-md:left-auto max-md:right-1/2 translate-0 left-0 max-md:-translate-x-5 max-md:translate-y-full',
-					blockData.style?.container && '-translate-x-full -ml-2'
+					'text-secondary border-secondary left-0 translate-0 border-2 hover:border-black max-md:top-auto max-md:right-1/2 max-md:bottom-0 max-md:left-auto max-md:mt-2 max-md:size-12 max-md:-translate-x-5 max-md:translate-y-full',
+					blockData.style?.container && '-ml-2 -translate-x-full'
 				)}
 			/>
 			<Carousel.Next
 				variant="ghost"
-				style={`color:${blockData.arrowS?.color}; border:${blockData.arrowS?.border};`}
+				style={`color:${
+					mobile.current
+						? (blockData.arrowMobS?.color ?? blockData.arrowS?.color)
+						: blockData.arrowS?.color
+				};
+				 border:${
+						mobile.current
+							? (blockData.arrowMobS?.border ?? blockData.arrowS?.border)
+							: blockData.arrowS?.border
+					};`}
 				class={cn(
-					'text-secondary border-2 border-secondary hover:border-black max-md:size-12 max-md:mt-2 max-md:top-auto max-md:bottom-0  max-md:left-1/2 translate-0 right-0 max-md:translate-x-5 max-md:translate-y-full',
-					blockData.style?.container && 'translate-x-full -mr-2'
+					'text-secondary border-secondary right-0 translate-0 border-2 hover:border-black max-md:top-auto max-md:bottom-0  max-md:left-1/2 max-md:mt-2 max-md:size-12 max-md:translate-x-5 max-md:translate-y-full',
+					blockData.style?.container && '-mr-2 translate-x-full'
 				)}
 			/>
 		</Carousel.Root>
