@@ -116,7 +116,7 @@
 					src={`${site.storage}/${encodeURI(asset?.filename ?? '')}`}
 					class={cn(
 						' object-cover w-full h-full col-start-1 row-start-1 ease-in-out transition-all duration-200',
-						hover?.scale && 'group-hover/image:scale-110 transition-transform duration-200',
+						hover?.scale && 'group-hover/image:scale-105 transition-transform duration-200',
 						className
 					)}
 					alt={alt ?? altHardCoded ?? ''}
@@ -131,7 +131,7 @@
 					onload={() => (loaded = true)}
 					class={cn(
 						'hover:opacity-20 object-cover w-full h-full col-start-1 row-start-1 ease-in-out transition-all duration-200',
-						hover?.scale && 'group-hover/image:scale-120 transition-transform duration-200',
+						hover?.scale && 'group-hover/image:scale-105 transition-transform duration-200',
 						className
 					)}
 					style:opacity={loaded ? '100%' : '0'}

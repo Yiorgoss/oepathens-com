@@ -28,7 +28,8 @@
 <section
 	id="TextUnderCard-block"
 	style:margin={mobile.current ? blockData.mobileStyle?.margin : blockData.style?.margin}
-	style:overflow={blockData?.style?.overflow}
+	style:overflow={blockData.style?.overflow}
+	style:border-radius={blockData.style?.borderRadius}
 	class="w-full h-full overflow-hidden max-w-sm"
 >
 	<a {href} target={blockData.link?.type == 'custom' ? '_blank' : '_self'} aria-disabled={!href}>
