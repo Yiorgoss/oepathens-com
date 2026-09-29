@@ -18,8 +18,9 @@
 			style:align-items={blockData.style?.alignY}
 			style:flex-direction={blockData.style?.flexDirection}
 			style:overflow={blockData.style?.overflow}
+			style:container={blockData.style?.container}
 			style:padding={blockData.style?.padding ?? '0px 20px'}
-			class="z-10 col-start-1 row-start-1 container mx-auto flex h-fit w-full flex-wrap justify-center"
+			class="z-10 col-start-1 row-start-1 mx-auto flex h-fit w-full flex-wrap justify-center"
 		>
 			{#each blockData.list ?? [] as { block }}
 				{#if block}
