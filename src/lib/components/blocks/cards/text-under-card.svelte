@@ -39,6 +39,7 @@
 		>
 			<div
 				style:overflow={blockData?.style?.overflow}
+				style:padding={blockData.style?.padding}
 				class="w-full hover:scale-105 transition-transform duration-200 overflow-hidden"
 			>
 				<Image class="h-100 " image={blockData?.image} />
