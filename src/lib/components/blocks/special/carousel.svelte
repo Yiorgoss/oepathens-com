@@ -35,7 +35,7 @@
 
 <section style:background={blockData.style?.background} id="carouselBlock" class="max-md:pb-12">
 	{#if categories && categories.length > 0}
-		<div class="flex justify-center items-center flex-wrap pb-10">
+		<div style:padding={blockData.categS?.padding} class="flex justify-center items-center flex-wrap pb-10">
 			<button onclick={()=>selected='all'}
 				class:text-primary={selected=='all'}
 				class="px-3 "> All </button>
@@ -58,7 +58,7 @@
 			}}
 			setApi={(emblaApi: CarouselAPI | undefined) => (api = emblaApi)}
 		>
-			<Carousel.Content class="w-full">
+			<Carousel.Content style={`padding:${blockData.interS?.padding}`} class="w-full">
 				{#each filteredItems ?? [] as item (item.id)}
 					<Carousel.Item
 						style={`padding-right:${blockData.style?.gap};width:${blockData.style?.width}`}
@@ -70,6 +70,7 @@
 			</Carousel.Content>
 			<Carousel.Previous
 				variant="ghost"
+				style={`color:${blockData.arrowS?.color}; border:${blockData.arrowS?.border};`}
 				class={cn(
 					'text-secondary border-2 border-secondary hover:border-black max-md:size-12 max-md:mt-2 max-md:top-auto max-md:bottom-0 max-md:left-auto max-md:right-1/2 translate-0 left-0 max-md:-translate-x-5 max-md:translate-y-full',
 					blockData.style?.container && '-translate-x-full -ml-2'
@@ -77,6 +78,7 @@
 			/>
 			<Carousel.Next
 				variant="ghost"
+				style={`color:${blockData.arrowS?.color}; border:${blockData.arrowS?.border};`}
 				class={cn(
 					'text-secondary border-2 border-secondary hover:border-black max-md:size-12 max-md:mt-2 max-md:top-auto max-md:bottom-0  max-md:left-1/2 translate-0 right-0 max-md:translate-x-5 max-md:translate-y-full',
 					blockData.style?.container && 'translate-x-full -mr-2'
