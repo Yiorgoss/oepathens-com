@@ -201,7 +201,7 @@ export const customText = ({ node }) => {
 
   // split each sentence into words
   // is this wasteful?
-  text = node.text.split(" ").reduce((acc, word) => acc + `<span class="animate-word"> ${word}</span>`, "")
+  // text = node.text.split(" ").reduce((acc, word) => acc + `<span class="animate-word"> ${word}</span>`, "")
 
 
   text = `<span class="" style="${providedCSSString}">${text}</span>`
