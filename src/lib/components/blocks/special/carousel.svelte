@@ -85,7 +85,16 @@
 			</Carousel.Content>
 			<Carousel.Previous
 				variant="ghost"
-				style={`color:${blockData.arrowS?.color}; border:${blockData.arrowS?.border};`}
+				style={`color:${
+					mobile.current
+						? (blockData.arrowMobS?.color ?? blockData.arrowS?.color)
+						: blockData.arrowS?.color
+				};
+				 border:${
+						mobile.current
+							? (blockData.arrowMobS?.border ?? blockData.arrowS?.border)
+							: blockData.arrowS?.border
+					};`}
 				class={cn(
 					'text-secondary border-secondary left-0 translate-0 border-2 hover:border-black max-md:top-auto max-md:right-1/2 max-md:bottom-0 max-md:left-auto max-md:mt-2 max-md:size-12 max-md:-translate-x-5 max-md:translate-y-full',
 					blockData.style?.container && '-ml-2 -translate-x-full'
