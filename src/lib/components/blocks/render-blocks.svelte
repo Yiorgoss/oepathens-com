@@ -46,6 +46,8 @@
 				return import('./cards/discount-card.svelte');
 			case 'singleCard':
 				return import('./cards/single-card.svelte');
+			case 'serviceCard':
+				return import('./cards/service-card.svelte');
 			case 'hoverCard':
 				return import('./cards/hover-card.svelte');
 			case 'blockColumnLayout':
