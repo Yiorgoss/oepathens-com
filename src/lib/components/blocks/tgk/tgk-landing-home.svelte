@@ -9,15 +9,15 @@
 </script>
 
 <section id="LandingTGK">
-	<div class="grid grid-cols-1 md:grid-cols-2 grid-rows-2 md:grid-rows-1 min-h-svh overflow-hidden">
+	<div class="flex flex-col md:grid grid-cols-1 md:grid-cols-2 grid-rows-2 md:grid-rows-1 min-h-svh overflow-hidden">
 		<div class="">
 			<Image image={blockData.imgLeft} class="" />
 		</div>
-		<div class:-order-1={!blockData.flip} class="grid grid-cols-1 h-full w-full grid-rows-1">
+		<div class:-order-1={!blockData.flip} style:padding-top="var(--header-height)" class="grid grid-cols-1 h-full w-full grid-rows-1">
 			<div class="col-start-1 row-start-1 h-full w-full">
 				<Image image={blockData.imgRight} class="object-left h-full" />
 			</div>
-			<div class="col-start-1 row-start-1 h-full w-full flex justify-center items-center p-10">
+			<div class="col-start-1 row-start-1 h-fit  md:h-full w-full flex justify-center items-center p-10">
 				<RichTextRender overrides="" richText={blockData.richText} />
 			</div>
 		</div>
