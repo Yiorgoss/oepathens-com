@@ -27,7 +27,12 @@ const config = {
     }),
     csp: {
       directives: {
-        'script-src': ['self', '*.calisto.studio', 'https://*.tickettailor.com'],
+        'script-src': [
+          'self',
+          '*.calisto.studio',
+          'https://*.tickettailor.com',
+          'https://static.cloudflareinsights.com'
+        ],
         'frame-src': [
           'self',
           'https://*.calisto.studio',
@@ -37,11 +42,12 @@ const config = {
         'img-src': ['self', 'assets.calisto.studio'],
         'connect-src': [
           'self',
-          "api.iconify.design ",
+          'api.iconify.design',
           'api.simplesvg.com',
-          'api.unisvg.com ',
+          'api.unisvg.com',
           '*.calisto.studio',
-          'https://*.tickettailor.com'
+          'https://*.tickettailor.com',
+          'https://cloudflareinsights.com'
         ],
         'style-src': ['self', 'unsafe-inline', 'https://*.tickettailor.com']
       }
