@@ -20,7 +20,7 @@
 </script>
 
 <section class="top-2 fixed flex justify-center w-screen z-30 h-(--header-height) px-2 md:px-0">
-	<div class="container w-full h-full @xl:px-20">
+	<div class="container w-full h-full xl:px-10">
 		<!-- desktop -->
 		<Nav.Root
 			style={`border-radius:${style?.borderRadius};background:${style?.background};width:${style?.width};`}
