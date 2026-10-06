@@ -13,7 +13,8 @@
 	style:background={blockData.style?.background}
 	style:justify-content={blockData.style?.alignX}
 	style:align-items={blockData.style?.alignY}
-	class="relative flex justify-center items-center container mx-auto py-0 md:py-5"
+	class:container={blockData.style?.container}
+	class="relative flex justify-center items-center mx-auto py-0 md:py-5"
 >
 	{#if blockData.richText}
 		<RichTextRender richText={blockData.richText} />
