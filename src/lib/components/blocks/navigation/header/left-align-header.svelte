@@ -91,7 +91,7 @@
 							</Nav.Link>
 						</Nav.Item>
 						<div class="flex justify-around items-center">
-							{#if Object.entries(supportedLocales).length > 1}
+							{#if false && Object.entries(supportedLocales).length > 1 }
 								<Nav.Item class="px-2 ">
 									<LocaleSwitcher useFlag />
 								</Nav.Item>
