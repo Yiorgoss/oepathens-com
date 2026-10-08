@@ -80,6 +80,7 @@ export interface Config {
     calistoFeatureCard: ICalistoFeatureCard;
     discountCard: IDiscountCard;
     singleCard: ISingleCard;
+    wellnessCard: IWellnessCard;
     hoverCard: IHoverCard;
     richTextCard: IRichTextCard;
     cutoutCard: ICutoutCard;
@@ -398,6 +399,7 @@ export interface Page {
         | ICalistoFeatureCard
         | IDiscountCard
         | ISingleCard
+        | IWellnessCard
         | IHoverCard
         | ICutoutCard
         | IRichTextCard
@@ -592,6 +594,7 @@ export interface IFooterDesign2 {
     | (
         | ITextUnderCard
         | ISingleCard
+        | IWellnessCard
         | IAccordion
         | IHoverCard
         | IRichTextCard
@@ -624,6 +627,7 @@ export interface IFooterDesign2 {
     | (
         | ITextUnderCard
         | ISingleCard
+        | IWellnessCard
         | IAccordion
         | IHoverCard
         | IRichTextCard
@@ -656,6 +660,7 @@ export interface IFooterDesign2 {
     | (
         | ITextUnderCard
         | ISingleCard
+        | IWellnessCard
         | IAccordion
         | IHoverCard
         | IRichTextCard
@@ -708,6 +713,7 @@ export interface ITextUnderCard {
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
     margin?: string | null;
     overflow?: string | null;
+    maxWidth?: string | null;
   };
   mobileStyle?: {
     margin?: string | null;
@@ -737,6 +743,24 @@ export interface ISingleCard {
   id?: string | null;
   blockName?: string | null;
   blockType: 'singleCard';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IWellnessCard".
+ */
+export interface IWellnessCard {
+  image?: IImageField;
+  richText?: IRichTextField;
+  style?: {
+    height?: string | null;
+    width?: string | null;
+    borderRadius?: string | null;
+    alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
+    alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'wellnessCard';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1158,6 +1182,7 @@ export interface ICarousel {
         | ITextUnderCard
         | IRichTextCard
         | ISingleCard
+        | IWellnessCard
         | IRichText
         | IImage
         | IFlexItem
@@ -1172,7 +1197,10 @@ export interface ICarousel {
   };
   style?: {
     background?: string | null;
+    padding?: string | null;
     gap?: string | null;
+    container?: boolean | null;
+    width?: string | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -1454,6 +1482,7 @@ export interface IFlexboxLayout {
           | (
               | ITextUnderCard
               | ISingleCard
+              | IWellnessCard
               | IAccordion
               | IHoverCard
               | IRichTextCard
@@ -1679,6 +1708,7 @@ export interface IBlockColumnLayout {
     | (
         | ITextUnderCard
         | ISingleCard
+        | IWellnessCard
         | IAccordion
         | IHoverCard
         | IRichTextCard
@@ -1711,6 +1741,7 @@ export interface IBlockColumnLayout {
     | (
         | ITextUnderCard
         | ISingleCard
+        | IWellnessCard
         | IAccordion
         | IHoverCard
         | IRichTextCard
@@ -1743,6 +1774,7 @@ export interface IBlockColumnLayout {
     | (
         | ITextUnderCard
         | ISingleCard
+        | IWellnessCard
         | IAccordion
         | IHoverCard
         | IRichTextCard
