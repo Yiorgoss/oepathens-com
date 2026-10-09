@@ -9,7 +9,7 @@
 </script>
 
 <section id="LandingTGK">
-	<div class="flex flex-col md:grid grid-cols-1 md:grid-cols-2 grid-rows-2 md:grid-rows-1 min-h-svh overflow-hidden"
+	<div style:background={blockData?.style?.background} class="flex flex-col md:grid grid-cols-1 md:grid-cols-2 grid-rows-2 md:grid-rows-1 min-h-svh overflow-hidden"
 		style:padding-top="var(--header-height)"
 	>
 		<div class="">
