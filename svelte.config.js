@@ -39,7 +39,7 @@ const config = {
           'https://www.google.com',
           'https://*.tickettailor.com'
         ],
-        'img-src': ['self', 'assets.calisto.studio'],
+        'img-src': ['self','data:', 'assets.calisto.studio'],
         'connect-src': [
           'self',
           'api.iconify.design',
