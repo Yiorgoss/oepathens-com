@@ -91,7 +91,7 @@
 							</Nav.Link>
 						</Nav.Item>
 						<div class="flex justify-around items-center">
-							{#if false && Object.entries(supportedLocales).length > 1 }
+							{#if Object.entries(supportedLocales).length > 1 }
 								<Nav.Item class="px-2 ">
 									<LocaleSwitcher useFlag />
 								</Nav.Item>
@@ -138,7 +138,7 @@
 									{#each list ?? [] as { nLink }}
 										{@render nestedLink({ nLink })}
 									{/each}
-									{#if false && Object.entries(supportedLocales).length > 1}
+									{#if Object.entries(supportedLocales).length > 1}
 										<Nav.Item class="px-2 ">
 											<LocaleSwitcher useFlag />
 										</Nav.Item>
