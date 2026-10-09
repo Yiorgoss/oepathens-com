@@ -156,7 +156,7 @@
 {#snippet nestedLink({ nLink }: { nLink: INestedLink | undefined | null })}
 	{#if nLink}
 		<Nav.Item class="py-2 px-0 w-fit">
-			{#if !nLink?.nest || nLink?.arr?.length > 1}
+			{#if nLink?.arr?.length == 1 && !nLink?.nest }
 				<Nav.Link class="">
 					{#snippet child()}
 						<Button
