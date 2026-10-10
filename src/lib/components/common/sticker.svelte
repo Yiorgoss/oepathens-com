@@ -15,7 +15,8 @@
 		style:left={mobile.current ? data?.mobileStyles?.left : data?.style?.left}
 		style:right={mobile.current ? data?.mobileStyles?.right : data?.style?.right}
 		style:translate={mobile.current ? data?.mobileStyles?.translate : data?.style?.translate}
-		class="absolute isolate z-20"
+		style:border-radius={data.style?.borderRadius}
+		class="absolute isolate z-20 overflow-hidden"
 	>
 		<img
 			style:width={data?.style?.width ?? data?.url?.width ?? 'auto'}
