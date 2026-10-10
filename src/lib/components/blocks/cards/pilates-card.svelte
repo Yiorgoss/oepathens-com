@@ -11,7 +11,7 @@
 	<div
 		style:background={blockData.style?.background}
 		style:border-radius={blockData.style?.borderRadius}
-		class="flex max-w-md flex-col"
+		class="flex max-w-md flex-col overflow-hidden "
 	>
 		<div class="w-full">
 			<Image image={blockData.image} />
