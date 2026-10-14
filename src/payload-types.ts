@@ -73,16 +73,21 @@ export interface Config {
     gutterv2: IGutterV2;
     clipGutter: IClipGutter;
     button: IButtonBlock;
+    iframe: IIFrame;
     videoLanding: IVideoLanding;
     blockColumnLayout: IBlockColumnLayout;
     flexboxLayout: IFlexboxLayout;
+    vertColumnLayout: IVertColumnLayout;
     calistoFeatureCard: ICalistoFeatureCard;
     discountCard: IDiscountCard;
     singleCard: ISingleCard;
+    serviceCard: IServiceCard;
+    wellnessCard: IWellnessCard;
     hoverCard: IHoverCard;
     richTextCard: IRichTextCard;
     cutoutCard: ICutoutCard;
     textUnderCard: ITextUnderCard;
+    pilatesCard: IPilatesCard;
     bentoGrid: BentoGrid;
     stickyContainers: IStickyContainers;
     accordion: IAccordion;
@@ -98,6 +103,7 @@ export interface Config {
     imageHeader: IImageHeader;
     floatingHeader: IFloatingHeader;
     midFloatHeader: IMidFloadHeader;
+    leftAlignHeader: ILeftAlignHeader;
     richTextFooter: IRichTextFooter;
     footerDesign2: IFooterDesign2;
     googleMapFooter: IGoogleMapFooter;
@@ -112,6 +118,7 @@ export interface Config {
     contactForm: IContactFormBlock;
     emboldenEpubConverter: EmboldenEpubConverterI;
     googlemaps: IGoogleMaps;
+    ticketTailorEmbed: ITicketTailorEmbed;
     textImageSplit: ITextImageSplit;
     tgkLandingHome: ITGKLandingHome;
     tgkCard1: ITGKCard1;
@@ -225,7 +232,6 @@ export interface IRichTextField {
     };
     [k: string]: unknown;
   } | null;
-  img?: IImageField;
   style?: {
     background?: string | null;
     padding?: string | null;
@@ -240,6 +246,7 @@ export interface IRichTextField {
   mobileStyle?: {
     textAlign?: string | null;
   };
+  img?: IImageField;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -249,6 +256,9 @@ export interface IImageField {
   url?: (number | null) | Asset;
   alt?: string | null;
   ignoreSizes?: boolean | null;
+  hover?: {
+    scale?: boolean | null;
+  };
   style?: {
     background?: string | null;
     mixBlendMode?: string | null;
@@ -267,6 +277,7 @@ export interface IImageField {
     width?: string | null;
     padding?: string | null;
   };
+  link?: IButton;
   arr?:
     | {
         s?: IStickerField;
@@ -280,6 +291,7 @@ export interface IImageField {
  */
 export interface Asset {
   id: number;
+  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -336,32 +348,6 @@ export interface Asset {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IStickerField".
- */
-export interface IStickerField {
-  url?: (number | null) | Asset;
-  style?: {
-    top?: string | null;
-    left?: string | null;
-    right?: string | null;
-    bottom?: string | null;
-    height?: string | null;
-    width?: string | null;
-    objectFit?: string | null;
-    translate?: string | null;
-  };
-  mobileStyles?: {
-    top?: string | null;
-    left?: string | null;
-    right?: string | null;
-    bottom?: string | null;
-    height?: string | null;
-    width?: string | null;
-    translate?: string | null;
-  };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "IButton".
  */
 export interface IButton {
@@ -371,16 +357,6 @@ export interface IButton {
     value: number | Page;
   } | null;
   url?: string | null;
-  display?: {
-    variant?: ('default' | 'secondary' | 'outline' | 'ghost' | 'link') | null;
-    size?: ('xs' | 'sm' | 'md' | 'lg' | 'xl') | null;
-    text?: string | null;
-    includeIcon?: boolean | null;
-    icon?: IIcon;
-  };
-  style?: {
-    padding?: string | null;
-  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -414,21 +390,27 @@ export interface Page {
         | IGutter
         | IGutterV2
         | IClipGutter
+        | IIFrame
         | IStickyContainers
         | BentoGrid
         | IAccordion
         | ICarousel
         | IFlexItem
         | IWavyText
+        | ITicketTailorEmbed
         | IBlockColumnLayout
         | IFlexboxLayout
+        | IVertColumnLayout
         | ICalistoFeatureCard
         | IDiscountCard
         | ISingleCard
+        | IServiceCard
+        | IWellnessCard
         | IHoverCard
         | ICutoutCard
         | IRichTextCard
         | ITextUnderCard
+        | IPilatesCard
         | IGradientBG
         | IMediumHero
         | IScrollGrowLanding
@@ -446,6 +428,9 @@ export interface Page {
         | ITGKGridIcons
       )[]
     | null;
+  style?: {
+    background?: string | null;
+  };
   meta?: ISEO;
   updatedAt: string;
   createdAt: string;
@@ -476,7 +461,7 @@ export interface Tenant {
  * via the `definition` "INavigation".
  */
 export interface INavigation {
-  header?: (IImageHeader | IFloatingHeader | IMidFloadHeader)[] | null;
+  header?: (IImageHeader | IFloatingHeader | IMidFloadHeader | ILeftAlignHeader)[] | null;
   footer?: (IRichTextFooter | IFooterDesign2 | IGoogleMapFooter | IFooter3)[] | null;
 }
 /**
@@ -512,6 +497,9 @@ export interface IFloatingHeader {
     | null;
   style?: {
     inset?: string | null;
+    background?: string | null;
+    width?: string | null;
+    borderRadius?: string | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -549,12 +537,34 @@ export interface IMidFloadHeader {
  */
 export interface INestedLink {
   name?: string | null;
+  nest?: boolean | null;
   arr?:
     | {
         link?: IButton;
         id?: string | null;
       }[]
     | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ILeftAlignHeader".
+ */
+export interface ILeftAlignHeader {
+  image?: IImageField;
+  list?:
+    | {
+        nLink?: INestedLink;
+        id?: string | null;
+      }[]
+    | null;
+  style?: {
+    inset?: string | null;
+    background?: string | null;
+    gap?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'leftAlignHeader';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -595,20 +605,25 @@ export interface IFooterDesign2 {
     | (
         | ITextUnderCard
         | ISingleCard
+        | IServiceCard
+        | IWellnessCard
         | IAccordion
         | IHoverCard
         | IRichTextCard
         | ICutoutCard
+        | IPilatesCard
         | IButtonBlock
         | IRichText
         | IImage
         | IVideoLanding
+        | IIFrame
         | IStickyContainers
         | BentoGrid
         | IContactFormBlock
         | ICarousel
         | IFlexItem
         | IWavyText
+        | ITicketTailorEmbed
         | EmboldenEpubConverterI
         | ITextImageSplit
         | ITGKCard1
@@ -619,26 +634,32 @@ export interface IFooterDesign2 {
         | ITGKGridIcons
         | ITGKCardIcon
         | IFlexboxLayout
+        | IVertColumnLayout
       )[]
     | null;
   columnTwo?:
     | (
         | ITextUnderCard
         | ISingleCard
+        | IServiceCard
+        | IWellnessCard
         | IAccordion
         | IHoverCard
         | IRichTextCard
         | ICutoutCard
+        | IPilatesCard
         | IButtonBlock
         | IRichText
         | IImage
         | IVideoLanding
+        | IIFrame
         | IStickyContainers
         | BentoGrid
         | IContactFormBlock
         | ICarousel
         | IFlexItem
         | IWavyText
+        | ITicketTailorEmbed
         | EmboldenEpubConverterI
         | ITextImageSplit
         | ITGKCard1
@@ -649,26 +670,32 @@ export interface IFooterDesign2 {
         | ITGKGridIcons
         | ITGKCardIcon
         | IFlexboxLayout
+        | IVertColumnLayout
       )[]
     | null;
   columnThree?:
     | (
         | ITextUnderCard
         | ISingleCard
+        | IServiceCard
+        | IWellnessCard
         | IAccordion
         | IHoverCard
         | IRichTextCard
         | ICutoutCard
+        | IPilatesCard
         | IButtonBlock
         | IRichText
         | IImage
         | IVideoLanding
+        | IIFrame
         | IStickyContainers
         | BentoGrid
         | IContactFormBlock
         | ICarousel
         | IFlexItem
         | IWavyText
+        | ITicketTailorEmbed
         | EmboldenEpubConverterI
         | ITextImageSplit
         | ITGKCard1
@@ -679,6 +706,7 @@ export interface IFooterDesign2 {
         | ITGKGridIcons
         | ITGKCardIcon
         | IFlexboxLayout
+        | IVertColumnLayout
       )[]
     | null;
   style?: {
@@ -699,17 +727,18 @@ export interface IFooterDesign2 {
 export interface ITextUnderCard {
   image?: IImageField;
   richText?: IRichTextField;
-  link?: {
-    type?: ('reference' | 'custom') | null;
-    reference?: {
-      relationTo: 'pages';
-      value: number | Page;
-    } | null;
-    url?: string | null;
-  };
+  link?: IButton;
   style?: {
+    padding?: string | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
+    margin?: string | null;
+    overflow?: string | null;
+    maxWidth?: string | null;
+    borderRadius?: string | null;
+  };
+  mobileStyle?: {
+    margin?: string | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -736,6 +765,45 @@ export interface ISingleCard {
   id?: string | null;
   blockName?: string | null;
   blockType: 'singleCard';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IServiceCard".
+ */
+export interface IServiceCard {
+  image?: IImageField;
+  /**
+   * Shown in the chip above the image, for example "Mon - 9 AM"
+   */
+  time?: string | null;
+  title?: string | null;
+  style?: {
+    background?: string | null;
+    borderRadius?: string | null;
+    padding?: string | null;
+    maxWidth?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'serviceCard';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IWellnessCard".
+ */
+export interface IWellnessCard {
+  image?: IImageField;
+  richText?: IRichTextField;
+  style?: {
+    height?: string | null;
+    width?: string | null;
+    borderRadius?: string | null;
+    alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
+    alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'wellnessCard';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -798,9 +866,11 @@ export interface IHoverCard {
  */
 export interface IRichTextCard {
   richText?: IRichTextField;
-  link?: (number | null) | Page;
+  link?: IButton;
   image?: IImageField;
   style?: {
+    selfAlignY?: ('start' | 'center' | 'end' | 'stretch' | 'baseline') | null;
+    selfAlignX?: ('start' | 'center' | 'end' | 'stretch') | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
     borderRadius?: string | null;
@@ -809,6 +879,10 @@ export interface IRichTextCard {
     maxWidth?: string | null;
     border?: string | null;
     hasShadow?: boolean | null;
+  };
+  mobileStyle?: {
+    selfAlignX?: ('start' | 'center' | 'end' | 'stretch') | null;
+    selfAlignY?: ('start' | 'center' | 'end' | 'stretch' | 'baseline') | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -828,6 +902,22 @@ export interface ICutoutCard {
   id?: string | null;
   blockName?: string | null;
   blockType: 'cutoutCard';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IPilatesCard".
+ */
+export interface IPilatesCard {
+  image?: IImageField;
+  richText?: IRichTextField;
+  style?: {
+    background?: string | null;
+    padding?: string | null;
+    borderRadius?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pilatesCard';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -853,6 +943,7 @@ export interface IRichText {
   style?: {
     background?: string | null;
     padding?: string | null;
+    container?: boolean | null;
     height?: string | null;
     width?: string | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
@@ -873,6 +964,7 @@ export interface IImage {
     width?: string | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
+    overflow?: string | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -891,6 +983,24 @@ export interface IVideoLanding {
   id?: string | null;
   blockName?: string | null;
   blockType: 'videoLanding';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IIFrame".
+ */
+export interface IIFrame {
+  iframe?: string | null;
+  style?: {
+    height?: string | null;
+    width?: string | null;
+    alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
+    alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
+    overflow?: string | null;
+    margin?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'iframe';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1132,6 +1242,8 @@ export interface ICarousel {
         | ITextUnderCard
         | IRichTextCard
         | ISingleCard
+        | IWellnessCard
+        | IPilatesCard
         | IRichText
         | IImage
         | IFlexItem
@@ -1146,7 +1258,25 @@ export interface ICarousel {
   };
   style?: {
     background?: string | null;
+    color?: string | null;
+    padding?: string | null;
     gap?: string | null;
+    container?: boolean | null;
+    width?: string | null;
+  };
+  categS?: {
+    padding?: string | null;
+  };
+  interS?: {
+    padding?: string | null;
+  };
+  arrowS?: {
+    color?: string | null;
+    border?: string | null;
+  };
+  arrowMobS?: {
+    color?: string | null;
+    border?: string | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -1272,6 +1402,7 @@ export interface IWavyText {
     background?: string | null;
     fontSize?: string | null;
     wordSpacing?: string | null;
+    speed?: string | null;
   };
   style?: {
     height?: string | null;
@@ -1282,6 +1413,20 @@ export interface IWavyText {
   id?: string | null;
   blockName?: string | null;
   blockType: 'wavyText';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ITicketTailorEmbed".
+ */
+export interface ITicketTailorEmbed {
+  html?: string | null;
+  style?: {
+    background?: string | null;
+    padding?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ticketTailorEmbed';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1413,20 +1558,25 @@ export interface IFlexboxLayout {
           | (
               | ITextUnderCard
               | ISingleCard
+              | IServiceCard
+              | IWellnessCard
               | IAccordion
               | IHoverCard
               | IRichTextCard
               | ICutoutCard
+              | IPilatesCard
               | IButtonBlock
               | IRichText
               | IImage
               | IVideoLanding
+              | IIFrame
               | IStickyContainers
               | BentoGrid
               | IContactFormBlock
               | ICarousel
               | IFlexItem
               | IWavyText
+              | ITicketTailorEmbed
               | EmboldenEpubConverterI
               | ITextImageSplit
               | ITGKCard1
@@ -1442,6 +1592,7 @@ export interface IFlexboxLayout {
       }[]
     | null;
   style?: {
+    container?: boolean | null;
     padding?: string | null;
     background?: string | null;
     gap?: string | null;
@@ -1454,6 +1605,52 @@ export interface IFlexboxLayout {
   id?: string | null;
   blockName?: string | null;
   blockType: 'flexboxLayout';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IVertColumnLayout".
+ */
+export interface IVertColumnLayout {
+  block?:
+    | (
+        | ITextUnderCard
+        | ISingleCard
+        | IServiceCard
+        | IWellnessCard
+        | IAccordion
+        | IHoverCard
+        | IRichTextCard
+        | ICutoutCard
+        | IPilatesCard
+        | IButtonBlock
+        | IRichText
+        | IImage
+        | IVideoLanding
+        | IIFrame
+        | IStickyContainers
+        | BentoGrid
+        | IContactFormBlock
+        | ICarousel
+        | IFlexItem
+        | IWavyText
+        | ITicketTailorEmbed
+        | EmboldenEpubConverterI
+        | ITextImageSplit
+        | ITGKCard1
+        | ITGKCard2
+        | ITGKCard3
+        | ITGKDoilyCard
+        | ITGKAccordion
+        | ITGKGridIcons
+        | ITGKCardIcon
+      )[]
+    | null;
+  style?: {
+    background?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'vertColumnLayout';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1483,6 +1680,11 @@ export interface IGoogleMapFooter {
     | null;
   style?: {
     background?: string | null;
+    padding?: string | null;
+  };
+  mapS?: {
+    background?: string | null;
+    padding?: string | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -1510,12 +1712,44 @@ export interface IFooter3 {
     | null;
   style?: {
     background?: string | null;
+    color?: string | null;
     borderRadius?: string | null;
   };
+  headerStyles?: {
+    color?: string | null;
+  };
+  bgImg?: IImageField;
   s?: IStickerField;
   id?: string | null;
   blockName?: string | null;
   blockType: 'footer3';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IStickerField".
+ */
+export interface IStickerField {
+  url?: (number | null) | Asset;
+  style?: {
+    top?: string | null;
+    left?: string | null;
+    right?: string | null;
+    bottom?: string | null;
+    height?: string | null;
+    width?: string | null;
+    objectFit?: string | null;
+    translate?: string | null;
+    borderRadius?: string | null;
+  };
+  mobileStyles?: {
+    top?: string | null;
+    left?: string | null;
+    right?: string | null;
+    bottom?: string | null;
+    height?: string | null;
+    width?: string | null;
+    translate?: string | null;
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1600,20 +1834,25 @@ export interface IBlockColumnLayout {
     | (
         | ITextUnderCard
         | ISingleCard
+        | IServiceCard
+        | IWellnessCard
         | IAccordion
         | IHoverCard
         | IRichTextCard
         | ICutoutCard
+        | IPilatesCard
         | IButtonBlock
         | IRichText
         | IImage
         | IVideoLanding
+        | IIFrame
         | IStickyContainers
         | BentoGrid
         | IContactFormBlock
         | ICarousel
         | IFlexItem
         | IWavyText
+        | ITicketTailorEmbed
         | EmboldenEpubConverterI
         | ITextImageSplit
         | ITGKCard1
@@ -1624,26 +1863,32 @@ export interface IBlockColumnLayout {
         | ITGKGridIcons
         | ITGKCardIcon
         | IFlexboxLayout
+        | IVertColumnLayout
       )[]
     | null;
   columnTwo?:
     | (
         | ITextUnderCard
         | ISingleCard
+        | IServiceCard
+        | IWellnessCard
         | IAccordion
         | IHoverCard
         | IRichTextCard
         | ICutoutCard
+        | IPilatesCard
         | IButtonBlock
         | IRichText
         | IImage
         | IVideoLanding
+        | IIFrame
         | IStickyContainers
         | BentoGrid
         | IContactFormBlock
         | ICarousel
         | IFlexItem
         | IWavyText
+        | ITicketTailorEmbed
         | EmboldenEpubConverterI
         | ITextImageSplit
         | ITGKCard1
@@ -1654,26 +1899,32 @@ export interface IBlockColumnLayout {
         | ITGKGridIcons
         | ITGKCardIcon
         | IFlexboxLayout
+        | IVertColumnLayout
       )[]
     | null;
   columnThree?:
     | (
         | ITextUnderCard
         | ISingleCard
+        | IServiceCard
+        | IWellnessCard
         | IAccordion
         | IHoverCard
         | IRichTextCard
         | ICutoutCard
+        | IPilatesCard
         | IButtonBlock
         | IRichText
         | IImage
         | IVideoLanding
+        | IIFrame
         | IStickyContainers
         | BentoGrid
         | IContactFormBlock
         | ICarousel
         | IFlexItem
         | IWavyText
+        | ITicketTailorEmbed
         | EmboldenEpubConverterI
         | ITextImageSplit
         | ITGKCard1
@@ -1684,9 +1935,9 @@ export interface IBlockColumnLayout {
         | ITGKGridIcons
         | ITGKCardIcon
         | IFlexboxLayout
+        | IVertColumnLayout
       )[]
     | null;
-  bgImage?: IImageField;
   style?: {
     container?: boolean | null;
     height?: string | null;
@@ -1706,7 +1957,7 @@ export interface IBlockColumnLayout {
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
   };
-  animation?: IAnimation;
+  bgImage?: IImageField;
   stickerList?:
     | {
         s?: IStickerField;
@@ -1719,37 +1970,6 @@ export interface IBlockColumnLayout {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IAnimation".
- */
-export interface IAnimation {
-  type?: ('viewport' | 'scroll') | null;
-  /**
-   * Animations that trigger when they enter the page
-   */
-  viewport?:
-    | ('slideFadeFast' | 'slideFadeSlow' | 'slideLetters' | 'bubbleLetters' | 'drawSVG' | 'slideUpFadeIn')[]
-    | null;
-  /**
-   * Stagger animations as they enter
-   */
-  stagger?: boolean | null;
-  /**
-   * Only play animations on enter
-   */
-  onlyEnter?: boolean | null;
-  /**
-   * How much of the element must be viewable before starting animation? 0-1
-   */
-  amount?: string | null;
-  /**
-   * Animations that play as you scroll
-   */
-  scroll?:
-    | ('custom' | 'scale' | 'fadeIn' | 'translateUp' | 'translateDown' | 'drawSVG' | 'lineFlip' | 'fadeInEachWord')[]
-    | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ITGKLandingHome".
  */
 export interface ITGKLandingHome {
@@ -1757,6 +1977,9 @@ export interface ITGKLandingHome {
   imgRight?: IImageField;
   richText?: IRichTextField;
   flip?: boolean | null;
+  style?: {
+    background?: string | null;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'tgkLandingHome';
@@ -1782,13 +2005,17 @@ export interface IGutter {
  * via the `definition` "IGutterV2".
  */
 export interface IGutterV2 {
+  image?: IImageField;
   style?: {
     height?: string | null;
     background?: string | null;
     color?: string | null;
     container?: boolean | null;
+    alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
+    alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
   };
-  image?: IImageField;
+  s?: IStickerField;
+  bgImg?: IImageField;
   id?: string | null;
   blockName?: string | null;
   blockType: 'gutterv2';
@@ -1833,6 +2060,36 @@ export interface ICalistoFeatureCard {
   id?: string | null;
   blockName?: string | null;
   blockType: 'calistoFeatureCard';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IAnimation".
+ */
+export interface IAnimation {
+  type?: ('viewport' | 'scroll') | null;
+  /**
+   * Animations that trigger when they enter the page
+   */
+  viewport?:
+    ('slideFadeFast' | 'slideFadeSlow' | 'slideLetters' | 'bubbleLetters' | 'drawSVG' | 'slideUpFadeIn')[] | null;
+  /**
+   * Stagger animations as they enter
+   */
+  stagger?: boolean | null;
+  /**
+   * Only play animations on enter
+   */
+  onlyEnter?: boolean | null;
+  /**
+   * How much of the element must be viewable before starting animation? 0-1
+   */
+  amount?: string | null;
+  /**
+   * Animations that play as you scroll
+   */
+  scroll?:
+    | ('custom' | 'scale' | 'fadeIn' | 'translateUp' | 'translateDown' | 'drawSVG' | 'lineFlip' | 'fadeInEachWord')[]
+    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1994,6 +2251,7 @@ export interface ILexicalImage {
     padding?: string | null;
     width?: string | null;
     height?: string | null;
+    margin?: string | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
     overflow?: string | null;
@@ -2033,6 +2291,7 @@ export interface User {
   resetPasswordExpiration?: string | null;
   salt?: string | null;
   hash?: string | null;
+  resetPasswordRequestedAt?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
   sessions?:
@@ -2195,6 +2454,7 @@ export interface UsersSelect<T extends boolean = true> {
   resetPasswordExpiration?: T;
   salt?: T;
   hash?: T;
+  resetPasswordRequestedAt?: T;
   loginAttempts?: T;
   lockUntil?: T;
   sessions?:
@@ -2210,6 +2470,7 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "assets_select".
  */
 export interface AssetsSelect<T extends boolean = true> {
+  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -2287,6 +2548,11 @@ export interface PagesSelect<T extends boolean = true> {
   'tenant-domain'?: T;
   hero?: T | {};
   layout?: T | {};
+  style?:
+    | T
+    | {
+        background?: T;
+      };
   meta?: T | ISEOSelect<T>;
   updatedAt?: T;
   createdAt?: T;

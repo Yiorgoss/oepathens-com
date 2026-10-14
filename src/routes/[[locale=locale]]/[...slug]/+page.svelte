@@ -2,17 +2,12 @@
 	import { page } from '$app/state';
 	import RenderBlocks from '@/components/blocks/render-blocks.svelte';
 	import Meta from '@/components/blocks/seo/meta.svelte';
-	import type { Page, Tenant } from '@payload-types';
-	import { goto } from '$app/navigation';
+	import type { Page } from '@payload-types';
 	import type { PageProps } from './$types';
 	import { site } from '@/config';
 	import { onMount } from 'svelte';
 
-	import {
-		subscribe as payloadSubscribe,
-		unsubscribe as payloadUnsubscribe,
-		ready
-	} from '@payloadcms/live-preview';
+	import { subscribe as payloadSubscribe, ready } from '@payloadcms/live-preview';
 
 	const { data }: PageProps = $props();
 
@@ -45,7 +40,7 @@
 
 {#if currentPage}
 	<Meta meta={currentPage.meta} />
-	<div class="min-h-lvh">
+	<div class="bg-background min-h-lvh" style:background={currentPage.style?.background}>
 		{#if currentPage.hero?.length > 0}
 			<section id="hero-container" class="">
 				<RenderBlocks cb={() => (isHeroLoaded = true)} blockData={currentPage.hero[0]} />
