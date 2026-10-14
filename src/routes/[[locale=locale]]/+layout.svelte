@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { getContext, onDestroy, onMount, setContext, untrack, type Snippet } from 'svelte';
+	import { onMount } from 'svelte';
 	import RenderBlocks from '@/components/blocks/render-blocks.svelte';
-	import type { LayoutData, LayoutProps } from './$types';
-	import { type INavigation, type Page, type Tenant } from '@payload-types';
+	import type { LayoutProps } from './$types';
 	import { page } from '$app/state';
 	import { site } from '@/config';
 	import {
@@ -10,7 +9,6 @@
 		unsubscribe as payloadUnsubscribe,
 		ready
 	} from '@payloadcms/live-preview';
-	import DialogClose from '@/components/ui/dialog/dialog-close.svelte';
 
 	const { children }: LayoutProps = $props();
 
