@@ -45,7 +45,7 @@
 
 {#if currentPage}
 	<Meta meta={currentPage.meta} />
-	<div class="min-h-lvh">
+	<div class="bg-background min-h-lvh" style:background={currentPage.style?.background}>
 		{#if currentPage.hero?.length > 0}
 			<section id="hero-container" class="">
 				<RenderBlocks cb={() => (isHeroLoaded = true)} blockData={currentPage.hero[0]} />

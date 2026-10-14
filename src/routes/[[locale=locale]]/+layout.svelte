@@ -38,10 +38,10 @@
 </script>
 
 <div class="text-base">
-	<header class="relative text-foreground bg-background">
+	<header class="text-foreground bg-background relative">
 		<RenderBlocks blockData={nav?.header?.[0]} />
 	</header>
-	<main class="text-foreground bg-background h-full w-full">
+	<main class="text-foreground h-full w-full">
 		{@render children()}
 	</main>
 	<footer class="text-foreground bg-background">
