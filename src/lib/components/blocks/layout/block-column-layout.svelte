@@ -6,11 +6,12 @@
 	import Image from '@/components/common/image.svelte';
 	import Sticker from '@/components/common/sticker.svelte';
 	import { cn } from '@/utils';
+	import { mobile, large } from '@/utils/media-queries.svelte';
 	import { animate } from '@/attachments/animations/animate.svelte';
 	import { onMount } from 'svelte';
 
 	const { blockData, cb }: { blockData: IBlockColumnLayout; cb?: () => void } = $props();
-	const { layout, columnOne, columnTwo, columnThree, style, mobileStyle, animation } =
+	const { layout, columnOne, columnTwo, columnThree, style, mobileStyle, largeS, animation } =
 		$derived(blockData);
 
 	onMount(() => {
@@ -51,7 +52,6 @@
 
 	const widthClass = $derived(normaliseWidth(layout ?? 'oneColumn'));
 
-	const mobile = new MediaQuery('max-width: 768px');
 	const sizes = $derived(
 		layout == 'oneColumn'
 			? '100vw'
@@ -80,7 +80,11 @@
 	<div
 		style:overflow={style?.overflow}
 		style:gap={mobile.current ? (mobileStyle?.gap ?? style?.gap) : style?.gap}
-		style:padding={mobile.current ? mobileStyle?.padding : style?.padding}
+		style:padding={mobile.current
+			? mobileStyle?.padding
+			: large.current && largeS?.padding
+				? largeS?.padding
+				: style?.padding}
 		style:flex-direction={mobile.current ? (mobileStyle?.flexDirection ?? 'column') : 'row'}
 		style:align-items={style?.alignY}
 		style:justify-content={style?.alignX}
