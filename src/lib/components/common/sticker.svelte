@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { type IStickerField } from '@payload-types';
 	import { site } from '@/config';
-	import { MediaQuery } from 'svelte/reactivity';
+	import { mobile } from '@/utils/media-queries.svelte';
 	import { cn } from '@/utils';
 
 	const { data, class: className }: { data: IStickerField | undefined; class?: string } = $props();
-	const mobile = new MediaQuery('max-width: 768px');
 </script>
 
 {#if data?.url}

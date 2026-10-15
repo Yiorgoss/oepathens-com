@@ -4,7 +4,7 @@
 	import { RichTextRender } from '@/components/blocks/rich-text';
 	import * as Card from '@/components/ui/card';
 	import { page } from '$app/state';
-	import { MediaQuery } from 'svelte/reactivity';
+	import { mobile } from '@/utils/media-queries.svelte';
 
 	const { blockData }: { blockData: ITextUnderCard } = $props();
 	const { locale } = $derived(page.params);
@@ -22,7 +22,6 @@
 
 		return null;
 	});
-	const mobile = new MediaQuery('max-width: 768px');
 </script>
 
 <section

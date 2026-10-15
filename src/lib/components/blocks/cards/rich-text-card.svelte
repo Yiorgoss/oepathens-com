@@ -4,7 +4,7 @@
 	import * as Card from '@/components/ui/card';
 	import Image from '@/components/common/image.svelte';
 	import { cn } from '@/utils';
-	import { MediaQuery } from 'svelte/reactivity';
+	import { mobile } from '@/utils/media-queries.svelte';
 
 	const { blockData }: { blockData: IRichTextCard } = $props();
 	const {
@@ -22,8 +22,6 @@
 			hasShadow
 		} = {}
 	} = $derived(blockData);
-
-	const mobile = new MediaQuery('max-width: 768px');
 </script>
 
 <section

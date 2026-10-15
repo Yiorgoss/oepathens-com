@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { type IHeroCutout } from '@payload-types';
-	import { MediaQuery } from 'svelte/reactivity';
 	import { fade } from 'svelte/transition';
 	import { onMount, setContext } from 'svelte';
 
 	import Image from '@/components/common/image.svelte';
+	import { clipped } from '@/utils/media-queries.svelte';
 	import Button from '@/components/common/button.svelte';
 	import { RichTextRender } from '@/components/blocks/rich-text';
 	import EmailOnlyForm from '@/components/blocks/forms/email-only-form.svelte';

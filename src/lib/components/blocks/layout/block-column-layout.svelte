@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { MediaQuery } from 'svelte/reactivity';
 	import { type IBlockColumnLayout } from '@payload-types';
 
 	import RenderBlocks from '../render-blocks.svelte';
