@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { IFooterDesign2 } from '@payload-types';
 	import RenderBlocks from '../../render-blocks.svelte';
-	import { MediaQuery } from 'svelte/reactivity';
 
 	const { blockData }: { blockData: IFooterDesign2 } = $props();
 </script>
