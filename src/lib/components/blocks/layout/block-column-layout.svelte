@@ -35,7 +35,7 @@
 				);
 				return () => controls.stop();
 			},
-			{ amount: 0.2 }
+			{ amount: 'some' }
 		);
 
 		return () => stopInView();
