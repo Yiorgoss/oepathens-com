@@ -20,7 +20,6 @@
 	// let element = $state() as HTMLElement;
 	let CUTOUT_DIMENSIONS = { w: 37, h: 35, xInc: 3, yInc: 5 };
 
-	const clipped = new MediaQuery('min-width: 1024px');
 	let offsetWidth = $state() as number;
 	let offsetHeight = $state() as number;
 </script>
