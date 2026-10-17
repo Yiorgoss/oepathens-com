@@ -1,21 +1,45 @@
 <script lang="ts">
 	import { type IBlockColumnLayout } from '@payload-types';
+	import { animate, inView, stagger } from 'motion';
+	import type { Attachment } from 'svelte/attachments';
+	import { prefersReducedMotion } from 'svelte/motion';
 
 	import RenderBlocks from '../render-blocks.svelte';
 	import Image from '@/components/common/image.svelte';
 	import Sticker from '@/components/common/sticker.svelte';
 	import { cn } from '@/utils';
 	import { mobile, large } from '@/utils/media-queries.svelte';
-	import { animate } from '@/attachments/animations/animate.svelte';
 	import { onMount } from 'svelte';
 
 	const { blockData, cb }: { blockData: IBlockColumnLayout; cb?: () => void } = $props();
-	const { layout, columnOne, columnTwo, columnThree, style, mobileStyle, largeS, animation } =
+	const { layout, columnOne, columnTwo, columnThree, style, mobileStyle, largeS } =
 		$derived(blockData);
 
 	onMount(() => {
 		cb && cb();
 	});
+
+	const fadeInUp: Attachment<HTMLElement> = (element) => {
+		if (blockData.anim !== 'fadeInUp' || prefersReducedMotion.current) return;
+
+		const columns = Array.from(element.children) as HTMLElement[];
+		for (const column of columns) column.style.opacity = '0';
+
+		const stopInView = inView(
+			element,
+			() => {
+				const controls = animate(
+					columns,
+					{ opacity: [0, 1], y: [40, 0] },
+					{ duration: 0.5, ease: 'easeOut', delay: stagger(0.1) }
+				);
+				return () => controls.stop();
+			},
+			{ amount: 0.2 }
+		);
+
+		return () => stopInView();
+	};
 
 	const normaliseWidth = (layout: string) => {
 		const cssList = [];
@@ -90,7 +114,7 @@
 		class:flex-wrap={layout == 'threeColumns'}
 		class:container={style?.container}
 		class="col-start-1 overflow-hidden row-start-1 flex z-10 gap-0 md:gap-10 justify-center items-center md:items-stretch h-full w-full flex-col md:flex-row mx-auto"
-		{@attach animate({ animation })}
+		{@attach fadeInUp}
 	>
 		<div
 			style:align-items={mobile.current ? (mobileStyle?.alignY ?? style?.alignY) : style?.alignY}

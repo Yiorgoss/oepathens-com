@@ -949,6 +949,10 @@ export interface IRichText {
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
   };
+  mobileS?: {
+    padding?: string | null;
+  };
+  bgImg?: IImageField;
   id?: string | null;
   blockName?: string | null;
   blockType: 'rtBlock';
@@ -960,15 +964,49 @@ export interface IRichText {
 export interface IImage {
   image?: IImageField;
   style?: {
+    padding?: string | null;
     height?: string | null;
     width?: string | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
     overflow?: string | null;
   };
+  arr?:
+    | {
+        s?: IStickerField;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'image';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IStickerField".
+ */
+export interface IStickerField {
+  url?: (number | null) | Asset;
+  style?: {
+    top?: string | null;
+    left?: string | null;
+    right?: string | null;
+    bottom?: string | null;
+    height?: string | null;
+    width?: string | null;
+    objectFit?: string | null;
+    translate?: string | null;
+    borderRadius?: string | null;
+  };
+  mobileStyles?: {
+    top?: string | null;
+    left?: string | null;
+    right?: string | null;
+    bottom?: string | null;
+    height?: string | null;
+    width?: string | null;
+    translate?: string | null;
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1726,33 +1764,6 @@ export interface IFooter3 {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IStickerField".
- */
-export interface IStickerField {
-  url?: (number | null) | Asset;
-  style?: {
-    top?: string | null;
-    left?: string | null;
-    right?: string | null;
-    bottom?: string | null;
-    height?: string | null;
-    width?: string | null;
-    objectFit?: string | null;
-    translate?: string | null;
-    borderRadius?: string | null;
-  };
-  mobileStyles?: {
-    top?: string | null;
-    left?: string | null;
-    right?: string | null;
-    bottom?: string | null;
-    height?: string | null;
-    width?: string | null;
-    translate?: string | null;
-  };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "IGradientBG".
  */
 export interface IGradientBG {
@@ -1957,6 +1968,10 @@ export interface IBlockColumnLayout {
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
   };
+  largeS?: {
+    padding?: string | null;
+  };
+  anim?: ('none' | 'fadeInUp') | null;
   bgImage?: IImageField;
   stickerList?:
     | {
