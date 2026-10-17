@@ -16,7 +16,7 @@
 		$derived(blockData);
 
 	onMount(() => {
-		cb && cb();
+		cb?.();
 	});
 
 	const fadeInUp: Attachment<HTMLElement> = (element) => {
@@ -90,13 +90,13 @@
 	style:min-height={style?.minHeight}
 	style:background={style?.color}
 	style:border-radius={style?.borderRadius}
-	class="mx-auto relative grid grid-cols-1 grid-rows-1"
+	class="relative mx-auto grid grid-cols-1 grid-rows-1"
 >
 	<div class="absolute inset-0">
 		<Image image={blockData?.bgImage} />
 	</div>
-	<div class="row-start-1 col-start-1">
-		{#each blockData?.stickerList ?? [] as sticker}
+	<div class="col-start-1 row-start-1">
+		{#each blockData?.stickerList ?? [] as sticker (sticker.id)}
 			<Sticker data={sticker.s} />
 		{/each}
 	</div>
@@ -113,7 +113,7 @@
 		style:justify-content={style?.alignX}
 		class:flex-wrap={layout == 'threeColumns'}
 		class:container={style?.container}
-		class="col-start-1 overflow-hidden row-start-1 flex z-10 gap-0 md:gap-10 justify-center items-center md:items-stretch h-full w-full flex-col md:flex-row mx-auto"
+		class="z-10 col-start-1 row-start-1 mx-auto flex h-full w-full flex-col items-center justify-center gap-0 overflow-hidden md:flex-row md:items-stretch md:gap-10"
 		{@attach fadeInUp}
 	>
 		<div
@@ -122,7 +122,7 @@
 				? (mobileStyle?.alignX ?? style?.alignX)
 				: style?.alignX}
 			style:height={blockData?.itemHeight?.split(',')[0]}
-			class={cn('w-full flex grow justify-center items-center md:items-stretch', widthClass[0])}
+			class={cn('flex w-full grow items-center justify-center md:items-stretch', widthClass[0])}
 		>
 			{#if columnOne && columnOne.length != 0}
 				<RenderBlocks blockData={columnOne[0]} {sizes} />
@@ -138,7 +138,7 @@
 				style:height={blockData?.itemHeight?.split(',')[1]}
 				style:display="flex"
 				class={cn(
-					'animate-child w-full flex grow justify-center items-center md:items-stretch',
+					'animate-child flex w-full grow items-center justify-center md:items-stretch',
 					widthClass[1]
 				)}
 			>
@@ -154,7 +154,7 @@
 				style:height={blockData?.itemHeight?.split(',')[2]}
 				style:display="flex"
 				class={cn(
-					'animate-child w-full flex grow justify-center items-center md:items-stretch',
+					'animate-child flex w-full grow items-center justify-center md:items-stretch',
 					widthClass[2]
 				)}
 			>
