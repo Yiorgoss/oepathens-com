@@ -60,6 +60,7 @@ Iconify fetches at runtime, so `connect-src` must allow `api.iconify.design`, `a
 ### Svelte 5 runes only
 
 Components use runes, not the legacy store/`export let` syntax.
+
 - Props: `const { blockData, className }: { blockData: IFoo; className?: string } = $props();`
 - Local state: `let open = $state(false);`
 - Derived values: `const { richText, image, style } = $derived(blockData || {});`
@@ -89,6 +90,8 @@ When the CMS type lags a deployed field, prefer a narrow local type with a comme
 Colors are `oklch(...)`; the palette is the shadcn-svelte token set (`--background`, `--foreground`, `--primary`, `--card`, `--border`, `--ring`, …).
 Typography is a custom scale (`--text-xs` … `--text-9xl`) with a mobile override, and font roles are `--sans`, `--serif`, `--cursive`, `--multi-lingual-*`.
 There is no Tailwind config file; extend the theme in `app.css`.
+
+Tenants can override these variables. The Tenant's **Theme colors** textarea holds CSS custom-property declarations (for example `--primary: oklch(...);`); `src/lib/components/common/custom-theme.svelte` wraps them in a `:root { ... }` rule and renders it as a single `<style>` from the layout. Because pages are prerendered, the override is baked in at build time and reaches the deployed site on the next rebuild, except in Live Preview.
 
 ### Class composition
 
@@ -124,32 +127,42 @@ Adding a block is a two-repo change: define it in the CMS, render it in the fron
 A block is a `Block` object under `src/blocks/<category>/<slug>.ts`:
 
 ```ts
-import { Block } from 'payload'
-import { smallBlockList } from '../block-list'
-import { StyleField } from '@/fields'
+import { Block } from 'payload';
+import { smallBlockList } from '../block-list';
+import { StyleField } from '@/fields';
 
 export const Carousel: Block = {
-  slug: 'carousel',
-  dbName: 'block_c',          // unique across all blocks
-  interfaceName: 'ICarousel', // generates the TS interface
-  fields: [
-    {
-      type: 'tabs',
-      tabs: [
-        { label: 'Carousel Content', fields: [ /* content fields */ ] },
-        { label: 'Carousel Styles', fields: [ StyleField({ include: ['background', 'padding', 'gap', 'container', 'width'] }) ] }
-      ]
-    }
-  ]
-}
+	slug: 'carousel',
+	dbName: 'block_c', // unique across all blocks
+	interfaceName: 'ICarousel', // generates the TS interface
+	fields: [
+		{
+			type: 'tabs',
+			tabs: [
+				{
+					label: 'Carousel Content',
+					fields: [
+						/* content fields */
+					]
+				},
+				{
+					label: 'Carousel Styles',
+					fields: [StyleField({ include: ['background', 'padding', 'gap', 'container', 'width'] })]
+				}
+			]
+		}
+	]
+};
 ```
 
 Conventions:
+
 - Organise fields into a `Content` tab and a `Styles` tab; use `StyleField({ include: [...] })` for style controls so the frontend gets a typed `style` object.
 - Use the shared field helpers from `@/fields`: `RichText()`, `Image()`, `LinkButton()`, `Icon()`, plus `StyleField`, `Animation`, and the rest.
 - Nest blocks with `{ type: 'blocks', name: 'items', blockReferences: <list>, blocks: [] }`.
 
 Registration, all in `cms-mt`:
+
 1. Import the new block in `src/blocks/index.ts` and add it to the default export array.
 2. Add its slug to the appropriate list in `src/blocks/block-list.ts` (`defaultBlockList` for page layouts, `heroBlockList` for heroes, `headerBlockList` / `footerBlockList` for nav, `smallBlockList` for carousel-style children, `contentBlockList` for reusable content).
 3. Regenerate types: `pnpm generate:types`.
@@ -161,16 +174,26 @@ A component mirrors the CMS block and consumes `blockData`:
 
 ```svelte
 <script lang="ts">
-  import type { ISingleCard } from '@payload-types';
-  import { cn } from '@/utils';
+	import type { ISingleCard } from '@payload-types';
+	import { cn } from '@/utils';
 
-  const { blockData, className, cb, ref = $bindable(null) }:
-    { blockData: ISingleCard; className?: string; cb?: () => void; ref?: HTMLElement | null } = $props();
-  const { richText, image, style } = $derived(blockData || {});
+	const {
+		blockData,
+		className,
+		cb,
+		ref = $bindable(null)
+	}: {
+		blockData: ISingleCard;
+		className?: string;
+		cb?: () => void;
+		ref?: HTMLElement | null;
+	} = $props();
+	const { richText, image, style } = $derived(blockData || {});
 </script>
 ```
 
 Conventions:
+
 - Live at `src/lib/components/blocks/<same-category>/<kebab-name>.svelte`, mirroring the CMS grouping.
 - Accept the shared props: `blockData` (typed), optional `className`, optional `cb` (called from `onMount` when the block is ready), optional `ref` (`$bindable`), and `...restProps`.
 - Read style through `blockData.style` and apply background, padding, border, radius, max-width, and layout with inline styles (the CMS emits free-form values) plus Tailwind classes for everything else.
@@ -178,6 +201,7 @@ Conventions:
 - Use `Image` from `@/components/common/image.svelte` for images (it handles `srcset`, the placeholder, and preload); use `Icon` for icons.
 
 Registration:
+
 - Add a `case '<blockType>':` to the `dynamicResolveBlock` switch in `src/lib/components/blocks/render-blocks.svelte`, returning the dynamic `import(...)`.
   The switch is deliberately explicit; `render-blocks.svelte` carries a FIX noting it will not scale indefinitely.
 - Blocks are code-split by that dynamic import, so only the blocks a page uses are fetched.
@@ -196,7 +220,7 @@ Registration:
 
 ## 4. Rendering and data flow
 
-- `src/routes/[[locale=locale]]/+layout.server.ts` loads the tenant's Nav by domain name.
+- `src/routes/[[locale=locale]]/+layout.server.ts` loads the tenant's Nav and Theme colors by domain name.
 - `src/routes/[[locale=locale]]/[...slug]/+page.server.ts` loads the Page by tenant domain and slug, and exports `entries` for prerendering.
 - The layout renders header and footer through `RenderBlocks`; the page renders Hero then the layout blocks, each through `RenderBlocks`.
 - Rich text is Lexical in Payload and is converted to HTML with `convertLexicalToHTMLAsync` plus the custom `htmlConverters` in `rich-text/converters`, populating relationships through `getRestPopulateFn`.
@@ -205,19 +229,19 @@ Registration:
 
 ## 5. Where things live
 
-| Path | Purpose |
-| --- | --- |
-| `src/routes/[[locale=locale]]/` | Layout and page routes, server loads, prerender entries |
-| `src/lib/components/blocks/` | Block components grouped by category, plus `render-blocks.svelte` |
-| `src/lib/components/blocks/rich-text/` | Lexical-to-HTML rendering and converters |
-| `src/lib/components/common/` | Shared non-block components (`image`, `icon`, `button`, …) |
-| `src/lib/components/ui/` | shadcn-svelte primitives (bits-ui based) |
-| `src/lib/utils/` | `cn`, CMS fetch/resolve helpers, rich-text-to-HTML helpers |
-| `src/lib/config.ts` | `site` config (CMS URL, domain, assets) and locales |
-| `src/lib/attachments/animations/` | `motion` scroll and viewport animation helpers |
-| `src/payload-types.ts` | Generated CMS types; never edit by hand |
-| `scripts/` | Provisioning (`github_init.sh`), domain rewrite (`add_domain_wrangler.sh`), WASM build |
-| `packages/epub_converter/` | Rust crate for the Embolden EPUB tool, compiled to WASM |
+| Path                                   | Purpose                                                                                |
+| -------------------------------------- | -------------------------------------------------------------------------------------- |
+| `src/routes/[[locale=locale]]/`        | Layout and page routes, server loads, prerender entries                                |
+| `src/lib/components/blocks/`           | Block components grouped by category, plus `render-blocks.svelte`                      |
+| `src/lib/components/blocks/rich-text/` | Lexical-to-HTML rendering and converters                                               |
+| `src/lib/components/common/`           | Shared non-block components (`image`, `icon`, `button`, …)                             |
+| `src/lib/components/ui/`               | shadcn-svelte primitives (bits-ui based)                                               |
+| `src/lib/utils/`                       | `cn`, CMS fetch/resolve helpers, rich-text-to-HTML helpers                             |
+| `src/lib/config.ts`                    | `site` config (CMS URL, domain, assets) and locales                                    |
+| `src/lib/attachments/animations/`      | `motion` scroll and viewport animation helpers                                         |
+| `src/payload-types.ts`                 | Generated CMS types; never edit by hand                                                |
+| `scripts/`                             | Provisioning (`github_init.sh`), domain rewrite (`add_domain_wrangler.sh`), WASM build |
+| `packages/epub_converter/`             | Rust crate for the Embolden EPUB tool, compiled to WASM                                |
 
 ## 6. Known rough edges
 
@@ -227,7 +251,7 @@ These are observations, not decisions; record a decision as an ADR if one is set
 - **The block switch will not scale.** `render-blocks.svelte` hard-codes one `case` per block; a glob or registry-based resolver would replace it.
 - **Duplicate WASM output.** Built Embolden WASM exists in two places and has drifted; only `@/assets/wasm/...` is imported.
 - **Live Preview subscription leak.** The page component subscribes in `onMount` without returning an unsubscribe, unlike the layout.
-- **Loader error handling.** The loaders throw inside `.then` and assume `docs[0]` exists, so a missing page or tenant can surface as a `TypeError` instead of a 404.
+- **Loader error handling.** The page loader throws inside `.then` and assumes `docs[0]` exists, so a missing page can surface as a `TypeError` instead of a 404.
 - **Sibling-repo dependency.** `pnpm typegen:payload` copies from `../cms-mt`, so types cannot be regenerated without that checkout.
 - **English-only locales.** `el` is commented out in `src/lib/config.ts`.
 - **Thin testing.** There is no meaningful test suite, and CI only runs on manual dispatch.

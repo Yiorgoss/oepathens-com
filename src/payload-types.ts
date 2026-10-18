@@ -453,6 +453,7 @@ export interface Tenant {
     totalDocs?: number;
   };
   nav?: INavigation;
+  themeColors?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -2591,6 +2592,7 @@ export interface TenantsSelect<T extends boolean = true> {
   domain?: T;
   pages?: T;
   nav?: T | INavigationSelect<T>;
+  themeColors?: T;
   updatedAt?: T;
   createdAt?: T;
 }

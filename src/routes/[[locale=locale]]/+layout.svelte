@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import RenderBlocks from '@/components/blocks/render-blocks.svelte';
+	import CustomTheme from '@/components/common/custom-theme.svelte';
 	import type { LayoutProps } from './$types';
 	import { page } from '$app/state';
 	import { site } from '@/config';
@@ -24,6 +25,7 @@
 		const payloadLivePreview = payloadSubscribe({
 			callback: (doc) => {
 				nav = doc.nav;
+				themeColors = doc.themeColors;
 			},
 			depth: 1,
 			initialData: page.data,
@@ -33,9 +35,11 @@
 	});
 
 	let nav = $derived(page.data.nav);
+	let themeColors = $derived(page.data.themeColors);
 </script>
 
 <div class="text-base">
+	<CustomTheme {themeColors} />
 	<header class="text-foreground relative">
 		<RenderBlocks blockData={nav?.header?.[0]} />
 	</header>

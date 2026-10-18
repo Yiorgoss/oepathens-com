@@ -11,8 +11,12 @@ The platform in this repo: a reusable marketing-site template deployed once per 
 _Avoid_: calisto-studio, the app
 
 **Tenant**:
-A customer domain served by this platform. Identified by its domain name, and owns exactly one Nav and a set of Pages.
+A customer domain served by this platform. Identified by its domain name, and owns exactly one Nav, a set of Pages, and the site's Theme colors.
 _Avoid_: site, customer, account
+
+**Theme colors**:
+The tenant-level CSS custom-property overrides authored in the CMS and applied across the whole site.
+_Avoid_: palette, brand colors
 
 **Domain name**:
 The tenant key. The same codebase is deployed per domain; the running deployment looks up its tenant by its own domain name.
