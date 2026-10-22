@@ -25,10 +25,10 @@
 				<Button
 					{...props}
 					variant="ghost"
-					class="font-light py-2 px-2 text-xs flex justify-center gap-2 items-center"
+					class="font-light py-2 px-2 text-sm uppercase flex justify-center gap-2 items-center"
 					{disabled}
 				>
-					{@render flagOrLocale({ locale })}
+					{@render flagOrLocale({ locale, text: locale })}
 					{#if disabled}
 						<Spinner class="size-4" />
 					{:else}
