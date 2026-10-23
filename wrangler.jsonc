@@ -47,22 +47,15 @@
 		"staging": {
 			"vars": {
 				"PUBLIC_ENV": "TEST",
-				"PUBLIC_DEV_CMS": "https://staging-cms.calisto.studio",
+				"PUBLIC_DEV_CMS": "https://admin.calisto.studio",
 				"PUBLIC_PROD_CMS": "https://admin.calisto.studio",
 				"PUBLIC_ASSET_URL": "https://assets.calisto.studio",
-				"PUBLIC_DOMAIN_NAME": "%domainName%",
+				"PUBLIC_DOMAIN_NAME": "staging.calisto.studio",
 				"PUBLIC_TEST_ASSET_URL": "https://test-assets.calisto.studio"
 			},
-			// "kv_namespaces": [
-			// 	{
-			// 		"binding": "CALISTO_STUDIO_KV_CACHE", // this is TEST_CALISTO_STUDIO_KV_CACHE in the console
-			// 		"id": "3b03184a78a4489db0e9cf35d6b5a411",
-			// 		"preview_id": "eee2434facbc4ccba5b882b798cc839a"
-			// 	}
-			// ],
 			"routes": [
 				{
-					"pattern": "staging.%domainName%",
+					"pattern": "staging.calisto.studio",
 					"custom_domain": true
 				}
 			],

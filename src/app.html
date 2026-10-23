@@ -10,71 +10,26 @@
 	<link rel="manifest" href="/site.webmanifest">
 	<link rel="preconnect" href="admin.calisto.studio">
 	<link rel="preconnect" href="assets.calisto.studio">
+
+	<!-- fonts -->
+	<!-- sans serif -->
+	<link rel="stylesheet" href="%sveltekit.assets%/fonts/metropolis.css" />
+	<!-- <link rel="stylesheet" href="%sveltekit.assets%/fonts/inter.css" /> -->
+	<!-- serif -->
+	<link rel="stylesheet" href="%sveltekit.assets%/fonts/instrument-serif.css" />
+	<!-- <link rel="stylesheet" href="%sveltekit.assets%/fonts/noto-serif-display.css" /> -->
+	<!-- cursive -->
+	<link rel="stylesheet" href="%sveltekit.assets%/fonts/luxurious-script.css" />
+
+
 	<script async defer src="https://voldemort.calisto.studio/tracker.js"
 		data-website-id="cmkny9w6l0001lm6w1bxgwkhb"></script>
 
-	<style>
-		@font-face {
-			font-display: swap;
-			font-family: 'Inter';
-			font-style: normal;
-			src: url('/fonts/Inter/Inter-VariableFont_opsz,wght.ttf') format('truetype');
-			unicode-range: U+0020-007e, U+0386-03ce;
-			/*latin + greek*/
-		}
-
-		@font-face {
-			font-display: swap;
-			font-family: 'Inter';
-			font-style: italic;
-			src: url('/fonts/Inter/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype');
-			unicode-range: U+0020-007e, U+0386-03ce;
-			/*latin + greek*/
-		}
-
-
-		@font-face {
-			font-display: swap;
-			font-family: 'Instrument';
-			font-style: normal;
-			src: url('/fonts/Instrument_Serif/InstrumentSerif-Regular.ttf') format('truetype');
-			unicode-range: U+0020-007e;
-			/*Latin*/
-		}
-
-		@font-face {
-			font-display: swap;
-			font-family: 'Luxurious';
-			font-style: normal;
-			src: url('/fonts/Luxurious_Script/LuxuriousScript-Regular.ttf') format('truetype');
-			unicode-range: U+0020-007e;
-			/*Latin*/
-		}
-
-		@font-face {
-			font-display: swap;
-			font-family: 'Noto Serif';
-			font-style: italic;
-			src: url('/fonts/Noto_Serif_Display/NotoSerifDisplay-Italic-VariableFont_wdth,wght.ttf') format('truetype');
-			unicode-range: U+0020-007e, U+0386-03ce;
-			/*latin + greek*/
-		}
-
-		@font-face {
-			font-display: swap;
-			font-family: 'Noto Serif';
-			font-style: normal;
-			src: url('/fonts/Noto_Serif_Display/NotoSerifDisplay-VariableFont_wdth,wght.ttf') format('truetype');
-			unicode-range: U+0020-007e, U+0386-03ce;
-			/*latin + greek*/
-		}
-	</style>
 	%sveltekit.head%
 
 </head>
 
-<body
-	 data-sveltekit-preload-data="hover">
+<body data-sveltekit-preload-data="hover">
 	<div style="font-display:swap; display: contents">%sveltekit.body%</div>
 </body>
 
