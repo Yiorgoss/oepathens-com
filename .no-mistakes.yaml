@@ -1,0 +1,4 @@
+# This repository intentionally has no CI.
+# no-mistakes reads this declaration only from the default branch, so the CI
+# step records the truth instead of waiting for checks that can never arrive.
+no_ci: true

@@ -2,12 +2,12 @@
 	import { page } from '$app/state';
 	import { cn } from '@/utils';
 	import type { ITGKCard1 } from '@payload-types';
-	import { MediaQuery } from 'svelte/reactivity';
+	import { mobile } from '@/utils/media-queries.svelte';
+
 	import { RichTextRender } from '../rich-text';
 
 	const { blockData }: { blockData: ITGKCard1 } = $props();
 
-	const mobile = new MediaQuery('max-width: 768px');
 	const { locale } = $derived(page.params);
 
 	let href = $derived.by(() => {

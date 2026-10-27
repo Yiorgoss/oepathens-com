@@ -77,6 +77,7 @@ export interface Config {
     videoLanding: IVideoLanding;
     blockColumnLayout: IBlockColumnLayout;
     flexboxLayout: IFlexboxLayout;
+    vertColumnLayout: IVertColumnLayout;
     calistoFeatureCard: ICalistoFeatureCard;
     discountCard: IDiscountCard;
     singleCard: ISingleCard;
@@ -85,6 +86,7 @@ export interface Config {
     richTextCard: IRichTextCard;
     cutoutCard: ICutoutCard;
     textUnderCard: ITextUnderCard;
+    pilatesCard: IPilatesCard;
     bentoGrid: BentoGrid;
     stickyContainers: IStickyContainers;
     accordion: IAccordion;
@@ -288,6 +290,7 @@ export interface IImageField {
  */
 export interface Asset {
   id: number;
+  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -396,6 +399,7 @@ export interface Page {
         | ITicketTailorEmbed
         | IBlockColumnLayout
         | IFlexboxLayout
+        | IVertColumnLayout
         | ICalistoFeatureCard
         | IDiscountCard
         | ISingleCard
@@ -404,6 +408,7 @@ export interface Page {
         | ICutoutCard
         | IRichTextCard
         | ITextUnderCard
+        | IPilatesCard
         | IGradientBG
         | IMediumHero
         | IScrollGrowLanding
@@ -421,6 +426,9 @@ export interface Page {
         | ITGKGridIcons
       )[]
     | null;
+  style?: {
+    background?: string | null;
+  };
   meta?: ISEO;
   updatedAt: string;
   createdAt: string;
@@ -443,6 +451,7 @@ export interface Tenant {
     totalDocs?: number;
   };
   nav?: INavigation;
+  themeColors?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -527,6 +536,7 @@ export interface IMidFloadHeader {
  */
 export interface INestedLink {
   name?: string | null;
+  nest?: boolean | null;
   arr?:
     | {
         link?: IButton;
@@ -599,6 +609,7 @@ export interface IFooterDesign2 {
         | IHoverCard
         | IRichTextCard
         | ICutoutCard
+        | IPilatesCard
         | IButtonBlock
         | IRichText
         | IImage
@@ -621,6 +632,7 @@ export interface IFooterDesign2 {
         | ITGKGridIcons
         | ITGKCardIcon
         | IFlexboxLayout
+        | IVertColumnLayout
       )[]
     | null;
   columnTwo?:
@@ -632,6 +644,7 @@ export interface IFooterDesign2 {
         | IHoverCard
         | IRichTextCard
         | ICutoutCard
+        | IPilatesCard
         | IButtonBlock
         | IRichText
         | IImage
@@ -654,6 +667,7 @@ export interface IFooterDesign2 {
         | ITGKGridIcons
         | ITGKCardIcon
         | IFlexboxLayout
+        | IVertColumnLayout
       )[]
     | null;
   columnThree?:
@@ -665,6 +679,7 @@ export interface IFooterDesign2 {
         | IHoverCard
         | IRichTextCard
         | ICutoutCard
+        | IPilatesCard
         | IButtonBlock
         | IRichText
         | IImage
@@ -687,6 +702,7 @@ export interface IFooterDesign2 {
         | ITGKGridIcons
         | ITGKCardIcon
         | IFlexboxLayout
+        | IVertColumnLayout
       )[]
     | null;
   style?: {
@@ -709,6 +725,7 @@ export interface ITextUnderCard {
   richText?: IRichTextField;
   link?: IButton;
   style?: {
+    padding?: string | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
     margin?: string | null;
@@ -862,6 +879,22 @@ export interface ICutoutCard {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IPilatesCard".
+ */
+export interface IPilatesCard {
+  image?: IImageField;
+  richText?: IRichTextField;
+  style?: {
+    background?: string | null;
+    padding?: string | null;
+    borderRadius?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pilatesCard';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "IButtonBlock".
  */
 export interface IButtonBlock {
@@ -884,11 +917,16 @@ export interface IRichText {
   style?: {
     background?: string | null;
     padding?: string | null;
+    container?: boolean | null;
     height?: string | null;
     width?: string | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
   };
+  mobileS?: {
+    padding?: string | null;
+  };
+  bgImg?: IImageField;
   id?: string | null;
   blockName?: string | null;
   blockType: 'rtBlock';
@@ -900,15 +938,49 @@ export interface IRichText {
 export interface IImage {
   image?: IImageField;
   style?: {
+    padding?: string | null;
     height?: string | null;
     width?: string | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
     overflow?: string | null;
   };
+  arr?:
+    | {
+        s?: IStickerField;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'image';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IStickerField".
+ */
+export interface IStickerField {
+  url?: (number | null) | Asset;
+  style?: {
+    top?: string | null;
+    left?: string | null;
+    right?: string | null;
+    bottom?: string | null;
+    height?: string | null;
+    width?: string | null;
+    objectFit?: string | null;
+    translate?: string | null;
+    borderRadius?: string | null;
+  };
+  mobileStyles?: {
+    top?: string | null;
+    left?: string | null;
+    right?: string | null;
+    bottom?: string | null;
+    height?: string | null;
+    width?: string | null;
+    translate?: string | null;
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1487,6 +1559,7 @@ export interface IFlexboxLayout {
               | IHoverCard
               | IRichTextCard
               | ICutoutCard
+              | IPilatesCard
               | IButtonBlock
               | IRichText
               | IImage
@@ -1514,6 +1587,7 @@ export interface IFlexboxLayout {
       }[]
     | null;
   style?: {
+    container?: boolean | null;
     padding?: string | null;
     background?: string | null;
     gap?: string | null;
@@ -1526,6 +1600,52 @@ export interface IFlexboxLayout {
   id?: string | null;
   blockName?: string | null;
   blockType: 'flexboxLayout';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IVertColumnLayout".
+ */
+export interface IVertColumnLayout {
+  block?:
+    | (
+        | ITextUnderCard
+        | ISingleCard
+        | IServiceCard
+        | IWellnessCard
+        | IAccordion
+        | IHoverCard
+        | IRichTextCard
+        | ICutoutCard
+        | IPilatesCard
+        | IButtonBlock
+        | IRichText
+        | IImage
+        | IVideoLanding
+        | IIFrame
+        | IStickyContainers
+        | BentoGrid
+        | IContactFormBlock
+        | ICarousel
+        | IFlexItem
+        | IWavyText
+        | ITicketTailorEmbed
+        | EmboldenEpubConverterI
+        | ITextImageSplit
+        | ITGKCard1
+        | ITGKCard2
+        | ITGKCard3
+        | ITGKDoilyCard
+        | ITGKAccordion
+        | ITGKGridIcons
+        | ITGKCardIcon
+      )[]
+    | null;
+  style?: {
+    background?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'vertColumnLayout';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1713,6 +1833,7 @@ export interface IBlockColumnLayout {
         | IHoverCard
         | IRichTextCard
         | ICutoutCard
+        | IPilatesCard
         | IButtonBlock
         | IRichText
         | IImage
@@ -1735,6 +1856,7 @@ export interface IBlockColumnLayout {
         | ITGKGridIcons
         | ITGKCardIcon
         | IFlexboxLayout
+        | IVertColumnLayout
       )[]
     | null;
   columnTwo?:
@@ -1746,6 +1868,7 @@ export interface IBlockColumnLayout {
         | IHoverCard
         | IRichTextCard
         | ICutoutCard
+        | IPilatesCard
         | IButtonBlock
         | IRichText
         | IImage
@@ -1768,6 +1891,7 @@ export interface IBlockColumnLayout {
         | ITGKGridIcons
         | ITGKCardIcon
         | IFlexboxLayout
+        | IVertColumnLayout
       )[]
     | null;
   columnThree?:
@@ -1779,6 +1903,7 @@ export interface IBlockColumnLayout {
         | IHoverCard
         | IRichTextCard
         | ICutoutCard
+        | IPilatesCard
         | IButtonBlock
         | IRichText
         | IImage
@@ -1801,6 +1926,7 @@ export interface IBlockColumnLayout {
         | ITGKGridIcons
         | ITGKCardIcon
         | IFlexboxLayout
+        | IVertColumnLayout
       )[]
     | null;
   style?: {
@@ -1842,6 +1968,9 @@ export interface ITGKLandingHome {
   imgRight?: IImageField;
   richText?: IRichTextField;
   flip?: boolean | null;
+  style?: {
+    background?: string | null;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'tgkLandingHome';
@@ -2154,6 +2283,7 @@ export interface User {
   resetPasswordExpiration?: string | null;
   salt?: string | null;
   hash?: string | null;
+  resetPasswordRequestedAt?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
   sessions?:
@@ -2316,6 +2446,7 @@ export interface UsersSelect<T extends boolean = true> {
   resetPasswordExpiration?: T;
   salt?: T;
   hash?: T;
+  resetPasswordRequestedAt?: T;
   loginAttempts?: T;
   lockUntil?: T;
   sessions?:
@@ -2331,6 +2462,7 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "assets_select".
  */
 export interface AssetsSelect<T extends boolean = true> {
+  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -2408,6 +2540,11 @@ export interface PagesSelect<T extends boolean = true> {
   'tenant-domain'?: T;
   hero?: T | {};
   layout?: T | {};
+  style?:
+    | T
+    | {
+        background?: T;
+      };
   meta?: T | ISEOSelect<T>;
   updatedAt?: T;
   createdAt?: T;
@@ -2431,6 +2568,7 @@ export interface TenantsSelect<T extends boolean = true> {
   domain?: T;
   pages?: T;
   nav?: T | INavigationSelect<T>;
+  themeColors?: T;
   updatedAt?: T;
   createdAt?: T;
 }

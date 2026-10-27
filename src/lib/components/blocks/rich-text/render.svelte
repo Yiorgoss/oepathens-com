@@ -9,7 +9,7 @@
 
 	import Icon from '@/components/common/icon.svelte';
 	import { onMount, untrack } from 'svelte';
-	import { MediaQuery } from 'svelte/reactivity';
+	import { mobile } from '@/utils/media-queries.svelte';
 
 	// there exists both richText overrides and component specific overrides
 	const { richText, overrides, cb }: { richText: any; overrides?: string; cb?: () => void } =
@@ -31,8 +31,6 @@
 	});
 
 	const defaults = 'container row-start-1 col-start-1 my-auto wrap-break-word w-full max-w-full ';
-
-	const mobile = new MediaQuery('max-width: 768px');
 </script>
 
 {#if richText && richText.text}

@@ -4,7 +4,7 @@
 	import { cn, resolveID } from '@/utils';
 	import { onMount } from 'svelte';
 	import Sticker from './sticker.svelte';
-	import { MediaQuery } from 'svelte/reactivity';
+	import { mobile } from '@/utils/media-queries.svelte';
 	import { page } from '$app/state';
 
 	let {
@@ -34,7 +34,6 @@
 	let asset = $derived((image?.url as Asset) || {});
 	onMount(() => cb && cb());
 
-	const mobile = new MediaQuery('max-width: 768px');
 	let loaded = $state(false);
 
 	let { srcset } = $derived.by(() => {
@@ -98,7 +97,7 @@
 	{#if asset?.sizes}
 		<div
 			class:bg-none={loaded}
-			class="group/image relative grid grid-cols-1 grid-rows-1 items-center justify-center h-full w-full bg-(image:--placeholder) bg-center bg-cover bg-no-repeat overflow-hidden"
+			class="group/image relative grid grid-cols-1 grid-rows-1 items-center justify-center h-full w-full bg-(image:--placeholder) bg-center bg-cover bg-no-repeat"
 			style:--placeholder={`url(${site.storage}/${asset?.sizes?.placeholder?.filename})`}
 			style:height={mobile.current ? (mobileStyle?.height ?? style?.height) : style?.height}
 			style:width={mobile.current ? (mobileStyle?.width ?? style?.width) : style?.width}

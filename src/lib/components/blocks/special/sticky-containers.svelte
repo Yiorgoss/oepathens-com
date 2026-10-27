@@ -2,14 +2,11 @@
 	import type { IStickyContainers } from '@payload-types';
 	import RichTextRender from '@/components/blocks/rich-text/render.svelte';
 	import Image from '@/components/common/image.svelte';
+	import { mobile } from '@/utils/media-queries.svelte';
 	import { cn } from '@/utils';
-	import { MediaQuery } from 'svelte/reactivity';
 
 	const { blockData }: { blockData: IStickyContainers; index?: number } = $props();
 	const { list, title, style } = $derived(blockData);
-
-	const mobile = new MediaQuery('max-width: 768px');
-	//  const height = mobile.current ? mobileStyle?.height : style?.height;
 </script>
 
 <section id="sticky-container-root" class="container mx-auto">

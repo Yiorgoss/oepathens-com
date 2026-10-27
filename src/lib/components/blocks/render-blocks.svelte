@@ -50,8 +50,12 @@
 				return import('./cards/service-card.svelte');
 			case 'hoverCard':
 				return import('./cards/hover-card.svelte');
+			case 'pilatesCard':
+				return import('./cards/pilates-card.svelte');
 			case 'blockColumnLayout':
 				return import('./layout/block-column-layout.svelte');
+			case 'vertColumnLayout':
+				return import('./layout/vert-column-layout.svelte');
 			case 'image':
 				return import('./common/image.svelte');
 			case 'gutter':

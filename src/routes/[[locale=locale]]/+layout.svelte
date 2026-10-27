@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { getContext, onDestroy, onMount, setContext, untrack, type Snippet } from 'svelte';
+	import { onMount } from 'svelte';
 	import RenderBlocks from '@/components/blocks/render-blocks.svelte';
-	import type { LayoutData, LayoutProps } from './$types';
-	import { type INavigation, type Page, type Tenant } from '@payload-types';
+	import CustomTheme from '@/components/common/custom-theme.svelte';
+	import type { LayoutProps } from './$types';
 	import { page } from '$app/state';
 	import { site } from '@/config';
 	import {
@@ -10,7 +10,6 @@
 		unsubscribe as payloadUnsubscribe,
 		ready
 	} from '@payloadcms/live-preview';
-	import DialogClose from '@/components/ui/dialog/dialog-close.svelte';
 
 	const { children }: LayoutProps = $props();
 
@@ -26,6 +25,7 @@
 		const payloadLivePreview = payloadSubscribe({
 			callback: (doc) => {
 				nav = doc.nav;
+				themeColors = doc.themeColors;
 			},
 			depth: 1,
 			initialData: page.data,
@@ -35,13 +35,15 @@
 	});
 
 	let nav = $derived(page.data.nav);
+	let themeColors = $derived(page.data.themeColors);
 </script>
 
 <div class="text-base">
-	<header class="relative text-foreground bg-background">
+	<CustomTheme {themeColors} />
+	<header class="text-foreground relative">
 		<RenderBlocks blockData={nav?.header?.[0]} />
 	</header>
-	<main class="text-foreground bg-background h-full w-full">
+	<main class="text-foreground h-full w-full">
 		{@render children()}
 	</main>
 	<footer class="text-foreground bg-background">

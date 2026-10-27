@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { type IStickerField } from '@payload-types';
 	import { site } from '@/config';
-	import { MediaQuery } from 'svelte/reactivity';
+	import { mobile } from '@/utils/media-queries.svelte';
 	import { cn } from '@/utils';
 
 	const { data, class: className }: { data: IStickerField | undefined; class?: string } = $props();
-	const mobile = new MediaQuery('max-width: 768px');
 </script>
 
 {#if data?.url}
@@ -15,7 +14,8 @@
 		style:left={mobile.current ? data?.mobileStyles?.left : data?.style?.left}
 		style:right={mobile.current ? data?.mobileStyles?.right : data?.style?.right}
 		style:translate={mobile.current ? data?.mobileStyles?.translate : data?.style?.translate}
-		class="absolute isolate z-20"
+		style:border-radius={data.style?.borderRadius}
+		class="absolute isolate z-20 overflow-hidden"
 	>
 		<img
 			style:width={data?.style?.width ?? data?.url?.width ?? 'auto'}

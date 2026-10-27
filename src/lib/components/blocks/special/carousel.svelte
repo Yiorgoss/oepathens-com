@@ -4,7 +4,7 @@
 	import * as Carousel from '@/components/ui/carousel';
 	import { type CarouselAPI } from '@/components/ui/carousel/context';
 	import { cn } from '@/utils';
-	import { MediaQuery } from 'svelte/reactivity';
+	import { mobile } from '@/utils/media-queries.svelte';
 
 	const { blockData }: { blockData: ICarousel; class?: string } = $props();
 	const { items, options } = $derived(blockData);
@@ -31,8 +31,6 @@
 
 		return items?.filter((item) => item.blockName?.includes(selected));
 	});
-
-	const mobile = new MediaQuery('max-width: 768px');
 </script>
 
 <section style:background={blockData.style?.background} id="carouselBlock" class="max-md:pb-12">

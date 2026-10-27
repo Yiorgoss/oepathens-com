@@ -20,7 +20,7 @@ Browser -> Cloudflare Worker (SvelteKit)
 
 Routing lives in `src/routes/[[locale=locale]]/`:
 
-- `+layout.server.ts` loads the tenant's Nav by domain name.
+- `+layout.server.ts` loads the tenant's Nav and Theme colors by domain name; the layout mounts `CustomTheme`, which wraps the tenant's custom-property declarations in a `:root` rule and emits them as a single `<style>`.
 - `[...slug]/+page.server.ts` loads the Page by `tenant-domain` + `slug`.
 - The page route sets `prerender = true` and exports an `entries` generator, so Pages are built ahead of time from CMS content.
 - Live Preview is wired via `@payloadcms/live-preview` in the layout and page, keyed on `?livePreview=true&collection=...`.
@@ -29,14 +29,14 @@ Routing lives in `src/routes/[[locale=locale]]/`:
 
 Everything is a Block. `src/lib/components/blocks/render-blocks.svelte` maps a `blockType` string to a Svelte component through a large `switch` plus dynamic `import()`.
 
-| Directory | Purpose |
-| --- | --- |
-| `hero/` | landing heroes (cutout, video, scroll-grow, gradient) |
-| `cards/` | feature, discount, wellness, hover, rich-text cards |
-| `layout/`, `common/` | gutters, flex/column layouts, images, iframes, buttons |
-| `navigation/` | headers and footers |
-| `forms/`, `special/` | contact forms, accordions, carousels, marquees, bento grids |
-| `rich-text/` | Payload Lexical rich-text to Svelte converters |
+| Directory                           | Purpose                                                        |
+| ----------------------------------- | -------------------------------------------------------------- |
+| `hero/`                             | landing heroes (cutout, video, scroll-grow, gradient)          |
+| `cards/`                            | feature, discount, wellness, hover, rich-text cards            |
+| `layout/`, `common/`                | gutters, flex/column layouts, images, iframes, buttons         |
+| `navigation/`                       | headers and footers                                            |
+| `forms/`, `special/`                | contact forms, accordions, carousels, marquees, bento grids    |
+| `rich-text/`                        | Payload Lexical rich-text to Svelte converters                 |
 | `tgk/`, `seo/`, `embed/`, `unique/` | client-specific blocks, meta tags, TicketTailor, the EPUB tool |
 
 ## The EPUB tool (`packages/epub_converter`)
@@ -59,7 +59,7 @@ These are observations, not decided direction. Record a decision as an ADR if on
 - **Dead Rust code.** `packages/epub_converter/src/add_global_styles.rs` is empty and its exports are commented out in `lib.rs`.
 - **The block switch will not scale.** `render-blocks.svelte` carries `// FIX figure out a glob match this will become unmanageable at some point` above a roughly 60-case `switch`.
 - **Live Preview subscription leak.** `[...slug]/+page.svelte` calls `payloadSubscribe` in `onMount` but never returns an unsubscribe (the layout does).
-- **Loader error handling.** The load functions use a `.then(...).catch(...)` chain that throws inside `then` and assumes `json.docs[0]` exists; a missing page or tenant can produce a `TypeError` rather than the intended 404.
+- **Loader error handling.** The page loader uses a `.then(...).catch(...)` chain that can throw inside `then` and assumes `json.docs[0]` exists; a missing page can produce a `TypeError` rather than the intended 404.
 - **Sibling-repo dependency.** `pnpm typegen:payload` copies from `../cms-mt`, so types cannot be regenerated without that checkout.
 - **English-only locales.** `el` is commented out in `src/lib/config.ts`.
 - **Thin testing.** No meaningful test suite; the Rust `convert_to_bold` test is an empty stub. CI (`update_worker.yaml`) runs on `workflow_dispatch` only.

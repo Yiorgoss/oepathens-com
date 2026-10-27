@@ -2,12 +2,11 @@
 	import Icon from '@/components/common/icon.svelte';
 	import { type ITGKAccordion } from '@payload-types';
 	import { RichTextRender } from '@/components/blocks/rich-text';
-	import Button from '@/components/common/button.svelte';
 	import * as Accordion from '@/components/ui/accordion';
 
-	const { blockData }: { blockData: IAccordion } = $props();
+	const { blockData }: { blockData: ITGKAccordion } = $props();
 
-	const { list, link, icon } = $derived(blockData);
+	const { list, icon } = $derived(blockData);
 	//TODO: accordion trigger doesnt have child prop??
 </script>
 
