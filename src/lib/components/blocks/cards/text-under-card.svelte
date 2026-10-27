@@ -29,7 +29,8 @@
 	style:margin={mobile.current ? blockData.mobileStyle?.margin : blockData.style?.margin}
 	style:overflow={blockData.style?.overflow}
 	style:border-radius={blockData.style?.borderRadius}
-	class="w-full h-full overflow-hidden max-w-sm"
+	class:max-w-sm={!blockData.style?.maxWidth}
+	class="w-full h-full overflow-hidden"
 >
 	<a {href} target={blockData.link?.type == 'custom' ? '_blank' : '_self'} aria-disabled={!href}>
 		<Card.Root

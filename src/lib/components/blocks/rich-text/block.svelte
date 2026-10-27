@@ -15,6 +15,8 @@
 	style:justify-content={blockData.style?.alignX}
 	style:align-items={blockData.style?.alignY}
 	style:padding={mobile.current ? blockData.mobileS?.padding : blockData.style?.padding}
+	style:overflow={blockData.style?.overflow}
+	style:border-radius={blockData.style?.borderRadius}
 	class:container={blockData.style?.container}
 	class="relative grid justify-center items-center mx-auto py-0 md:py-5"
 >
