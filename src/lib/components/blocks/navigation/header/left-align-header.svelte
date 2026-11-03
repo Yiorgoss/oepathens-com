@@ -39,7 +39,7 @@
 			iterates them until we find the active link then returns it to be used to set styles later on
 	  */
 		let activeNest;
-		list.forEach(({ nLink }) => {
+		list?.forEach(({ nLink }) => {
 			if (!nLink) return;
 			if (!nLink.arr) return;
 			nLink.arr.forEach(({ link }) => {
@@ -91,16 +91,16 @@
 							</Nav.Link>
 						</Nav.Item>
 						<div class="flex justify-around items-center">
-							{#if Object.entries(supportedLocales).length > 1 }
-								<Nav.Item class="px-2 ">
-									<LocaleSwitcher useFlag />
-								</Nav.Item>
-							{/if}
 							{#each list ?? [] as { nLink }}
 								{@render nestedLink({ nLink })}
 							{/each}
 						</div>
 					</div>
+					{#if Object.entries(supportedLocales).length > 1}
+						<Nav.Item class="px-2 ">
+							<LocaleSwitcher useFlag />
+						</Nav.Item>
+					{/if}
 				</Nav.List>
 				<!-- mobile -->
 				<div class="w-full px-0 lg:hidden">
@@ -156,7 +156,7 @@
 {#snippet nestedLink({ nLink }: { nLink: INestedLink | undefined | null })}
 	{#if nLink}
 		<Nav.Item class="py-2 px-0 w-fit">
-			{#if nLink?.arr?.length == 1 && !nLink?.nest }
+			{#if nLink?.arr?.length == 1 && !nLink?.nest}
 				<Nav.Link class="">
 					{#snippet child()}
 						<Button
