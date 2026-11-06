@@ -104,6 +104,7 @@ export interface Config {
     floatingHeader: IFloatingHeader;
     midFloatHeader: IMidFloadHeader;
     leftAlignHeader: ILeftAlignHeader;
+    stuckHeader: IHeaderStuckHeader;
     richTextFooter: IRichTextFooter;
     footerDesign2: IFooterDesign2;
     googleMapFooter: IGoogleMapFooter;
@@ -462,7 +463,7 @@ export interface Tenant {
  * via the `definition` "INavigation".
  */
 export interface INavigation {
-  header?: (IImageHeader | IFloatingHeader | IMidFloadHeader | ILeftAlignHeader)[] | null;
+  header?: (IImageHeader | IFloatingHeader | IMidFloadHeader | ILeftAlignHeader | IHeaderStuckHeader)[] | null;
   footer?: (IRichTextFooter | IFooterDesign2 | IGoogleMapFooter | IFooter3)[] | null;
 }
 /**
@@ -566,6 +567,29 @@ export interface ILeftAlignHeader {
   id?: string | null;
   blockName?: string | null;
   blockType: 'leftAlignHeader';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IHeaderStuckHeader".
+ */
+export interface IHeaderStuckHeader {
+  image?: IImageField;
+  list?:
+    | {
+        nLink?: INestedLink;
+        id?: string | null;
+      }[]
+    | null;
+  style?: {
+    background?: string | null;
+    gap?: string | null;
+    height?: string | null;
+    container?: boolean | null;
+    alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'stuckHeader';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -728,7 +752,6 @@ export interface IFooterDesign2 {
 export interface ITextUnderCard {
   image?: IImageField;
   richText?: IRichTextField;
-  link?: IButton;
   style?: {
     padding?: string | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
@@ -947,6 +970,8 @@ export interface IRichText {
     container?: boolean | null;
     height?: string | null;
     width?: string | null;
+    overflow?: string | null;
+    borderRadius?: string | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
   };

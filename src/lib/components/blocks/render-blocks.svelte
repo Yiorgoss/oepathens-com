@@ -76,6 +76,8 @@
 				return import('./navigation/header/mid-float-header.svelte');
 			case 'leftAlignHeader':
 				return import('./navigation/header/left-align-header.svelte');
+			case 'stuckHeader':
+				return import('./navigation/header/stuck-header.svelte');
 			case 'richTextFooter':
 				return import('./navigation/footer/rich-text-footer.svelte');
 			case 'googleMapFooter':
