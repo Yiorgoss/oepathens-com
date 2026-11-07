@@ -3,25 +3,9 @@
 	import Image from '@/components/common/image.svelte';
 	import { RichTextRender } from '@/components/blocks/rich-text';
 	import * as Card from '@/components/ui/card';
-	import { page } from '$app/state';
 	import { mobile } from '@/utils/media-queries.svelte';
 
 	const { blockData }: { blockData: ITextUnderCard } = $props();
-	const { locale } = $derived(page.params);
-
-	let href = $derived.by(() => {
-		const { type: urlType, url, reference } = blockData.link || {};
-		// custom url
-		if (urlType == 'custom' && url) return url;
-		// internal url
-		if (urlType == 'reference' && reference) {
-			//@ts-ignore
-			const slug = reference.value.slug; //slug is present if depth > 0 because of defaultPopulate
-			return locale ? `/${locale}/${slug}` : `/${slug}`;
-		}
-
-		return null;
-	});
 </script>
 
 <section
@@ -30,22 +14,20 @@
 	style:overflow={blockData.style?.overflow}
 	style:border-radius={blockData.style?.borderRadius}
 	class:max-w-sm={!blockData.style?.maxWidth}
-	class="w-full h-full overflow-hidden"
+	class="h-full w-full overflow-hidden"
 >
-	<a {href} target={blockData.link?.type == 'custom' ? '_blank' : '_self'} aria-disabled={!href}>
-		<Card.Root
-			style={`max-width:${blockData.style?.maxWidth}; padding:${blockData.style?.padding}`}
-			class="py-0 max-w-sm w-full h-full bg-transparent items-start justify-start border-0 shadow-none text-foreground"
+	<Card.Root
+		style={`max-width:${blockData.style?.maxWidth}; padding:${blockData.style?.padding}`}
+		class="text-foreground h-full w-full max-w-sm items-start justify-start border-0 bg-transparent py-0 shadow-none"
+	>
+		<div
+			style:overflow={blockData?.style?.overflow}
+			class="w-full overflow-hidden transition-transform duration-200"
 		>
-			<div
-				style:overflow={blockData?.style?.overflow}
-				class="w-full transition-transform duration-200 overflow-hidden"
-			>
-				<Image class="h-100 " image={blockData?.image} />
-			</div>
-			<div class="">
-				<RichTextRender richText={blockData?.richText} />
-			</div>
-		</Card.Root>
-	</a>
+			<Image class="h-100 " image={blockData?.image} />
+		</div>
+		<div class="">
+			<RichTextRender richText={blockData?.richText} />
+		</div>
+	</Card.Root>
 </section>

@@ -7,7 +7,7 @@
 	const { borderRadius, height, width, alignY, alignX } = $derived(blockData.style || {});
 </script>
 
-<section id="IWellnessCard" class="">
+<section id="IWellnessCard" class="h-full">
 	<a
 		href={(blockData.link as Page)?.slug}
 		aria-hidden={!(blockData.link as Page)?.slug}
