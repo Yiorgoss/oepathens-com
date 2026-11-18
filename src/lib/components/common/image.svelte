@@ -99,6 +99,8 @@
 			class:bg-none={loaded}
 			class="group/image relative grid grid-cols-1 grid-rows-1 items-center justify-center h-full w-full bg-(image:--placeholder) bg-center bg-cover bg-no-repeat"
 			style:--placeholder={`url(${site.storage}/${asset?.sizes?.placeholder?.filename})`}
+			style:inset={style?.inset}
+			style:position={style?.position}
 			style:height={mobile.current ? (mobileStyle?.height ?? style?.height) : style?.height}
 			style:width={mobile.current ? (mobileStyle?.width ?? style?.width) : style?.width}
 			style:overflow={style?.overflow}
