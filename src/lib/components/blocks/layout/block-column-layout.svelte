@@ -113,7 +113,7 @@
 		style:justify-content={style?.alignX}
 		class:flex-wrap={layout == 'threeColumns'}
 		class:container={style?.container}
-		class="z-10 col-start-1 row-start-1 mx-auto flex h-full w-full flex-col items-center justify-center gap-0 overflow-hidden md:flex-row md:items-stretch md:gap-10"
+		class="z-10 col-start-1 row-start-1 mx-auto flex h-full w-full flex-col items-center justify-center gap-0 overflow-clip md:flex-row md:items-stretch md:gap-10"
 		{@attach fadeInUp}
 	>
 		<div
