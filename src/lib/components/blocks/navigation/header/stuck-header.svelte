@@ -41,7 +41,7 @@
 
 <section id="stuckHeader">
 	<div
-		class="bg-background fixed inset-x-0 top-0 z-40 h-(--header-height)"
+		class="bg-background absolute inset-x-0 top-0 z-40 h-(--header-height)"
 		style:background={style?.background}
 		style:height={style?.height}
 	>
