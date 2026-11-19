@@ -26,6 +26,7 @@
 				<Accordion.Item value={`acc-item-${i}`} class="group border-0 w-full ">
 					<div style:padding={blockData.style?.gap}>
 						<Accordion.Trigger
+							style={`font:${blockData.style?.font}`}
 							class={cn(
 								'flex font-serif font-semibold font-2xl w-full items-center justify-between select-none [&[data-state=open]svg]:rotate-180 hover:border-2 border-0 border-primary rounded-none px-0 py-0',
 								blockData.style?.noHover && 'hover:border-0'
