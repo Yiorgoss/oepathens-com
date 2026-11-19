@@ -71,7 +71,10 @@
 			}}
 			setApi={(emblaApi: CarouselAPI | undefined) => (api = emblaApi)}
 		>
-			<Carousel.Content style={`padding:${blockData.interS?.padding}`} class="w-full">
+			<Carousel.Content
+				style={`padding:${blockData.interS?.padding};`}
+				class={cn('w-full', blockData.interS?.alignX && 'flex justify-center')}
+			>
 				{#each filteredItems ?? [] as item (item.id)}
 					<Carousel.Item
 						style={`padding-right:${blockData.style?.gap};width:${blockData.style?.width}`}
