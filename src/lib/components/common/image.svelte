@@ -86,7 +86,7 @@
 </svelte:head>
 
 {#if href}
-	<a {href} target={link.type == 'custom' ? '_blank' : '_self'}>
+	<a {href} target={link?.type == 'custom' ? '_blank' : '_self'}>
 		{@render ImageSnippet()}
 	</a>
 {:else}
@@ -143,10 +143,11 @@
 				/>
 			{/if}
 			<div
+				class:inset-shadow={style?.insetShadow}
 				style:opacity={style?.opacity}
 				style:background={style?.background}
 				style:mix-blend-mode={style?.mixBlendMode}
-				class="col-start-1 row-start-1 h-full w-full"
+				class="col-start-1 row-start-1 pointer-events-none h-full w-full"
 			></div>
 			<div class="col-start-1 relative row-start-1 h-full w-full">
 				{#each arr ?? [] as sticker}
@@ -156,3 +157,11 @@
 		</div>
 	{/if}
 {/snippet}
+
+<style>
+	.inset-shadow {
+		box-shadow:
+			inset 0 0 20px rgba(0, 0, 0, 0.35),
+			inset 0 0 60px rgba(0, 0, 0, 0.35);
+	}
+</style>
