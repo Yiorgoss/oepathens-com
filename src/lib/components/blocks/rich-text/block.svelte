@@ -21,7 +21,7 @@
 	class="relative grid justify-center items-center mx-auto py-0 md:py-5"
 >
 	{#if blockData?.bgImg}
-		<div class="col-start-1 row-start-1">
+		<div class="absolute inset-0">
 			<Image image={blockData?.bgImg} />
 		</div>
 	{/if}

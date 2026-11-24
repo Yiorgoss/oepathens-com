@@ -86,7 +86,8 @@
 
 <section
 	id="block-column-layout"
-	style:height={style?.height}
+	style:height={mobile.current ? (mobileStyle?.height ?? style?.height) : style?.height}
+	style:width={mobile.current ? (mobileStyle?.width ?? style?.width) : style?.width}
 	style:min-height={style?.minHeight}
 	style:background={style?.color}
 	style:border-radius={style?.borderRadius}

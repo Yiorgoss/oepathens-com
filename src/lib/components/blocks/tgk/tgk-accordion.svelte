@@ -3,6 +3,7 @@
 	import { type ITGKAccordion } from '@payload-types';
 	import { RichTextRender } from '@/components/blocks/rich-text';
 	import * as Accordion from '@/components/ui/accordion';
+	import { cn } from '@/utils';
 
 	const { blockData }: { blockData: ITGKAccordion } = $props();
 
@@ -22,10 +23,13 @@
 	>
 		<Accordion.Root class="w-full max-w-4xl mx-auto" type="multiple">
 			{#each list || [] as item, i}
-				<Accordion.Item value={`acc-item-${i}`} class="group border-0 w-full ">
+				<Accordion.Item value={`acc-item-${i}`} class=" group border-0 w-full ">
 					<div style:padding={blockData.style?.gap}>
 						<Accordion.Trigger
-							class="flex font-serif font-semibold font-2xl w-full items-center justify-between select-none [&[data-state=open]svg]:rotate-180 hover:border-2 border-0 border-primary rounded-none px-0 py-0"
+							class={cn(
+								'flex font-serif font-semibold text-xl w-full items-center justify-between select-none [&[data-state=open]svg]:rotate-180 hover:border-2 border-0 border-primary rounded-none px-0 py-0',
+								blockData.btnStyle?.noHover && 'hover:border-0'
+							)}
 						>
 							{#snippet child({ props })}
 								<div
@@ -35,7 +39,7 @@
 									style:padding={blockData.btnStyle?.padding}
 									{...props}
 								>
-									<span class="font-lg max-md:font-xl font-bold grow">
+									<span style:font={blockData.btnStyle?.font} class="grow">
 										{item.title}
 									</span>
 									<span

@@ -31,15 +31,22 @@ const config = {
           'self',
           '*.calisto.studio',
           'https://*.tickettailor.com',
-          'https://static.cloudflareinsights.com'
+          'https://static.cloudflareinsights.com',
+          'https://*.mindbodyonline.com',
+          'https://www.googletagmanager.com'
         ],
         'frame-src': [
           'self',
           'https://*.calisto.studio',
           'https://www.google.com',
-          'https://*.tickettailor.com'
+          'https://*.tickettailor.com',
+          'https://*.mindbodyonline.com'
         ],
-        'img-src': ['self','data:', 'assets.calisto.studio'],
+        'img-src': [
+          'self','data:', 'assets.calisto.studio',
+          'https://*.mindbodyonline.com',
+          
+        ],
         'connect-src': [
           'self',
           'api.iconify.design',
@@ -47,7 +54,8 @@ const config = {
           'api.unisvg.com',
           '*.calisto.studio',
           'https://*.tickettailor.com',
-          'https://cloudflareinsights.com'
+          'https://cloudflareinsights.com',
+          'https://*.mindbodyonline.com'
         ],
         'style-src': ['self', 'unsafe-inline', 'https://*.tickettailor.com']
       }
