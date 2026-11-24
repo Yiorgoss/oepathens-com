@@ -81,6 +81,7 @@ export interface Config {
     calistoFeatureCard: ICalistoFeatureCard;
     discountCard: IDiscountCard;
     singleCard: ISingleCard;
+    serviceCard: IServiceCard;
     wellnessCard: IWellnessCard;
     hoverCard: IHoverCard;
     richTextCard: IRichTextCard;
@@ -103,7 +104,6 @@ export interface Config {
     floatingHeader: IFloatingHeader;
     midFloatHeader: IMidFloadHeader;
     leftAlignHeader: ILeftAlignHeader;
-    stuckHeader: IHeaderStuckHeader;
     richTextFooter: IRichTextFooter;
     footerDesign2: IFooterDesign2;
     googleMapFooter: IGoogleMapFooter;
@@ -404,6 +404,7 @@ export interface Page {
         | ICalistoFeatureCard
         | IDiscountCard
         | ISingleCard
+        | IServiceCard
         | IWellnessCard
         | IHoverCard
         | ICutoutCard
@@ -461,7 +462,7 @@ export interface Tenant {
  * via the `definition` "INavigation".
  */
 export interface INavigation {
-  header?: (IImageHeader | IFloatingHeader | IMidFloadHeader | ILeftAlignHeader | IHeaderStuckHeader)[] | null;
+  header?: (IImageHeader | IFloatingHeader | IMidFloadHeader | ILeftAlignHeader)[] | null;
   footer?: (IRichTextFooter | IFooterDesign2 | IGoogleMapFooter | IFooter3)[] | null;
 }
 /**
@@ -568,29 +569,6 @@ export interface ILeftAlignHeader {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IHeaderStuckHeader".
- */
-export interface IHeaderStuckHeader {
-  image?: IImageField;
-  list?:
-    | {
-        nLink?: INestedLink;
-        id?: string | null;
-      }[]
-    | null;
-  style?: {
-    background?: string | null;
-    gap?: string | null;
-    height?: string | null;
-    container?: boolean | null;
-    alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'stuckHeader';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "IRichTextFooter".
  */
 export interface IRichTextFooter {
@@ -628,6 +606,7 @@ export interface IFooterDesign2 {
     | (
         | ITextUnderCard
         | ISingleCard
+        | IServiceCard
         | IWellnessCard
         | IAccordion
         | IHoverCard
@@ -663,6 +642,7 @@ export interface IFooterDesign2 {
     | (
         | ITextUnderCard
         | ISingleCard
+        | IServiceCard
         | IWellnessCard
         | IAccordion
         | IHoverCard
@@ -698,6 +678,7 @@ export interface IFooterDesign2 {
     | (
         | ITextUnderCard
         | ISingleCard
+        | IServiceCard
         | IWellnessCard
         | IAccordion
         | IHoverCard
@@ -747,6 +728,7 @@ export interface IFooterDesign2 {
 export interface ITextUnderCard {
   image?: IImageField;
   richText?: IRichTextField;
+  link?: IButton;
   style?: {
     padding?: string | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
@@ -754,6 +736,7 @@ export interface ITextUnderCard {
     margin?: string | null;
     overflow?: string | null;
     maxWidth?: string | null;
+    borderRadius?: string | null;
   };
   mobileStyle?: {
     margin?: string | null;
@@ -783,6 +766,27 @@ export interface ISingleCard {
   id?: string | null;
   blockName?: string | null;
   blockType: 'singleCard';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IServiceCard".
+ */
+export interface IServiceCard {
+  image?: IImageField;
+  /**
+   * Shown in the chip above the image, for example "Mon - 9 AM"
+   */
+  time?: string | null;
+  title?: string | null;
+  style?: {
+    background?: string | null;
+    borderRadius?: string | null;
+    padding?: string | null;
+    maxWidth?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'serviceCard';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -943,8 +947,6 @@ export interface IRichText {
     container?: boolean | null;
     height?: string | null;
     width?: string | null;
-    overflow?: string | null;
-    borderRadius?: string | null;
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
   };
@@ -1280,6 +1282,7 @@ export interface ICarousel {
         | IRichTextCard
         | ISingleCard
         | IWellnessCard
+        | IPilatesCard
         | IRichText
         | IImage
         | IFlexItem
@@ -1294,10 +1297,25 @@ export interface ICarousel {
   };
   style?: {
     background?: string | null;
+    color?: string | null;
     padding?: string | null;
     gap?: string | null;
     container?: boolean | null;
     width?: string | null;
+  };
+  categS?: {
+    padding?: string | null;
+  };
+  interS?: {
+    padding?: string | null;
+  };
+  arrowS?: {
+    color?: string | null;
+    border?: string | null;
+  };
+  arrowMobS?: {
+    color?: string | null;
+    border?: string | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -1579,6 +1597,7 @@ export interface IFlexboxLayout {
           | (
               | ITextUnderCard
               | ISingleCard
+              | IServiceCard
               | IWellnessCard
               | IAccordion
               | IHoverCard
@@ -1746,32 +1765,6 @@ export interface IFooter3 {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IStickerField".
- */
-export interface IStickerField {
-  url?: (number | null) | Asset;
-  style?: {
-    top?: string | null;
-    left?: string | null;
-    right?: string | null;
-    bottom?: string | null;
-    height?: string | null;
-    width?: string | null;
-    objectFit?: string | null;
-    translate?: string | null;
-  };
-  mobileStyles?: {
-    top?: string | null;
-    left?: string | null;
-    right?: string | null;
-    bottom?: string | null;
-    height?: string | null;
-    width?: string | null;
-    translate?: string | null;
-  };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "IGradientBG".
  */
 export interface IGradientBG {
@@ -1853,6 +1846,7 @@ export interface IBlockColumnLayout {
     | (
         | ITextUnderCard
         | ISingleCard
+        | IServiceCard
         | IWellnessCard
         | IAccordion
         | IHoverCard
@@ -1888,6 +1882,7 @@ export interface IBlockColumnLayout {
     | (
         | ITextUnderCard
         | ISingleCard
+        | IServiceCard
         | IWellnessCard
         | IAccordion
         | IHoverCard
@@ -1923,6 +1918,7 @@ export interface IBlockColumnLayout {
     | (
         | ITextUnderCard
         | ISingleCard
+        | IServiceCard
         | IWellnessCard
         | IAccordion
         | IHoverCard
@@ -1973,6 +1969,10 @@ export interface IBlockColumnLayout {
     alignX?: ('start' | 'center' | 'end' | 'space-around' | 'space-evenly') | null;
     alignY?: ('start' | 'center' | 'end' | 'stretch') | null;
   };
+  largeS?: {
+    padding?: string | null;
+  };
+  anim?: ('none' | 'fadeInUp') | null;
   bgImage?: IImageField;
   stickerList?:
     | {
@@ -2087,8 +2087,7 @@ export interface IAnimation {
    * Animations that trigger when they enter the page
    */
   viewport?:
-    | ('slideFadeFast' | 'slideFadeSlow' | 'slideLetters' | 'bubbleLetters' | 'drawSVG' | 'slideUpFadeIn')[]
-    | null;
+    ('slideFadeFast' | 'slideFadeSlow' | 'slideLetters' | 'bubbleLetters' | 'drawSVG' | 'slideUpFadeIn')[] | null;
   /**
    * Stagger animations as they enter
    */
