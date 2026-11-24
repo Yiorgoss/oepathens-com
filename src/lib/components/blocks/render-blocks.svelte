@@ -64,8 +64,8 @@
 				return import('./common/gutter-v2.svelte');
 			case 'clipGutter':
 				return import('./common/clip-gutter.svelte');
-			case 'iframe':
-				return import('./common/iframe.svelte');
+			case 'rawHtml':
+				return import('./common/raw-html.svelte');
 			case 'rtBlock':
 				return import('./rich-text/block.svelte');
 			case 'imageHeader':
